@@ -1,12 +1,15 @@
 import Link from "next/link";
-import
- './Nav.css'
+import './Nav.css'
 export default function Nav() {
   return (
-    <nav style={{ padding: 12, borderBottom: "1px solid #ddd" }}>
-      <Link href="/" style={{ marginRight: 12 }}>Home</Link>
-      <Link href="/about" style={{ marginRight: 12 }}>About</Link>
-      <Link href="/products">Products</Link>
+    <nav className="menu">
+        <ul className="menuitem">
+            <li className="navitem"><Link className="navlink" href="/">Trang chủ</Link></li>
+            <li className="navitem"><Link className="navlink" href="/products">Sản phẩm</Link></li>
+            <li className="navitem"><Link className="navlink" href="/products">Giải pháp</Link></li>
+            <li className="navitem"><Link className="navlink" href="/products">Liên hệ</Link></li>
+            <li className="navitem"><Link className="navlink" href="/products">Chính sách</Link></li>
+        </ul>
     </nav>
   );
 }

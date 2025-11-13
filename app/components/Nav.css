@@ -1,3 +1,30 @@
-nav{
-    background-color: #00579a;
+.menu{
+    text-align: center;
+    line-height: 40px;
+    background-color: #fff;
+    color: #00569a;
+}
+
+.menuitem .navitem{
+    display: inline-block;
+    flex-wrap: nowrap;
+}
+.menuitem .navitem:hover{
+    color: #fff;
+    background-color: #00569a;
+}
+.navlink{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+header{
+    background-color: white;
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+}
+header .logo{
+    height: 100%;
+    width: 400px;
+    margin: auto;
 }
