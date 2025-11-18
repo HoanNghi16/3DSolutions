@@ -14,17 +14,16 @@
     background-color: #00569a;
 }
 .navlink{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 20px;
 }
 header{
     background-color: white;
-    height: 100px;
     width: 100%;
     padding: 10px;
 }
 header .logo{
-    height: 100%;
-    width: 400px;
+    width: 150px;
     margin: auto;
 }

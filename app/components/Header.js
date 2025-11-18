@@ -1,9 +1,11 @@
-import Image from 'next/image'
 import './Nav.css'
+import Link from 'next/link';
 export default function Header() {
     return(
         <header>
-            <Image className='logo' src="/logoNgang2.jpg" width={100} height={100} alt='logo'/>
+            <Link href='/'>
+                <img className='logo' src="/logoNgang2.jpg" alt='logo' loading="eager"/>
+            </Link>
         </header>
     );
 }
