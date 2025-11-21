@@ -1,56 +1,64 @@
 'use client';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react'
 import './Carousel.css'
 
-export default function Carousel({images = [], autoPlay =  true, internal = 2000}){
+export default function Carousel({images = [], autoPlay = true, interval = 2000}){
   const [index, setIndex] = useState(0)
-  const length = images.length
   const timerRef = useRef(null)
+  const length = images.length
 
-  function stopTimer(){
-    if (timerRef.current){
+  function goNext(){ //Chuyển tới index tiếp theo
+    setIndex( (i)=>((i+1)%length))
+  }
+  function goPrev(){ //Chuyển tới index trước đó
+    setIndex( (i) => ((i-1+length)%length))
+  }
+
+  function stopTimer(){ //Dừng đếm thời gian
+    if(timerRef.current){
       clearInterval(timerRef.current)
       timerRef.current = null
     }
+    
   }
-
-  function startTimer(){
+  function startTimer(){ //Bắt đầu đếm thời gian
     stopTimer();
-    timerRef.current = setInterval( () => {
-      setIndex((i) => ((i+1)%length))
-    }, internal)
-  }
-
-  useEffect(() =>{
-    if(!autoPlay || length<=1) return;
-    startTimer();
-    return () => stopTimer();
-  }, [autoPlay, internal, index])
-
-
-  function goPrev(){
-    setIndex((i) => (i-1 + length)%length)
+    timerRef.current = setInterval(()=> goNext(), interval);
   }
   
-  function goNext(){
-    setIndex((i) => (i+1)%length)
-  }
+  useEffect(()=>{  //Chạy lại hàm khi các thành phần trên thay đổi
+    if(!autoPlay || length<=1) return;
+    startTimer();
+    return ()=>stopTimer();
+  },[autoPlay, interval, length])
 
   if (length === 0) return
+
   return (
-    <div className="carousel" onMouseEnter={stopTimer} onMouseLeave={()=> {if (autoPlay) startTimer()}}>
-      <div className="carousel__track" style={{transform: `translateX(-${index*100}%)`}}>
-          {images.map( (src, i) => (
-            <div className="carousel__slide" key={i}>
-              <img src={src} className="carousel__image"></img>
+    <div className='carousel' onMouseEnter={stopTimer} onMouseLeave={() => {if (autoPlay) startTimer();}}>
+      <div className='carousel_track' style={{transform: `translateX(-${index*100}%)`}}>
+          {images.map( (src, i) => { return (
+            <div className='carousel_slide' key={i}>
+              <img src={src} className='carousel_image'></img>
             </div>
-          ))}
+          )})}
       </div>
       <>
-          <button onClick={goNext}>next</button>
-          <button onClick={goPrev}>previous</button>
+          <button className='carousel_nav carousel_nav--prev' onClick={goPrev}>‹</button>
+          <button className='carousel_nav carousel_nav--next' onClick={goNext}>›</button>
+
+          <div className='carousel_indicators'>
+            {images.map( (_,i) => {
+              return (
+                <button 
+                className={`carousel_indicator ${i === index ? 'active': ''}`} 
+                key={i}
+                onClick={()=> setIndex(i)}></button>
+              )
+            })}
+          </div>
       </>
+
     </div>
   )
-
 }
