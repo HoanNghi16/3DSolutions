@@ -2,13 +2,14 @@ import Link from "next/link";
 import './Nav.css'
 export default function Nav() {
   return (
-    <nav className="menu">
-        <ul className="menuitem">
-            <li className="navitem" id="home"><b><Link className="navlink" href="/">Trang chủ</Link></b></li>
-            <li className="navitem" id="products"><b><Link className="navlink" href="/products">Sản phẩm</Link></b></li>
-            <li className="navitem"><b><Link className="navlink" href="/solutions">Giải pháp</Link></b></li>
-            <li className="navitem"><b><Link className="navlink" href="/contact">Liên hệ</Link></b></li>
-            <li className="navitem"><b><Link className="navlink" href="/products">Chính sách</Link></b></li>
+    <nav>
+        <Link href='/'><img className="navLogo" src='/logoNgang.png'></img></Link>
+        <ul className="menu">
+            <li className="menuItem" id="home"><Link className="menuLink" href="/">TRANG CHỦ</Link></li>
+            <li className="menuItem" id="products"><Link className="menuLink" href="/products">SẢN PHẨM</Link></li>
+            <li className="menuItem"><Link className="menuLink" href="/solutions">GIẢI PHÁP</Link></li>
+            <li className="menuItem"><Link className="menuLink" href="/contact">LIÊN HỆ</Link></li>
+            <li className="menuItem"><Link className="menuLink" href="/products">CHÍNH SÁCH</Link></li>
         </ul>
     </nav>
   );

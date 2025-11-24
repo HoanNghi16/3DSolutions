@@ -1,0 +1,50 @@
+/* HEADER */
+header {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    color: #f0f0f0;
+    background-color: #00579a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 200px;
+    z-index: 1000;
+}
+
+.headerTitle {
+    line-height: 45px;
+}
+
+.headerMenu {
+    display: flex;
+    list-style: none;
+    gap: 20px; 
+    padding: 0;
+    margin: 0;
+}
+.headerMenuItem {
+    display: flex;
+    align-items: center;
+}
+
+.headerMenuLink {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 45px;
+}
+.loginIcon, .registerIcon {
+    height: 24px;
+    margin-right: 5px;
+}
+
+.headerMenuLink:hover {
+    color: #ffd700;
+    transition: 0.2s;
+}

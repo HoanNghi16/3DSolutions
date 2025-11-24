@@ -8,9 +8,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body>
-        <Header />
-        <Nav />
-        {children}
+        <div className="container">
+          <Header />
+          <Nav />
+          {children}
+        </div>
       </body>
     </html>
   );

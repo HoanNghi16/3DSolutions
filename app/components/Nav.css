@@ -1,29 +1,57 @@
-.menu{
-    text-align: center;
-    line-height: 40px;
+nav{
+    position: fixed;
+    top: 45px;      /* nếu bạn có header cao 45px */
+    left: 0;
+    width: 100%;
+    height: 60px;
     background-color: #fff;
-    color: #00569a;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 200px; /* giữ margin-left/right 200px bạn muốn */
+    box-sizing: border-box;
 }
 
-.menuitem .navitem{
-    display: inline-block;
-    flex-wrap: nowrap;
+/* logo */
+.navLogo{
+    height: 40px;
+    margin-right: 20px;
 }
-.menuitem .navitem:hover{
-    color: #fff;
-    background-color: #00569a;
+
+/* menu dùng flex, không float */
+.menu{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto; /* đẩy menu sang phải */
+    gap: 0; /* bạn có thể tăng gap nếu muốn khoảng cách giữa các item */
 }
-.navlink{
-    margin-left: 30px;
-    margin-right: 30px;
-    font-size: 20px;
+
+/* mỗi item là vùng chứa (li) */
+.menuItem{
+    height: 60px;
+    /* xóa padding ở li, để a chứa padding */
+    margin: 0;
+    display: block;
 }
-header{
-    background-color: white;
-    width: 100%;
-    padding: 10px;
+
+/* cho a phủ đầy li => click bất kỳ chỗ trong ô đều kích hoạt link */
+.menuLink{
+    display: flex;           /* hoặc block */
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;         /* vùng nhấn ngang rộng */
+    text-decoration: none;
+    color: #00579a;
+    font-size: 17px;
+    box-sizing: border-box;
 }
-header .logo{
-    width: 150px;
-    margin: auto;
+
+/* hover: đổi background của li, đổi màu của link */
+.menuItem:hover {
+    background-color: #00579a;
+}
+.menuItem:hover .menuLink {
+    color: #f0f0f0;
 }

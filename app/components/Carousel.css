@@ -11,6 +11,11 @@
 .carousel_slide{
   min-width: 100%;
 }
+.carousel_image{
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
 .carousel_nav{
   position: absolute;
   top: 45%;
