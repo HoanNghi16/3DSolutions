@@ -1,54 +1,50 @@
 nav{
     position: fixed;
-    top: 45px;      /* nếu bạn có header cao 45px */
+    top: 45px;
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: #fff;
+    background-color: #f0f0f0;
     z-index: 1000;
     display: flex;
     align-items: center;
-    padding: 0 200px; /* giữ margin-left/right 200px bạn muốn */
+    padding: 0 200px;
     box-sizing: border-box;
+    box-shadow: 0 3px 5px #dddcdc;
 }
 
-/* logo */
 .navLogo{
     height: 40px;
     margin-right: 20px;
 }
 
-/* menu dùng flex, không float */
 .menu{
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-left: auto; /* đẩy menu sang phải */
-    gap: 0; /* bạn có thể tăng gap nếu muốn khoảng cách giữa các item */
+    margin-left: auto;
+    gap: 0;
 }
-
-/* mỗi item là vùng chứa (li) */
 .menuItem{
     height: 60px;
-    /* xóa padding ở li, để a chứa padding */
     margin: 0;
     display: block;
 }
 
-/* cho a phủ đầy li => click bất kỳ chỗ trong ô đều kích hoạt link */
+
 .menuLink{
-    display: flex;           /* hoặc block */
+    display: flex;         
     align-items: center;
     height: 100%;
-    padding: 0 20px;         /* vùng nhấn ngang rộng */
+    padding: 0 20px;
     text-decoration: none;
     color: #00579a;
     font-size: 17px;
     box-sizing: border-box;
 }
 
-/* hover: đổi background của li, đổi màu của link */
+
 .menuItem:hover {
     background-color: #00579a;
 }
