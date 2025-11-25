@@ -16,7 +16,7 @@ export default function Home() {
     {src: '/slides/slide5.jpg', caption: 'In 3D có thể xây nhà?', link: 'https://www.facebook.com/photo.php?fbid=122213636396238848&set=pb.61557165459296.-2207520000&type=3'},
     {src: '/slides/slide6.jpg', caption: 'Gửi người thương', link: 'https://www.facebook.com/photo.php?fbid=122222033606238848&set=pb.61557165459296.-2207520000&type=3'},
     {src: '/slides/slide7.jpg', caption: 'ghé thăm 3D Solutions', link: 'https://www.facebook.com/3dsolutionspage'},
-    {src: '/slides/slide8.jpg', caption: 'Từ ý tưởng thành sản phẩm', link: 'https://www.facebook.com/photo.php?fbid=122212291046238848&set=pb.61557165459296.-2207520000&type=3'},
+    {src: '/slides/slide8.jpg', caption: 'Ý tưởng hóa sản phẩm', link: 'https://www.facebook.com/photo.php?fbid=122212291046238848&set=pb.61557165459296.-2207520000&type=3'},
   ];
   return (
     <div className="homeContainer">
@@ -32,6 +32,7 @@ export default function Home() {
       <aside className="status">
         <Status slides={slides}></Status>
       </aside>
+      <div className="3D"></div>
     </div>
   );
 }

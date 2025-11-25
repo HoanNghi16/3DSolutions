@@ -3,14 +3,20 @@ import "./globals.css";
 import Nav from "./components/Nav";
 import Header from "./components/Header"
 import Footer from './components/Footer'
+import ShortedHeader from './components/shortedHeader'
 
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body>
         <div className="container">
-          <Header />
-          <Nav />
+          <div className="heading" style={{position: 'fixed', top: '0', width: '100%', zIndex:'1000'}}>
+            <Header />
+            <Nav />
+          </div>
+          <div className="shortedHeading" style={{position: 'fixed', top: '0', width: '100%', zIndex:'1000'}}>
+            <ShortedHeader/>
+          </div>
           {children}
         </div>
       </body>
