@@ -20,4 +20,10 @@
   .container{
     margin-top: 60px;
   }
+  p{
+    font-size: 15px;
+  }
+  h1{
+    font-size: 20px;
+  }
 }

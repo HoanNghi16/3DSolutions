@@ -1,6 +1,7 @@
 import Carousel from "./components/Carousel";
 import './home.css'
 import Status from "./components/status";
+
 export default function Home() {
   const images = [
     "/Banner1.png",

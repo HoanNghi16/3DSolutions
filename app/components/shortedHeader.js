@@ -3,18 +3,25 @@ import React, { useEffect, useState} from 'react';
 import './shortedHeader.css'
 import Link from 'next/link'
 export default function ShortedHeader(){
-    const [isHidden, setHidden] = useState(false);
+    const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     function onHidden(){
         if(isHidden){
-            setStyleHidden( ({}) => ({transform:`translateX(100%)`, zIndex: '-3000'}))
+            setStyleHidden( ({}) => ({display: `block`, transform:`translateX(100%)`}))
+            setTimeout( () => setStyleHidden( ({}) => ({transform: `none`})), 1)
         }
         else{
-            setStyleHidden( ({}) => ({transform: `none`}))
+            setStyleHidden( ({}) => ({transform:`translateX(100%)`}))
         }
         setHidden( (i) => (!i))
         
     }
+    useEffect( () => {  
+        if (isHidden) {
+            setTimeout(() => setStyleHidden( ({}) => ({display: 'none'})), 500)
+        }
+        return
+    }, [isHidden])
     return(
         <div className='shortedContainer'>
             <header className='shortedHeader'>
