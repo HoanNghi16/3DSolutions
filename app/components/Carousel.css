@@ -8,6 +8,17 @@
   display: flex;
   transition: 0.7s ease;
 }
+
+.carousel_track:hover .carousel_link{
+  position: absolute;
+  transform: translateY(none);
+  bottom: 0;
+  height: 100px;
+  background-color: black;
+  width: 100%;
+  display: block;
+  z-index: 1000;
+}
 .carousel_slide{
   min-width: 100%;
 }

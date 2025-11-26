@@ -3,7 +3,7 @@ import React, {useEffect, useState, useRef} from "react";
 import "./status.css";
 import Link from 'next/link';
 const Mobile = () => {
-    const breakpoint = 760;
+    const breakpoint = 1000;
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
         const handleResize = () => {
@@ -23,13 +23,40 @@ function Status({slides = [], autoPlay = true, interval = 3000}) {
     const [index, setIndex] = useState(0);
     const length = slides.length;
     const timerRef = useRef(null);
-    const pxtrans = isMobileView? 180 : 40;
+    const pxtrans = isMobileView? 160 : 290;
+    const [change, setChange] = useState(0) //Lưu sự thay đổi giữa các vị trí khi vuốt
+    const start = useRef(null);
+
+    function handleTouchStart(e){
+        stopTimer();
+        start.current = e.touches[0].clientX;
+    }
+    function handleTouchMove(e){
+        const currentChange = start.current - e.touches[0].clientX
+        if (Math.abs(currentChange) < 20) return
+        setChange(currentChange)
+    }
+    function handleTouchEnd(){
+        if (change > 0){
+            nextSlide()
+        }
+        else{
+            prevSlide();
+        }
+        if(autoPlay)startTimer();
+        setChange(0)
+    }
+
     function nextSlide(){
+        stopTimer()
         setIndex( (i) => {if (i + 2 == length) return 0; else return (i+1)%length});
+        if(autoPlay)startTimer()
     }
 
     function prevSlide(){
+        stopTimer()
         setIndex( (i) => {if (i == 0) return length -2; else return (i-1+length)%length});
+        if(autoPlay) startTimer();
     }
 
     function stopTimer(){
@@ -53,7 +80,11 @@ function Status({slides = [], autoPlay = true, interval = 3000}) {
     if (length <= 1) return null;
     return (
         <div className="slides" onMouseEnter={stopTimer} onMouseLeave={() => {if(autoPlay) startTimer();}}>
-            <div className="slide_track"style={{transform: `translateX(-${index*(pxtrans)}${pxtrans == 40? '%': 'px'})`}}>
+            <div className="slide_track"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{transform: `translateX(-${change==0? index*(pxtrans) : -(change + 20)}px)`}}>
                 {slides.map( (slide, i) =>(
                     <div className="slide" key={i} >
                         <Link className="slideBlock" href={slide.link}>

@@ -5,6 +5,23 @@
     width: 100%;
     float: left;
 }
+.carousel_more{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+.carousel_link{
+    text-decoration: none;
+    background-color: #b1d4e0;
+    color:#131a31;
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 50%;
+}
+.row1{
+    
+    width: 100%;
+}
 .coreValues{
     width: 50%;
     height: 400px;
@@ -15,14 +32,15 @@
     color: #072161;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
-    margin-left: 150px;
+    margin-left: 100px;
+    margin-top: 10px;
 }
 .coreList{
     margin-left: 150px;
     text-align: left;
     margin-top: 20px;
     padding-right: 100px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #000;
 }
@@ -32,12 +50,18 @@
 .status{
     width: 50%;
     float: right;
+    background-image: url(/onlyLogo.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+
 }
-@media (max-width: 760px) {
+@media (max-width: 1500px) {
     .carousel{
         width: 100%;
         height: auto;
         float: none;
+        margin-bottom: 0px;
     }
     .coreValues, .status{
         padding: 20px;

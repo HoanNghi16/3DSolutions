@@ -1,13 +1,12 @@
 import Carousel from "./components/Carousel";
 import './home.css'
 import Status from "./components/status";
+import Link from 'next/link'
 
 export default function Home() {
   const images = [
     "/Banner1.png",
-    "/logoNgang2.jpg",
-    "/logoNgang2.jpg",
-    "/logoNgang2.jpg"
+    "/Banner2.png"
   ];
   const slides = [
     {src: '/slides/slide1.jpg', caption: 'Giải pháp 3D', link: 'https://www.facebook.com/photo.php?fbid=122212093958238848&set=pb.61557165459296.-2207520000&type=3'},
@@ -22,18 +21,23 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <Carousel className="carousel" images={images} autoPlay={true} interval={4000} style={{ width: '100%' }}/>
-      <section className="coreValues">
-        <h1 className="coreTitle">Giá trị cốt lõi</h1>
-        <ul className="coreList">
-          <li><p>Tận tâm với từng chi tiết. Không chỉ hoàn thành yêu cầu, mà còn nỗ lực vượt mong đợi.</p></li>
-          <li><p>Sáng tạo không ngừng. Luôn tìm kiếm ý tưởng mới, thử nghiệm kỹ thuật mới và tạo ra sản phẩm mang dấu ấn riêng.</p></li>
-          <li><p>Linh hoạt & Năng động. Thích ứng nhanh, xử lý hiệu quả, và sẵn sàng thay đổi để phù hợp với mỗi dự án.</p></li>
-        </ul>
-      </section>
-      <aside className="status">
-        <Status slides={slides}></Status>
-      </aside>
-      <div className="3D"></div>
+      <div className="carousel_more">
+        <Link className='carousel_link' href='https://www.facebook.com/3dsolutionspage'>Tìm hiểu thêm</Link>
+      </div>
+      <div className="row1">
+        <section className="coreValues">
+          <h1 className="coreTitle">Giá trị cốt lõi</h1>
+          <ul className="coreList">
+            <li><p>Tận tâm với từng chi tiết. Không chỉ hoàn thành yêu cầu, mà còn nỗ lực vượt mong đợi.</p></li>
+            <li><p>Sáng tạo không ngừng. Luôn tìm kiếm ý tưởng mới, thử nghiệm kỹ thuật mới và tạo ra sản phẩm mang dấu ấn riêng.</p></li>
+            <li><p>Linh hoạt & Năng động. Thích ứng nhanh, xử lý hiệu quả, và sẵn sàng thay đổi để phù hợp với mỗi dự án.</p></li>
+          </ul>
+        </section>
+        <aside className="status">
+          <Status slides={slides}></Status>
+        </aside>
+      </div>
+      <div className="row2"></div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 import React, {useEffect, useRef, useState} from 'react'
 import './Carousel.css'
+import Link from 'next/link';
 
 export default function Carousel({images = [], autoPlay = true, interval = 2000}){
   const [index, setIndex] = useState(0)

@@ -1,7 +1,7 @@
 .slides{
     width: 100%;
-    overflow: hidden;
     padding: auto;
+    overflow: hidden;
 }
 .slide_track{
     width: 100%;
@@ -11,13 +11,14 @@
     text-align: center;
 }
 .slide{
-    max-width: 30%;
-    min-width: 30%;
-    margin-left: 5%;
-    margin-right: 5%;
+    max-width: 250px;
+    min-width: 250px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 0px;
 }
 .slideBlock{
+    background-color: #fff;
     text-decoration: none;
     color: black;
     display: block;
@@ -27,7 +28,6 @@
     height: 310px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 20px;
-    background-color: #fff;
 }
 .slideImage{
     object-fit: cover;
@@ -39,10 +39,8 @@
     margin-bottom: 0px;
 }
 .caption{
-    background-color: #fff;
     text-align: center;
     font-size: 13px;
-    margin-top: 0px;
     padding: 10px;
     border-radius: 0 0 20px 20px;
     text-decoration: none;
@@ -58,10 +56,12 @@
     transition: 0.5s;
 }
 .slideBlock:hover .caption{
+    background-image: linear-gradient(#072161,#00579a);
     height: 20%;
     transform: translateY(-100%);
+    transition: 0.5s ease;
     opacity: 0.9;
-    color: #e0701d;
+    color: #f2cb0e;
 }
 .statusController{
     margin-left: 50%;
@@ -81,7 +81,7 @@
     border-radius: 50%;
     margin-left: 5px;
 }
-@media (max-width: 760px){
+@media (max-width: 1000px){
     .slides{
         width: 100%;
         overflow: hidden;
@@ -94,20 +94,21 @@
         padding: 45px 0;
     }
     .slide{
-        max-width: 150px;
-        min-width: 150px;
-        margin-left: 15px;
-        margin-right: 15px;
+        max-width: 140px;
+        min-width: 140px;
+        margin-left: 10px;
+        margin-right: 10px;
         padding: 0px;
     }
     .slideBlock{
+        background-color: #fff;
         text-decoration: none;
         color: black;
         display: block;
         overflow: hidden;
         text-align: center;
         object-fit: cover;
-        width: 150px;
+        width: 140px;
         height: 210px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 20px;
@@ -115,8 +116,7 @@
     }
     .slideImage{
         text-align: center;
-        max-height: 150px;
-        min-height: 150px;
+        height: 80%;
         max-width: 150px;
         border-radius: 20px 20px 0 0;
         margin-bottom: 0px;
@@ -125,19 +125,26 @@
         background-color: #fff;
         font-size: 10px;
         text-align: center;
-        margin-top: 0px;
+        line-height: 100%;
         border-radius: 0 0 20px 20px;
         text-decoration: none;
-        line-height: 35px;
         font-family: Arial, Helvetica, sans-serif;
     }
     .slideBlock:hover{
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 12px 40px 0 rgba(0, 0, 0, 0.29);
         background-color: none;
     }
+    .slideBlock:hover .slideImage{
+        height: 100%;
+        transition: 0.5s;
+    }
     .slideBlock:hover .caption{
-        background-color: none;
-        color: #e0701d;
+        background-image: linear-gradient(#072161,#00579a);
+        height: 20%;
+        transform: translateY(-100%);
+        opacity: 0.9;
+        color: #f2cb0e;
+        transition: 0.5s ease;
     }
     .statusController{
         margin: 0 40%;
