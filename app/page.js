@@ -1,12 +1,13 @@
 import Carousel from "./components/Carousel";
 import './home.css'
 import Status from "./components/status";
-import Link from 'next/link'
+import Cards from "./components/cards"
 
 export default function Home() {
   const images = [
     "/Banner1.png",
-    "/Banner2.png"
+    "/Banner2.png",
+    "/Banner3.png"
   ];
   const slides = [
     {src: '/slides/slide1.jpg', caption: 'Giải pháp 3D', link: 'https://www.facebook.com/photo.php?fbid=122212093958238848&set=pb.61557165459296.-2207520000&type=3'},
@@ -18,26 +19,36 @@ export default function Home() {
     {src: '/slides/slide7.jpg', caption: 'ghé thăm 3D Solutions', link: 'https://www.facebook.com/3dsolutionspage'},
     {src: '/slides/slide8.jpg', caption: 'Ý tưởng hóa sản phẩm', link: 'https://www.facebook.com/photo.php?fbid=122212291046238848&set=pb.61557165459296.-2207520000&type=3'},
   ];
+  const cardsContent=[
+    {title: 'Dedication', content:'Phục vụ khách hàng bằng sự tận tâm tuyệt đối, chăm chút từng chi tiết.'},
+    {title: 'Design-aholic', content:'Theo đuổi thiết kế như một đam mê, tạo ra sản phẩm độc đáo, có hồn và giàu giá trị thẩm mỹ.'},
+    {title: 'Dynamics', content:'vận hành linh hoạt, cập nhật nhanh công nghệ mới, đảm bảo đáp ứng mọi nhu cầu từ đơn giản đến phức tạp.'},
+  ]
   return (
     <div className="homeContainer">
       <Carousel className="carousel" images={images} autoPlay={true} interval={4000} style={{ width: '100%' }}/>
-      <div className="carousel_more">
-        <Link className='carousel_link' href='https://www.facebook.com/3dsolutionspage'>Tìm hiểu thêm</Link>
-      </div>
       <div className="row1">
         <section className="coreValues">
           <h1 className="coreTitle">Giá trị cốt lõi</h1>
           <ul className="coreList">
-            <li><p>Tận tâm với từng chi tiết. Không chỉ hoàn thành yêu cầu, mà còn nỗ lực vượt mong đợi.</p></li>
-            <li><p>Sáng tạo không ngừng. Luôn tìm kiếm ý tưởng mới, thử nghiệm kỹ thuật mới và tạo ra sản phẩm mang dấu ấn riêng.</p></li>
-            <li><p>Linh hoạt & Năng động. Thích ứng nhanh, xử lý hiệu quả, và sẵn sàng thay đổi để phù hợp với mỗi dự án.</p></li>
+            <span className="note">-</span><li><p>Tận tâm với từng chi tiết. Không chỉ hoàn thành yêu cầu, mà còn nỗ lực vượt mong đợi.</p></li>
+            <span className="note">-</span><li><p>Sáng tạo không ngừng. Luôn tìm kiếm ý tưởng mới, thử nghiệm kỹ thuật mới và tạo ra sản phẩm mang dấu ấn riêng.</p></li>
+            <span className="note">-</span><li><p>Linh hoạt & Năng động. Thích ứng nhanh, xử lý hiệu quả, và sẵn sàng thay đổi để phù hợp với mỗi dự án.</p></li>
           </ul>
+          <div className="rotatedBackground">
+            <img className="rotated" src='/rotated.png'></img>
+            <img className='backgroundLogo' src='/OnlyLogo.png'></img>
+          </div>
         </section>
         <aside className="status">
           <Status slides={slides}></Status>
         </aside>
       </div>
-      <div className="row2"></div>
+      <div className="row2">
+        <h2 className='row2Title'>3D SOLUTIONS CÓ GÌ</h2>
+        <p className="row2Content">Dựa trên ba tiên quyết Dedication – Design-aholic – Dynamics, sứ mệnh của chúng tôi là mang đến những giải pháp 3D trọn vẹn, sáng tạo và hiệu quả nhất.</p>
+        <Cards cardsContent={cardsContent}></Cards>
+      </div>
     </div>
   );
 }

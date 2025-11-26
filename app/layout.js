@@ -2,7 +2,6 @@
 import "./globals.css";
 import Nav from "./components/Nav";
 import Header from "./components/Header"
-import Footer from './components/Footer'
 import ShortedHeader from './components/shortedHeader'
 
 export default function RootLayout({ children }) {

@@ -11,7 +11,6 @@ export default function Nav() {
             <li className="menuItem"><Link className="menuLink" href="/contact">LIÊN HỆ</Link></li>
             <li className="menuItem"><Link className="menuLink" href="/products">CHÍNH SÁCH</Link></li>
         </ul>
-        
     </nav>
   );
 }
