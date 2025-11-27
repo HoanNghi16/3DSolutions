@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-export default function Mobile() {
+export default function SmallView() {
     const breakpoint = 1000;
-    const [isMobile, setIsMobile] = useState(false);
+    const [isSmall, setIsSmall] = useState(false);
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= breakpoint);
+            setIsSmall(window.innerWidth <= breakpoint);
         };
 
         handleResize(); 
@@ -13,5 +13,5 @@ export default function Mobile() {
             window.removeEventListener('resize', handleResize);
         };
     }, [breakpoint]);
-    return isMobile;
+    return isSmall;
 }

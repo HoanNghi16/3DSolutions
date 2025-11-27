@@ -1,44 +1,42 @@
 "use client"
 import './cards.css'
-import Mobile from './Mobile'
+import SmallView from './SmallView'
 import React, {useState, useRef} from 'react'
 function Cards({cardsContent = []}){
-    const isMobileView = Mobile();
-    const [change, setChange] = useState(0)
-    const [currentX, setCurrentX] = useState(0)
-    const start = useRef(null)
-    var currentStyle = null
+    const isSmallView = SmallView();                  //Kiểm tra nếu màn hình nhỏ hơn 1500px
+    const [change, setChange] = useState(0)         //Độ biến thiên khi vuốt
+    const [currentX, setCurrentX] = useState(0)     //Tọa độ X hiện tại sau khi vuốt
+    const start = useRef(null)                      //Tọa độ khi bắt đầu vuốt
 
-    function handleTouchStart(e){
-        start.current = e.touches[0].clientX;
-    }
-
-
-    function handleTouchMove(e){
-        const distance = e.touches[0].clientX - start.current
-        if (Math.abs(change+currentX)>window.innerWidth + 200){
-            setChange(change- distance<0? 5: -5)
-            setCurrentX(currentX- distance<0? 5: -5)
-            currentStyle = {transform: `translateX(${currentX + change}px)`, transition: '1s ease'}
+    //Xử lý sự kiện nhấn xuống
+    function handlePointerDown(e){
+        if(e.button != 0 || !isSmallView) return   //return nếu không phải click hoặc không phải giao diện Mobile
+        else{
+            start.current = e.clientX;
         }
-        else {setChange(distance)
-            currentStyle = null}
         return
     }
-
-
-    function handleTouchEnd(){
-        start.current = null
+    //Xử lý sự kiện di chuyển
+    function handlePointerMove(e){
+        if(start.current == null) return;
+        const distance = e.clientX - start.current;
+        if(Math.abs(distance)<5) return;
+        //set change
+        setChange(distance)
+    }
+    //Xử lý sự kiện nhấc chuột lên
+    function handlePointerUp(){
         setCurrentX(currentX + change)
+        start.current = null
         setChange(0)
     }
 
 
     return(
-        <div className="cards" style={currentStyle? currentStyle:{transform: `translateX(${currentX + change}px)`}}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}>
+        <div className="cards" style={{transform: `translateX(${currentX + change}px)`}}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}>
           {cardsContent.map((c,i)=> (
             <div className='card' key={i}>
                 <h1 className='cardTitle'>{c.title}</h1>

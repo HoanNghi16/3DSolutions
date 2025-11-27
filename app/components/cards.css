@@ -1,3 +1,33 @@
+/* Define keyframse*/
+@keyframes scrollout{
+    from{
+        transform: none;
+        opacity: 1;
+    }
+    to{
+        transform: translateY(-100%);
+    }
+}
+@keyframes scrollin{
+    from{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to{
+        transform: none;
+        opacity: 1;
+    }
+}
+@keyframes changeCardColor{
+    from{
+        background-color: #051338;
+    }
+    to{
+        background-image: linear-gradient(#e0701d,#f2cb0e);
+    }
+}
+
+/* Main Card's Style*/
 .cards{
     width: 100%;
     margin-top: 30px;
@@ -21,31 +51,15 @@
 .cardContent{
     margin-top: 40px;
     font-size: 20px;
+    transition: 1s ease;
 }
 .card:hover{
+    animation: changeCardColor 1s forwards;
     transition: 1s;
-    background-image: linear-gradient(#e0701d,#f2cb0e);
     color: #131a31;
 }
-@keyframes scrollout{
-    from{
-        transform: none;
-        opacity: 1;
-    }
-    to{
-        transform: translateY(-100%);
-    }
-}
-@keyframes scrollin{
-    from{
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to{
-        transform: none;
-        opacity: 1;
-    }
-}
+
+
 .card:hover .cardContent{
     animation: scrollout 0.5s forwards;
     animation: scrollin 0.5s forwards;

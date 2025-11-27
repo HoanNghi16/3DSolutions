@@ -2,14 +2,14 @@
 import React, {useEffect, useState, useRef} from "react";
 import "./status.css";
 import Link from 'next/link';
-import Mobile from './Mobile'
+import SmallView from "./SmallView";
 
 function Status({slides = [], autoPlay = true, interval = 2500}) {
-    const isMobileView = Mobile()
+    const isSmallView = SmallView()
     const [index, setIndex] = useState(0);
     const length = slides.length;
     const timerRef = useRef(null);
-    const pxtrans = isMobileView? 160 : 290;
+    const pxtrans = isSmallView? 160 : 290;
     const [change, setChange] = useState(0) //Lưu sự thay đổi giữa các vị trí khi vuốt
     const start = useRef(null);
 
