@@ -82,7 +82,7 @@
 .status{
     width: 50%;
     float: right;
-    background-image: url(/onlyLogo.png);
+    background-image: url(../public/OnlyLogo.png);
     background-position: left;
     background-repeat: no-repeat;
     background-size: contain;
