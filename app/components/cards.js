@@ -1,7 +1,7 @@
 "use client"
 import './Cards.css'
 import SmallView from './SmallView'
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 function Cards({cardsContent = []}){
     const isSmallView = SmallView();                //Kiểm tra nếu màn hình nhỏ hơn 1500px
     const [change, setChange] = useState(0);         //Độ biến thiên khi vuốt
