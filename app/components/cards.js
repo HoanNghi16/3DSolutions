@@ -1,5 +1,5 @@
 "use client"
-import './Cards.css'
+import './cards.css'
 import SmallView from './SmallView'
 import React, {useState, useRef} from 'react'
 function Cards({cardsContent = []}){
