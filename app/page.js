@@ -1,7 +1,7 @@
 import Carousel from "./components/Carousel";
 import './home.css'
 import Status from "./components/status";
-import Cards from "./components/Cards"
+import Cards from './components/Cards'
 
 export default function Home() {
   const images = [
