@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
-export default function SmallView() {
-    const breakpoint = 1000;
+export default function SmallView(breakpoint) {
     const [isSmall, setIsSmall] = useState(false);
     useEffect(() => {
         const handleResize = () => {

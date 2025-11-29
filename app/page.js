@@ -22,7 +22,7 @@ export default function Home() {
   const cardsContent=[
     {title: 'Dedication', content:'Phục vụ khách hàng bằng sự tận tâm tuyệt đối, chăm chút từng chi tiết.'},
     {title: 'Design-aholic', content:'Theo đuổi thiết kế như một đam mê, tạo ra sản phẩm độc đáo, có hồn và giàu giá trị thẩm mỹ.'},
-    {title: 'Dynamics', content:'vận hành linh hoạt, cập nhật nhanh công nghệ mới, đảm bảo đáp ứng mọi nhu cầu từ đơn giản đến phức tạp.'},
+    {title: 'Dynamics', content:'Vận hành linh hoạt, cập nhật nhanh công nghệ mới, đảm bảo đáp ứng mọi nhu cầu từ đơn giản đến phức tạp.'},
   ]
   return (
     <div className="homeContainer">
