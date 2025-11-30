@@ -3,11 +3,11 @@ import './cards.css'
 import SmallView from './SmallView'
 import React, {useState, useRef} from 'react'
 function Cards({cardsContent = []}){
-    const isSmallView = SmallView(700);                 //Kiểm tra nếu màn hình nhỏ hơn 1500px
+    const isSmallView = SmallView(1000);                 //Kiểm tra nếu màn hình nhỏ hơn 1500px
     const [change, setChange] = useState(0);         //Độ biến thiên khi vuốt
     const [currentX, setCurrentX] = useState(0);     //Tọa độ X hiện tại sau khi vuốt
     const start = useRef(null);                      //Tọa độ khi bắt đầu vuốt
-    const transition = useRef('none');
+    const transition = useRef('none');               //Xác định Transition để tạo hiệu ứng khi vuốt hoặc khi ngừng vuốt
     const STEP = 400                                 //Tọa độ lướt phù hợp với chiều rộng thẻ card.
 
     //Sự kiện cho Mobile (Touch start/end/move)

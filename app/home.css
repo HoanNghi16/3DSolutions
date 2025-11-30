@@ -119,7 +119,27 @@
 .row2:hover .row2Title{
     color: #fff;
 }
-@media (max-width: 1500px) {
+@media (max-width: 768px) {
+    .rotatedBackground .rotated{
+        width: 300px;
+        text-align: center;
+        background-size: cover;
+        animation: spin 10s linear infinite;
+    }
+    .backgroundLogo{
+        width: 300px;
+        text-align: center;
+        justify-content: center;
+        z-index: 1;
+        opacity: 0.5;
+    }
+    .rotatedBackground{
+        width: 300px;
+        text-align: center;
+        width: 100%;
+        z-index: -1;
+        opacity: 0.3;
+    }
     .carousel{
         width: 100%;
         height: auto;

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import SmallView from "./SmallView";
 
 function Status({slides = [], autoPlay = true, interval = 2500}) {
-    const isSmallView = SmallView(700)
+    const isSmallView = SmallView(1000)
     const [index, setIndex] = useState(0);
     const length = slides.length;
     const timerRef = useRef(null);
@@ -17,6 +17,7 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     //Sự kiện khi nhấn chuột
     function handlePointerDown(e){
         stopTimer();
+        e.preventDefault();
         if(start.current || e.button != 0) return
         start.current = e.clientX;
     }
@@ -98,7 +99,7 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
         onPointerDown : handlePointerDown,
         onPointerMove : handlePointerMove, 
         onPointerUp : handleTouchEnd,
-        onPointerCancel: handleTouchEnd
+        onMouseLeave: handleTouchEnd,
     }
 
     if (length <= 1) return null;
