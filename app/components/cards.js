@@ -30,8 +30,9 @@ function Cards({cardsContent = []}){
     //Xử lý sự kiện ngừng chạm
     function handleTouchEnd(){
         transition.current = '0.5s'
+        if(!currentX) return
         setCurrentX((i) => {
-            if(Math.abs(change) >= (currentX + i)/6) i += change >= 0 ? -STEP : STEP
+            if(Math.abs(change) >= (currentX + i)/5) i += change >= 0 ? -STEP : STEP
             if (i <= -400) i = -STEP
             if (i >= 400) i = STEP
             return i
@@ -53,10 +54,11 @@ function Cards({cardsContent = []}){
 
     //Xử lý sự kiện di chuyển
     function handleMouseMove(e){
-        if(start.current == null) return;
         e.preventDefault()
+        if(start.current == null) return;
+        console.log(e)
         const distance = start.current -e.clientX;
-        if(Math.abs(distance)<5) return;
+        if(Math.abs(distance)<10) return;
         setChange(distance)
     }
     return(
@@ -66,8 +68,7 @@ function Cards({cardsContent = []}){
                 onTouchEnd= {handleTouchEnd}
                 onMouseDown = {handleMouseDown}
                 onMouseMove = {handleMouseMove} 
-                onMouseUp = {handleTouchEnd}
-                onMouseLeave= {handleTouchEnd}>
+                onMouseUp = {handleTouchEnd}>
           {cardsContent.map((c,i)=> (
             <div className='card' key={i}>
                 <h1 className='cardTitle'>{c.title}</h1>

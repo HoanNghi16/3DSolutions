@@ -97,20 +97,6 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
         return () => stopTimer();
     },[autoPlay, interval, length])
 
-    const handleMobileView = {
-        onTouchStart: handleTouchStart,
-        onTouchMove: handleTouchMove,
-        onTouchEnd: handleTouchEnd,
-    }
-
-    const handleBigView = {
-        onMouseDown : handleMouseDown,
-        onMouseMove : handleMouseMove, 
-        onMouseUp : handleTouchEnd,
-        onMouseLeave: handleTouchEnd,
-        onClick : ((e) => {if (isDrag) e.preventDefault()})
-    }
-
     if (length <= 1) return null;
     return (
         <div className="slides" onMouseEnter={stopTimer} onMouseLeave={() => {if(autoPlay) startTimer();}}>
