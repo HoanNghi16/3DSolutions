@@ -44,47 +44,29 @@ function Cards({cardsContent = []}){
 
     //Sự kiện cho chuột (Pointer down/up/move)
     //Xử lý sự kiện nhấn xuống
-    function handlePointerDown(e){
+    function handleMouseDown(e){
         if(e.button != 0 || start.current) return   //return nếu không phải click hoặc không phải giao diện Mobile
         start.current = e.clientX
         return
     }
 
     //Xử lý sự kiện di chuyển
-    function handlePointerMove(e){
+    function handleMouseMove(e){
         if(start.current == null) return;
+        e.preventDefault()
         const distance = start.current -e.clientX;
         if(Math.abs(distance)<5) return;
-        e.preventDefault()
         setChange(distance)
-    }
-    //Xử lý sự kiện nhấc chuột lên
-    function handlePointerUp(){
-        transition.current = '0.5s'
-        setCurrentX((i) => {
-            if(Math.abs(change) >= (currentX + i)/6) i += change >= 0 ? -STEP : STEP
-            if (i <= -400) i = -STEP
-            if (i >= 400) i = STEP
-            return i
-        })
-        setChange(0)
-        start.current = null
-        setTimeout(() => (transition.current = 'none'), 500)
-    }
-    const mobileView = {
-        onTouchStart : handleTouchStart,
-        onTouchMove : handleTouchMove,
-        onTouchEnd : handleTouchEnd
-    }
-    const bigView = {
-        onPointerDown : handlePointerDown,
-        onPointerMove : handlePointerMove,
-        onPointerCancel : handlePointerUp,
-        onPointerUp : handlePointerUp
     }
     return(
         <div className="cards" style={{transform: `translateX(${currentX - change}px)`, transition: transition.current}}
-        {...(isSmallView? mobileView : bigView)}>
+                onTouchStart= {handleTouchStart}
+                onTouchMove= {handleTouchMove}
+                onTouchEnd= {handleTouchEnd}
+                onMouseDown = {handleMouseDown}
+                onMouseMove = {handleMouseMove} 
+                onMouseUp = {handleTouchEnd}
+                onMouseLeave= {handleTouchEnd}>
           {cardsContent.map((c,i)=> (
             <div className='card' key={i}>
                 <h1 className='cardTitle'>{c.title}</h1>

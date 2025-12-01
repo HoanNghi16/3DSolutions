@@ -13,22 +13,27 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     const [change, setChange] = useState(0)             //Lưu sự thay đổi giữa các vị trí khi vuốt
     const start = useRef(null);
     const transition = useRef('transform 0.5s ease');
+    const [isDrag, setIsDrag] = useState(true)
     //Sự kiện cho máy tính (màn hình > 700px)
     //Sự kiện khi nhấn chuột
-    function handlePointerDown(e){
+    function handleMouseDown(e){
         stopTimer();
         e.preventDefault();
         if(start.current || e.button != 0) return
         start.current = e.clientX;
+        console.log(e)
     }
 
     //Sự kiện di chuột khi nhấn
-    function handlePointerMove(e){
+    function handleMouseMove(e){
         if (!start.current) return
-        e.preventDefault();
         transition.current = 'transform 0s';
         const currentChange = start.current - e.clientX
-        if (Math.abs(currentChange)<10) return
+        if (Math.abs(currentChange)<10) {
+            setIsDrag(false)
+            return
+        }
+        setIsDrag(true)
         setChange(currentChange)
     }
     
@@ -61,6 +66,9 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
         setChange(0)
         start.current = null;
         if(autoPlay) startTimer();
+        setTimeout(()=>{
+            setIsDrag(false)
+        },500)
     }
 
     function nextSlide(){
@@ -96,17 +104,25 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     }
 
     const handleBigView = {
-        onPointerDown : handlePointerDown,
-        onPointerMove : handlePointerMove, 
-        onPointerUp : handleTouchEnd,
+        onMouseDown : handleMouseDown,
+        onMouseMove : handleMouseMove, 
+        onMouseUp : handleTouchEnd,
         onMouseLeave: handleTouchEnd,
+        onClick : ((e) => {if (isDrag) e.preventDefault()})
     }
 
     if (length <= 1) return null;
     return (
         <div className="slides" onMouseEnter={stopTimer} onMouseLeave={() => {if(autoPlay) startTimer();}}>
             <div className="slide_track"
-            {...(isSmallView? handleMobileView: handleBigView)}
+                onTouchStart= {handleTouchStart}
+                onTouchMove= {handleTouchMove}
+                onTouchEnd= {handleTouchEnd}
+                onMouseDown = {handleMouseDown}
+                onMouseMove = {handleMouseMove} 
+                onMouseUp = {handleTouchEnd}
+                onMouseLeave= {handleTouchEnd}
+                onClick = {((e) => {if (isDrag) e.preventDefault()})}
             style={{transform: `translateX(-${index*(pxtrans) + change}px)`, transition: transition.current}}>
                 {slides.map( (slide, i) =>(
                     <div className="slide" key={i} >
