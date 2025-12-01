@@ -13,6 +13,7 @@ function Cards({cardsContent = []}){
     //Sự kiện cho Mobile (Touch start/end/move)
     //Xử lý sự kiện chạm
     function handleTouchStart(e){
+        e.preventDefault()
         if(start.current) return
         start.current = e.touches[0].clientX;
     }
@@ -30,7 +31,6 @@ function Cards({cardsContent = []}){
     //Xử lý sự kiện ngừng chạm
     function handleTouchEnd(){
         transition.current = '0.5s'
-        if(!currentX) return
         setCurrentX((i) => {
             if(Math.abs(change) >= (currentX + i)/5) i += change >= 0 ? -STEP : STEP
             if (i <= -400) i = -STEP
@@ -46,7 +46,6 @@ function Cards({cardsContent = []}){
     //Sự kiện cho chuột (Pointer down/up/move)
     //Xử lý sự kiện nhấn xuống
     function handleMouseDown(e){
-        e.preventDefault()
         if(e.button != 0 || start.current) return   //return nếu không phải click hoặc không phải giao diện Mobile
         start.current = e.clientX
         return
