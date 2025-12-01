@@ -120,25 +120,22 @@
     color: #fff;
 }
 @media (max-width: 1000px) {
+    .rotatedBackground{
+        width: 100%;
+        justify-content: center;
+        z-index: -1;
+        opacity: 0.3;
+    }
     .rotatedBackground .rotated{
         width: 300px;
-        text-align: center;
         background-size: cover;
+        text-align: center;
         animation: spin 10s linear infinite;
     }
     .backgroundLogo{
         width: 300px;
-        text-align: center;
-        justify-content: center;
         z-index: 1;
         opacity: 0.5;
-    }
-    .rotatedBackground{
-        width: 300px;
-        text-align: center;
-        width: 100%;
-        z-index: -1;
-        opacity: 0.3;
     }
     .carousel{
         width: 100%;

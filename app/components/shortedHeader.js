@@ -5,7 +5,9 @@ import Link from 'next/link'
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
-    function onHidden(){
+
+
+    function onHidden(){ //Chuyển đổi trạng thái ẩn/hiện
         if(isHidden){
             setStyleHidden( ({}) => ({display: `block`, transform:`translateX(100%)`}))
             setTimeout( () => setStyleHidden( ({}) => ({transform: `none`})), 1)
@@ -14,14 +16,16 @@ export default function ShortedHeader(){
             setStyleHidden( ({}) => ({transform:`translateX(100%)`}))
         }
         setHidden( (i) => (!i))
-        
     }
+    
+
     useEffect( () => {  
         if (isHidden) {
             setTimeout(() => setStyleHidden( ({}) => ({display: 'none'})), 500)
         }
         return
     }, [isHidden])
+
     return(
         <div className='shortedContainer'>
             <header className='shortedHeader'>
@@ -31,7 +35,7 @@ export default function ShortedHeader(){
                 </div>
                 <button className="hamburger" onClick={onHidden}>&#9776;</button>
             </header>
-            <div className='hiddenNav' style={styleHidden}>
+            <div className='hiddenNav' style={styleHidden} onClick={(e) => {if(isHidden) onHidden()}}>
                 <ul className='hiddenList'>
                     <li className="hiddenItem" id="home">
                         <Link className="hiddenLink" href="/">TRANG CHỦ</Link>

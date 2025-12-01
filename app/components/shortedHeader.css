@@ -28,15 +28,18 @@
     padding-bottom: 10px;
 }
 .hiddenNav{
-    background-color: #f0f0f0;
-    width: 50%;
-    height: 1000px;
+    width: 100%;
     float: right;
     transition: 0.5s ease;
+    justify-content: right;
 }
 .hiddenList{
     list-style: none;
-    margin: 10px;
+    float: right;
+    background-color: #f0f0f0;
+    max-width: 50%;
+    min-width: 50%;
+    padding: 10px;
 }
 .hiddenItem{
     padding: 10px;

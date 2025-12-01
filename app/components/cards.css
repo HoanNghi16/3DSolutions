@@ -65,3 +65,18 @@
     animation: scrollin 0.5s forwards;
     transition: 1s;
 }
+@media (max-width: 768px){
+    .card{
+        display:block;
+        padding: 40px;
+        text-align: left;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 350px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #051338;
+        border-radius: 10%;
+        color: white;
+    }
+}
