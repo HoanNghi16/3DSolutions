@@ -45,6 +45,7 @@ function Cards({cardsContent = []}){
     //Sự kiện cho chuột (Pointer down/up/move)
     //Xử lý sự kiện nhấn xuống
     function handleMouseDown(e){
+        e.preventDefault()
         if(e.button != 0 || start.current) return   //return nếu không phải click hoặc không phải giao diện Mobile
         start.current = e.clientX
         return
