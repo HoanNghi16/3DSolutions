@@ -12,13 +12,14 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     const pxtrans = isSmallView? 160 : 290;
     const [change, setChange] = useState(0)             //Lưu sự thay đổi giữa các vị trí khi vuốt
     const start = useRef(null);
-    const transition = useRef('transform 0.5s ease');
+    const [transition,setTransition] = useState('transform 0.5s ease');
     const [isDrag, setIsDrag] = useState(true)
     //Sự kiện cho máy tính (màn hình > 700px)
     //Sự kiện khi nhấn chuột
     function handleMouseDown(e){
         stopTimer();
         e.preventDefault();
+        setTransition('transform 0s')
         if(start.current || e.button != 0) return
         start.current = e.clientX;
         console.log(e)
@@ -27,7 +28,6 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     //Sự kiện di chuột khi nhấn
     function handleMouseMove(e){
         if (!start.current) return
-        transition.current = 'transform 0s';
         const currentChange = start.current - e.clientX
         if (Math.abs(currentChange)<10) {
             setIsDrag(false)
@@ -43,20 +43,20 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     function handleTouchStart(e){
         stopTimer();
         if(start.current) return
+        setTransition('transform 0s')
         start.current = e.touches[0].clientX;
     }
     //Xử lý sự kiện di chuyển Touch
     function handleTouchMove(e){
         if (!start.current) return
         e.preventDefault();
-        transition.current = 'transform 0s';
         const currentChange = start.current - e.touches[0].clientX
         setChange(currentChange)
     }
     
     //Xử lý sự kiện di duyển ngừng chạm
     function handleTouchEnd(){
-        transition.current = 'transform 0.5s ease'
+        setTransition('transform 0.5s ease')
         setIndex((i) => {
             if(Math.abs(change) > pxtrans/3) i += (change>0? 1: -1)
             if (i + 1 === 0) i = length -2
@@ -80,7 +80,7 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     }
 
     function stopTimer(){
-        if(timerRef.current){
+        if(timerRef.current){ 
             clearInterval(timerRef.current);
         }
     }
@@ -109,7 +109,7 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
                 onMouseUp = {handleTouchEnd}
                 onMouseLeave= {handleTouchEnd}
                 onClick = {((e) => {if (isDrag) e.preventDefault()})}
-            style={{transform: `translateX(-${index*(pxtrans) + change}px)`, transition: transition.current}}>
+            style={{transform: `translateX(-${index*(pxtrans) + change}px)`, transition: transition}}>
                 {slides.map( (slide, i) =>(
                     <div className="slide" key={i} >
                         <Link className="slideBlock" href={slide.link}>
