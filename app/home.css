@@ -119,7 +119,7 @@
 .row2:hover .row2Title{
     color: #fff;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .rotatedBackground .rotated{
         width: 300px;
         text-align: center;
