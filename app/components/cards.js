@@ -61,7 +61,6 @@ function Cards({cardsContent = []}){
     function handleMouseMove(e){
         e.preventDefault()
         if(start.current == null) return;
-        console.log(e)
         const distance = start.current -e.clientX;
         if(Math.abs(distance)<10) return;
         setChange(distance)

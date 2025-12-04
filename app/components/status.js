@@ -22,7 +22,6 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
         setTransition('transform 0s')
         if(start.current || e.button != 0) return
         start.current = e.clientX;
-        console.log(e)
     }
 
     //Sự kiện di chuột khi nhấn
