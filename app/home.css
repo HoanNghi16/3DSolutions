@@ -6,8 +6,12 @@
         transform: rotate(360deg);
     }
 }
+.shortedHeading{
+  display: none;
+}
 .homeContainer{
     width: 100%;
+    margin-top: 105px;
     overflow: hidden;
 }
 .carousel{
@@ -120,6 +124,21 @@
     color: #fff;
 }
 @media (max-width: 1000px) {
+    .heading{
+        display: none;
+    }
+    .shortedHeading{
+        display: block;
+    }
+    .homeContainer, .mainContainer{
+        margin-top: 60px;
+    }
+    p{
+        font-size: 15px;
+    }
+    h1{
+        font-size: 20px;
+    }
     .rotatedBackground{
         width: 100%;
         justify-content: center;

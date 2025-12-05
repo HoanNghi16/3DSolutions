@@ -1,13 +1,16 @@
 import Carousel from "./components/Carousel";
 import './home.css'
 import Status from "./components/status";
-import Cards from './components/cards'
+import Cards from './components/cards';
+import Nav from "./components/Nav";
+import Header from "./components/Header";
+import ShortedHeader from "./components/shortedHeader";
 
 export default function Home() {
   const images = [
-    "/Banner1.png",
-    "/Banner2.png",
-    "/Banner3.png"
+    "https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832134/Banner1_ptnkpi.png",
+    "https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832134/Banner2_v4thv9.png",
+    "https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832134/Banner3_xlqmex.png"
   ];
   const slides = [
     {src: 'https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832220/slide1_wgpg07.jpg', caption: 'Giải pháp 3D', link: 'https://www.facebook.com/photo.php?fbid=122212093958238848&set=pb.61557165459296.-2207520000&type=3'},
@@ -26,6 +29,13 @@ export default function Home() {
   ]
   return (
     <div className="homeContainer">
+      <div className="heading" style={{position: 'fixed', top: '0', width: '100%', zIndex:'1000'}}>
+          <Header />
+          <Nav />
+      </div>
+      <div className="shortedHeading" style={{position: 'fixed', top: '0', width: '100%', zIndex:'1000'}}>
+          <ShortedHeader/>
+      </div>      
       <Carousel className="carousel" images={images} autoPlay={true} interval={4000} style={{ width: '100%' }}/>
       <div className="row1">
         <section className="coreValues">

@@ -2,6 +2,9 @@
 import React, { useEffect, useState} from 'react';
 import './shortedHeader.css'
 import Link from 'next/link'
+import navData from '../data/navData';
+
+
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
@@ -40,21 +43,11 @@ export default function ShortedHeader(){
             </header>
             <div className='hiddenNav' onClick={onHidden} style={background}>
                 <ul className='hiddenList' style={styleHidden}>
-                    <li className="hiddenItem" id="home">
-                        <Link className="hiddenLink" href="/">Trang chủ</Link>
+                    {navData.map((item, i) => (
+                        <li className='hiddenItem' key={i}>
+                            <Link href={item.link} className='hiddenLink'>{item.title}</Link>
                         </li>
-                    <li className="hiddenItem" id="products">
-                        <Link className="hiddenLink" href="/products">Sản phẩm</Link>
-                        </li>
-                    <li className="hiddenItem">
-                        <Link className="hiddenLink" href="/solutions">Giải pháp</Link>
-                        </li>
-                    <li className="hiddenItem">
-                        <Link className="hiddenLink" href="/contact">Liên hệ</Link>
-                        </li>
-                    <li className="hiddenItem">
-                        <Link className="hiddenLink" href="/products">Chính sách</Link>
-                        </li>
+                    ))}
                     <li className='hiddenItem'>
                         <Link className='hiddenLink' href="/login">Đăng nhập</Link>
                     </li>
