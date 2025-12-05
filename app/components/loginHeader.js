@@ -18,7 +18,7 @@ export default function LoginHeader(){
         else{
             setTransform('none')
         }
-    }, [isHidden])
+    }, [isHidden, isSmall])
     return (
         <div className="loginHeader">
             <div className="loginHamburger" onClick={onHidden}><label>&#9776;</label></div>
