@@ -1,0 +1,41 @@
+.loginForm{
+    width: 450px;
+    background-color: white;
+    box-shadow: 10px 2px 15px 10px rgba(0,0,0,0.3), -5px 2px 15px 10px rgba(0,0,0,0.3);
+    border-radius: 40px;
+    padding: 40px 0;
+    text-align: center;
+    margin: 100px;
+    z-index: 100;
+}
+.loginGroup{
+    width: 80%;
+    margin: auto;
+}
+.loginTitle{
+    width:50%;
+    float: left;
+    color: #072161;
+    opacity: 0.5;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.active{
+    color: #072161;
+    opacity: 1;
+}
+.input{
+    height: 45px;
+    border: 0.5px solid;
+    padding: 0 20px;
+    border-radius: 20px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+label{
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
