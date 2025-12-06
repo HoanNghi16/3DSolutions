@@ -17,7 +17,7 @@
     padding: 40px 0;
     text-align: center;
     margin: 100px;
-    z-index: 1;
+    z-index: 100;
 }
 .loginItem{
     padding-bottom: 10px;
@@ -49,9 +49,11 @@ label{
     margin-bottom: 10px;
 }
 .loginBackground{
+    pointer-events: none;
     position: absolute;
     bottom: 0;
     width: 100dvw;
+    opacity: 0.9;
     z-index: 0;
 }
 .loginButton{
