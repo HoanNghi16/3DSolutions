@@ -1,56 +1,31 @@
 .loginHeader{
+    position: relative;
     width: 100%;
-    position: fixed;
     text-align: right;
     top: 10px;
     right: 20px;
 }
 .loginHamburger{
-    width: 100%;
-    margin-bottom: 10px;
-    float: right;
-    height: 30px;
-    color: #b1d4e0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     font-size: 25px;
-    cursor: pointer;
 }
 .loginMenu{
-    width: 100%;
-    margin-right: -10px;
-    float:right;
-    transform: translateY(-120%);
+    display: flex;
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    transform: translateX(200%);
 }
 .loginItem{
     margin-bottom: 10px;
     list-style: none;
 }
-
 .loginItem{
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .loginLink{
     text-decoration: none;
-    color: #b1d4e0
-}
-
-@media(max-width: 1000px){
-    .loginHeader{
-        width: 100%;
-        display: flex;
-        position: fixed;
-        top: 10px;
-        left: 0px;
-        text-align: left;
-    }
-    .loginHamburger{
-        position: absolute;
-        top: 10px;
-        left: 30px;
-    }
-    .loginMenu{
-        position: absolute;
-        display: flex;
-        top:20px;
-        left: 60px;
-    }
+    color: #b1d4e0;
 }

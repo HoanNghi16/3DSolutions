@@ -62,6 +62,7 @@
 }
 .hiddenLink.final{
     border-radius: 0 0 0 20px;
+    padding-bottom: 15px;
 }
 .hiddenLink:hover{
     background-color: #072161;

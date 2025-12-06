@@ -1,7 +1,7 @@
 .loginContainer{
     overflow: hidden;
     width: 100%;
-    min-height: 100%;
+    height: 100dvh;
     float: left;
     background-image: linear-gradient(#00579a, #072161);
     justify-items: center;
@@ -10,22 +10,41 @@
 }
 .loginForm{
     width: 450px;
-    height: 500px;
+    height: 80%;
     background-color: rgba(32, 58, 255, 0.5);
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2), -5px 5px 15px 5px rgba(0,0,0,0.2);
     border-radius: 40px;
-    margin: 100px;
+    margin: 80px;
+}
+.loginItem{
+    padding-bottom: 10px;
+}
+.loginItem:hover{
+    border-bottom: 3px solid white;
+    transition: 0.15s ease-in-out;
 }
 
-
+@media (max-height: 500px){
+    @media (max-width: 1000px){
+        .loginContainer{
+            min-height: 700px;
+            overflow: scroll;
+        }
+        .loginForm{
+            width: 450px;
+            height: 80%;
+        }
+    }
+}
 @media(max-width: 1000px){
     .loginContainer{
-        height: 800px;
         overflow: hidden;
+        height: 100dvh;
     }
     .loginForm{
         width: 80%;
         height: 500px;
+        margin: 80px 0px;
     }
 
 }
