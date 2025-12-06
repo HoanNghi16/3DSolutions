@@ -26,7 +26,7 @@ export default function LoginHeader(){
                 {navData
                 .filter((e) => {if (e.title[0] != 'Chính sách' && e.title[0] != 'Giải pháp') return e})
                 .map((item,i) => (
-                    <li className="loginItem" key={i}><Link style={{color:color}} href={item.link} className="loginLink">{item.title[1]}</Link></li>
+                    <li className="loginItem" key={i}><Link style={{color:color}} href={item.link} className="loginLink">{item.title[0]}</Link></li>
                 ))}
             </ul>
         </div>

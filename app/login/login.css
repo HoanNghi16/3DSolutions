@@ -65,6 +65,11 @@ label{
     border: none;
     font-size: 15px;
 }
+.loginButton:hover{
+    background-color: #f2cb0e;
+    color: black;
+    transition: 0.3s;
+}
 @media (max-height: 500px){
     @media (max-width: 1000px){
         .loginContainer{
