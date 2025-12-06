@@ -7,7 +7,7 @@ export default function Nav() {
         <Link href='/'><img className="navLogo" src='/logoNgang.png'></img></Link>
         <ul className="menu">
             {navData.map((item, i) => (
-              <li key={i} className="menuItem"><Link className="menuLink" href={item.link}>{item.title.toUpperCase()}</Link></li>
+              <li key={i} className="menuItem"><Link className="menuLink" href={item.link}>{item.title[0].toUpperCase()}</Link></li>
             ))}
         </ul>
     </nav>

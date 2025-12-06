@@ -10,6 +10,7 @@ export default function ShortedHeader(){
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     const [background, setBackground] = useState({display: 'none'})
 
+    
     function onHidden(){ //Chuyển đổi trạng thái ẩn/hiện
         if(isHidden){
             setStyleHidden( ({}) => ({display: `block`, transform:`translateX(100%)`}))
@@ -45,7 +46,7 @@ export default function ShortedHeader(){
                 <ul className='hiddenList' style={styleHidden}>
                     {navData.map((item, i) => (
                         <li className='hiddenItem' key={i}>
-                            <Link href={item.link} className='hiddenLink'>{item.title}</Link>
+                            <Link href={item.link} className='hiddenLink'>{item.title[0]}</Link>
                         </li>
                     ))}
                     <li className='hiddenItem'>
