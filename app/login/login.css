@@ -1,3 +1,4 @@
+/*rgba(32, 58, 255, 0.5)*/
 .loginContainer{
     overflow: hidden;
     width: 100%;
@@ -10,11 +11,13 @@
 }
 .loginForm{
     width: 450px;
-    height: 80%;
-    background-color: rgba(32, 58, 255, 0.5);
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2), -5px 5px 15px 5px rgba(0,0,0,0.2);
+    background-color: white;
+    box-shadow: 10px 2px 15px 10px rgba(0,0,0,0.3), -5px 2px 15px 10px rgba(0,0,0,0.3);
     border-radius: 40px;
-    margin: 80px;
+    padding: 40px 0;
+    text-align: center;
+    margin: 100px;
+    z-index: 1;
 }
 .loginItem{
     padding-bottom: 10px;
@@ -24,6 +27,42 @@
     transition: 0.15s ease-in-out;
 }
 
+.loginTitle{
+    color: #072161;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.input{
+    height: 45px;
+    border: 0.5px solid;
+    padding: 0 20px;
+    border-radius: 20px;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+label{
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.loginBackground{
+    position: absolute;
+    bottom: 0;
+    width: 100dvw;
+    z-index: 0;
+}
+.loginButton{
+    width: 50%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #072161;
+    color: white;
+    border: none;
+    font-size: 15px;
+}
 @media (max-height: 500px){
     @media (max-width: 1000px){
         .loginContainer{
@@ -32,7 +71,9 @@
         }
         .loginForm{
             width: 450px;
-            height: 80%;
+        }
+        .loginBackground{
+            display: none;
         }
     }
 }
@@ -43,8 +84,9 @@
     }
     .loginForm{
         width: 80%;
-        height: 500px;
-        margin: 80px 0px;
+        margin: 200px 0px;
     }
-
+    .loginBackground{
+        display: none;
+    }
 }
