@@ -53,7 +53,7 @@ export default function ShortedHeader(){
                         <Link className='hiddenLink' href="/login">Đăng nhập</Link>
                     </li>
                     <li className='hiddenItem'>
-                        <Link className='hiddenLink final' href="/register">Đăng ký</Link>
+                        <Link className='hiddenLink final' href="/login?isLogin=false">Đăng ký</Link>
                     </li>
                 </ul>
             </div>       

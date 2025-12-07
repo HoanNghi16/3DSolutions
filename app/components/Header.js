@@ -9,7 +9,7 @@ export default function Header() {
                     <Link className='headerMenuLink' href="/login"><img className='loginIcon' src='/login.png'></img>Đăng nhập</Link>
                 </li>
                 <li className='headerMenuItem'>
-                    <Link className='headerMenuLink' href="/login?login=false"><img className='registerIcon' src='/add-user.png'></img>Đăng ký</Link>
+                    <Link className='headerMenuLink' href="/login?isLogin=false"><img className='registerIcon' src='/add-user.png'></img>Đăng ký</Link>
                 </li>
             </ul>
         </header>

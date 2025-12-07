@@ -2,7 +2,7 @@
 .loginContainer{
     overflow: hidden;
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
     float: left;
     background-image: linear-gradient(#00579a, #072161);
     justify-items: center;
@@ -44,10 +44,10 @@
     @media (max-width: 1000px){
         .loginContainer{
             min-height: 700px;
-            overflow: scroll;
+            overflow-y: scroll;
         }
         .loginForm{
-            width: 450px;
+            width: 90%;
         }
         .loginBackground{
             display: none;
@@ -56,8 +56,8 @@
 }
 @media(max-width: 1000px){
     .loginContainer{
-        overflow: hidden;
-        height: 100dvh;
+        overflow-y: scroll;
+        min-height: 100dvh;
     }
     .loginForm{
         width: 80%;
