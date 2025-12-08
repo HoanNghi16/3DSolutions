@@ -5,13 +5,17 @@ import { useSearchParams } from 'next/navigation'
 
 export default function LoginForm(){
     const searchParams = useSearchParams()
-    const [isLogin, setIsLogin] = useState((searchParams.get("isLogin") == 'false'? false: true || true))
+    const [isLogin, setIsLogin] = useState((searchParams.get("isLogin") == 'false'? false: true || true))  //Lưu trạng thái đăng nhập hay đăng ký
+
+    //Giao diện khi đăng nhập
     const login = (<><label><b>Email:</b></label>
                         <input type='email' className='input' id='userName' placeholder='Email'></input>
                         <label><b>Mật khẩu:</b></label>
                         <input type='password' className='input' id='passWord' placeholder='Mật khẩu'></input>
                         <button className='loginButton'><b>Đăng nhập</b></button>
                     </>)
+
+    //Giao diện đăng ký
     const signup = (<>
                         <label><b>Email:</b></label>
                         <input className='input' type='email' placeholder='Email'></input>

@@ -2,7 +2,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import "./status.css";
 import Link from 'next/link';
-import SmallView from "./SmallView";
+import SmallView from "../lib/SmallView";
 
 function Status({slides = [], autoPlay = true, interval = 2500}) {
     const isSmallView = SmallView(1000)
@@ -71,11 +71,15 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     }
 
     function nextSlide(){
+        stopTimer();
         setIndex( (i) => {if (i + 2 == length) return 0; else return (i+1)%length});
+        setTimeout(()=>startTimer, 500);
     }
 
     function prevSlide(){
+        stopTimer();
         setIndex( (i) => {if (i == 0) return length -2; else return (i-1+length)%length});
+        setTimeout(()=>startTimer,300);
     }
 
     function stopTimer(){

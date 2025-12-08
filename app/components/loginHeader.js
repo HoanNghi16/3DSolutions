@@ -1,7 +1,7 @@
 "use client"
 import navData from "../data/navData"
 import Link from 'next/link'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './loginHeader.css'
 export default function LoginHeader(){
     const [transform, setTransform] = useState(`translateX(200%)`);

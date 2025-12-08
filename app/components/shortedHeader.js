@@ -24,13 +24,19 @@ export default function ShortedHeader(){
         setHidden( (i) => (!i))
     }
     
+    useEffect(() => {
+    let timer;
 
-    useEffect( () => {  
-        if (isHidden) {
-            setTimeout(() => setStyleHidden( ({}) => ({display: 'none'})), 500)
-        }
-        return
-    }, [isHidden])
+    if (isHidden) {
+        timer = setTimeout(() => {
+            setStyleHidden({ display: 'none' });
+        }, 500);
+    }
+
+    return () => {
+        if (timer) clearTimeout(timer);  //Cleanup Effect, tránh Effect chạy chồng nhau khi nhấn liên tục
+    };
+    }, [isHidden]);
 
     return(
         <div className='shortedContainer'>

@@ -9,19 +9,11 @@
     justify-content: center;
     margin: 0px;
 }
-
-.loginItem{
-    padding-bottom: 10px;
-}
-.loginItem:hover{
-    border-bottom: 3px solid white;
-    transition: 0.15s ease-in-out;
-}
-
 .loginBackground{
     pointer-events: none;
-    position: absolute;
-    bottom: 0;
+    clear: both;
+    margin-bottom: -55px;
+    margin-top: -240px;
     width: 100dvw;
     opacity: 0.9;
     z-index: 0;
