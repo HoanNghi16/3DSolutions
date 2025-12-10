@@ -33,7 +33,6 @@
     padding: 0 20px;
     border-radius: 20px;
     width: 90%;
-    margin-bottom: 20px;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -41,6 +40,17 @@ label{
     float: left;
     margin-left: 20px;
     margin-bottom: 10px;
+}
+.error{
+    width: 100%;
+    clear: both;
+    float: left;
+    margin-left: 30px;
+    text-align: left;
+    font-size: 13px;
+    color: rgb(181, 30, 30);
+    margin-bottom: 18px;
+    margin-top: 7px;
 }
 @media (max-width: 1000px){
     .loginForm{
