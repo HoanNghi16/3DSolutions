@@ -3,67 +3,32 @@ import './loginForm.css'
 import React, {useEffect, useRef, useState} from 'react'
 import { useSearchParams } from 'next/navigation'
 import validator from 'validator'
-import post_login from '../lib/api_service/handle_login'
+import post_login from '../lib/api/handle_login'
 
 export default function LoginForm(){
     const searchParams = useSearchParams()
     const [isLogin, setIsLogin] = useState((searchParams.get("isLogin") == 'false'? false: true || true))  //Lưu trạng thái đăng nhập hay đăng ký
-    const [loginError, setLoginError] = useState({email: "", password: ""}) //Lỗi khi nhập sai các input trong form đăng nhập
+    const [loginError, setLoginError] = useState({submit: "",email: "", password: ""}) //Lỗi khi nhập sai các input trong form đăng nhập
     const [signupError, setSignupError] = useState({email: "",
                                                      phone: "", 
                                                      name: "", 
                                                      date_of_birth: "", 
                                                      password: "", repassword:""}) //Lỗi khi nhập sai trong form đăng ký
-    const login_request = useRef({email: "", password: ""})
-    //Giao diện khi đăng nhập
-    function handleLoginForm(e){
-        let term_login_error = {...loginError}
-        if (e.target.id == 'login_email'){
-            if( validator.isEmail(e.target.value)){
-                term_login_error.email = ""
-                login_request.current.email = e.target.value
-            }else{
-                term_login_error.email = "Email sai!"
-            }
-        }else{
-            if (e.target.value.length == 0){
-                term_login_error.password = "Vui lòng nhập mật khẩu!"
-            }
-            else{
-                term_login_error.password = ""
-                login_request.current.password = e.target.value
-            }
-        }
-        setLoginError(term_login_error)
-    }
-    async function handleSubmit(e){
-        if(login_request.current.email.length==0 || login_request.current.password.length == 0){
-            e.preventDefault()
-            let term_login_error = {...loginError}
-            if (login_request.current.email.length == 0){
-                term_login_error.email = "Vui lòng nhập Email!"
-            }
-            if(login_request.current.password.length == 0){
-                term_login_error.password = "Vui lòng nhập mật khẩu!"
-            }
-            setLoginError(term_login_error)
-        }
-        else{
-            post_login(login_request.current)
-        }
-    }
-    const login = (<form onSubmit={handleSubmit}>
+    const login_request = useRef({email: "", password: ""}) //Lưu request tạm
+    const login = (<form onSubmit={handleSubmit} id="login">
+                        <span className='error first'><b>{loginError.submit}</b></span>
                         <label><b>Email:</b></label>
                         <input type='email' className='input' id='login_email' placeholder='Email' onChange={handleLoginForm}></input>
-                        <span id="loign_Email_error" className='error'><b>{loginError['email']}</b></span>
+                        <span id="loign_email_error" className='error'><b>{loginError['email']}</b></span>
                         <label><b>Mật khẩu:</b></label>
-                        <input type='password' className='input' id='login_passWord' placeholder='Mật khẩu' onChange={handleLoginForm}></input>
+                        <input type='password' className='input' id='login_password' placeholder='Mật khẩu' onChange={handleLoginForm}></input>
                         <span id="loign_password_error" className='error'><b>{loginError['password']}</b></span>
                         <button className='loginButton' type='submit'><b>Đăng nhập</b></button>
                     </form>)
 
     //Giao diện đăng ký
-    const signup = (<form>
+    const signup = (<form onSubmit={handleSubmit} id="signup">
+                        <span className='error first'><b></b></span>
                         <label><b>Email:</b></label>
                         <input className='input' type='email' id='signup_email' placeholder='Email'></input>
                         <span id='signup_email_error' className='error'><b></b></span>
@@ -91,6 +56,60 @@ export default function LoginForm(){
                         <button className='loginButton' type='submit'><b>Đăng ký</b></button>
                     </form>)
                     
+    //Giao diện khi đăng nhập
+    async function handleLoginForm(e){
+        let term_login_error = {...loginError}
+        const elemet = e.target || e
+        console.log(elemet.id)
+        switch(elemet.id){
+            case "login_email": {
+                if (elemet.value.length == 0){
+                    term_login_error.email = "Vui lòng nhập email!"
+                }else{
+                    term_login_error.submit = ""
+                    if(validator.isEmail(elemet.value)){
+                        term_login_error.email = ""
+                    }else{
+                        term_login_error.email = "Email sai!"
+                    }
+                }
+                break;
+            }
+            default:{
+                if (elemet.value.length == 0){
+                    term_login_error.password = "Vui lòng nhập mật khẩu!"
+                }
+                else{
+                    term_login_error.password = ""
+                    term_login_error.submit = ""
+                }
+            }
+        }
+        setLoginError(term_login_error)
+    }
+    async function handleSubmit(e){
+        e.preventDefault();
+        const term_login_error = {...loginError}
+        const form = e.target
+        console.log(form.id)
+        if (form.id == "login"){
+            let login_email = form.login_email
+            let login_password = form.login_password
+            if (login_email.value.length == 0 && login_password.value.length == 0){
+                term_login_error.submit = "Vui lòng nhập đầy đủ thông tin!"
+                term_login_error.email = ""
+                term_login_error.password = ""
+                setLoginError(term_login_error)
+                return false
+            }
+            else{
+                handleLoginForm(login_email)
+
+                handleLoginForm(login_password)
+            }
+        }
+    }
+    
     function onLogin(){
         setIsLogin(!isLogin)
     }
