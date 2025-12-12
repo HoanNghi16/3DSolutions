@@ -1,10 +1,9 @@
 footer{
     width: 100%;
-    position: absolute;
+    clear: both;
     bottom: 0px;
     padding: 20px 100px;
     background-color: #072161;
-    clear: both;
 }
 @media (max-width: 1000px){
     footer{
