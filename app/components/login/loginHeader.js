@@ -1,5 +1,5 @@
 "use client"
-import navData from "../data/navData"
+import navData from "../../data/navData"
 import Link from 'next/link'
 import React, {useState} from 'react'
 import './loginHeader.css'

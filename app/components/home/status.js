@@ -2,10 +2,10 @@
 import React, {useEffect, useState, useRef} from "react";
 import "./status.css";
 import Link from 'next/link';
-import SmallView from "../lib/SmallView";
+import SmallView from "../../lib/SmallView";
 
 function Status({slides = [], autoPlay = true, interval = 2500}) {
-    const isSmallView = SmallView(1000)
+    const isSmallView = SmallView(800)
     const [index, setIndex] = useState(0);
     const length = slides.length;
     const timerRef = useRef(null);

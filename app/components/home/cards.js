@@ -1,6 +1,6 @@
 "use client"
 import './cards.css'
-import SmallView from '../lib/SmallView'
+import SmallView from '../../lib/SmallView'
 import React, {useState, useRef} from 'react'
 function Cards({cardsContent = []}){
     const isSmallView = SmallView(768);                 //Kiểm tra nếu màn hình nhỏ hơn 1500px

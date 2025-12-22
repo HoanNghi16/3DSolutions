@@ -81,7 +81,8 @@
     border-radius: 50%;
     margin-left: 5px;
 }
-@media (max-width: 1000px){
+
+@media (max-width: 800px){
     .slides{
         width: 100%;
         overflow: hidden;

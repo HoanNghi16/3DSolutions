@@ -1,7 +1,7 @@
-import Carousel from "./components/Carousel";
+import Carousel from "./components/home/Carousel";
 import './home.css'
-import Status from "./components/status";
-import Cards from './components/cards';
+import Status from "./components/home/status";
+import Cards from './components/home/cards';
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import ShortedHeader from "./components/shortedHeader";

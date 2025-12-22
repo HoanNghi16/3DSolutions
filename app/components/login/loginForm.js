@@ -3,7 +3,7 @@ import './loginForm.css'
 import React, {useEffect, useRef, useState} from 'react'
 import { useSearchParams } from 'next/navigation'
 import validator from 'validator'
-import post_login from '../lib/api/handle_login'
+import{post_login} from '../../lib/api/handle_login'
 
 export default function LoginForm(){
     const searchParams = useSearchParams()
@@ -60,6 +60,7 @@ export default function LoginForm(){
     async function handleLoginForm(e){
         let term_login_error = {...loginError}
         const elemet = e.target || e
+
         console.log(elemet.id)
         switch(elemet.id){
             case "login_email": {
@@ -103,10 +104,9 @@ export default function LoginForm(){
                 return false
             }
             else{
-                handleLoginForm(login_email)
-
-                handleLoginForm(login_password)
+                
             }
+            
         }
     }
     

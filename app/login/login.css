@@ -1,5 +1,6 @@
 /*rgba(32, 58, 255, 0.5)*/
 .loginContainer{
+    position: relative;
     overflow: hidden;
     width: 100%;
     min-height: 100dvh;
@@ -10,13 +11,11 @@
     margin: 0px;
 }
 .loginBackground{
+    position: absolute;
     pointer-events: none;
-    clear: both;
-    margin-bottom: -55px;
-    margin-top: -240px;
+    bottom: 0px;
     width: 100dvw;
-    opacity: 0.9;
-    z-index: 0;
+    z-index: 0px;   
 }
 .loginButton{
     width: 50%;
