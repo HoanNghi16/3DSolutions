@@ -1,6 +1,6 @@
 import Link from "next/link";
 import './Nav.css'
-import navData from '../data/navData'
+import {navData} from '../data/navData'
 export default function Nav() {
   return (
     <nav>

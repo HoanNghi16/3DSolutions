@@ -33,8 +33,8 @@
 }
 
 .hiddenNav{
-    width: 100%;
-    min-height: 2000px;
+    width: 100dvw;
+    height: 100dvh;
     float: right;
     justify-content: right;
     background-color: rgba(0, 0, 0, 0.5);

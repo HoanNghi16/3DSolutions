@@ -2,14 +2,13 @@
 import React, { useEffect, useState} from 'react';
 import './shortedHeader.css'
 import Link from 'next/link'
-import navData from '../data/navData';
-
+import {navData} from '../data/navData';
+import userData from '../data/getUserData';
 
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     const [background, setBackground] = useState({display: 'none'})
-
     
     function onHidden(){ //Chuyển đổi trạng thái ẩn/hiện
         if(isHidden){
@@ -25,13 +24,13 @@ export default function ShortedHeader(){
     }
     
     useEffect(() => {
-    let timer;
+        let timer;
 
-    if (isHidden) {
-        timer = setTimeout(() => {
-            setStyleHidden({ display: 'none' });
-        }, 500);
-    }
+        if (isHidden) {
+            timer = setTimeout(() => {
+                setStyleHidden({ display: 'none' });
+            }, 500);
+        }
 
     return () => {
         if (timer) clearTimeout(timer);  //Cleanup Effect, tránh Effect chạy chồng nhau khi nhấn liên tục

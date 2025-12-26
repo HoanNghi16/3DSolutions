@@ -1,6 +1,6 @@
 import './Header.css'
 import Link from 'next/link';
-export default function Header() {
+export default async function Header() {
     return(
         <header>
             <p className='headerTitle'>3D Solutions - kết nối giải pháp tới người dùng</p>

@@ -1,0 +1,30 @@
+@keyframes spin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+.loadingContainer{
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.loadingWindow{
+    width: 200px;
+    height: 200px;
+    margin: 200px auto;
+}
+
+
+
+.loadingImage{
+    width: 100px;
+    height: 100px;
+    animation: spin 10s linear infinite;
+}
+.loadingTitle{
+    margin-top: 10px;
+    color: #fff;
+}

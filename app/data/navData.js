@@ -5,4 +5,4 @@ const navData = [
     {title: ['Liên hệ', 'Contact'], link: '/main/contact'},
     {title: ['Chính sách', 'Policy'], link: '/main/policy'}
 ];
-export default navData
+export { navData };

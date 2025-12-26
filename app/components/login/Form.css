@@ -10,24 +10,31 @@
     margin-bottom: 200px;
 }
 .loginGroup{
-    width: 90%;
-    margin-bottom: 0px;
+    width: 100%;
+    margin-bottom: 10px;
     margin: 0 auto;
 }
 .loginTitle{
     width:50%;
     float: left;
-    color: #072161;
-    opacity: 0.5;
+    background-color: #072161;
+    color: rgba(0,0,0,0.3);
     transform: 0.5s ease;
     padding: 30px;
-    margin-bottom: 0px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 0px;
 }
 .active{
+    background-color: white;
     color: #072161;
     opacity: 1;
     transform: 0.5 ease;
+}
+.left{
+    border-radius: 35px 0 35px 0 ;
+}
+.right{
+    border-radius: 0 35px 0 35px;
 }
 .input{
     clear: both;
@@ -69,5 +76,8 @@ label{
 @media(max-width: 700px){
     .loginForm{
         width: 85%;
+    }
+    .loginTitle{
+        font-size: smaller;
     }
 }
