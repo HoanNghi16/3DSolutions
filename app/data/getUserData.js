@@ -1,5 +1,5 @@
 "use client"
-import { get_login_status } from '../lib/api/handle_login';
+import { get_login_status } from '../lib/api/handleLogin';
 
 export default async function userData(){
     const res = await get_login_status();

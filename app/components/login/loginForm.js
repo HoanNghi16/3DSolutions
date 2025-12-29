@@ -1,14 +1,28 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import validator from 'validator'
-import{post_login} from '../../lib/api/handle_login'
+import{postLogin} from '../../lib/api/handleLogin'
 import Loading from '../loading'
+import {useAuth} from '../../authProvider'
 export default function LoginForm(){
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
-    const [loading, setLoading] = useState(false)
+    const {loading, setLoading} = useAuth();
+    const {checkLogin} = useAuth();
+    const {user} = useAuth();
+    
+    useEffect(() => {
+        function deniedAccessLogin(){
+            if (user){
+                window.location.href = "/"
+            }
+        }
+        return deniedAccessLogin();
+    }, [])
+
     async function handleSubmit(e){
         e.preventDefault()
+        setLoading(true)
         const form = e.target
         const email = handleEmailChange(form.login_email)
         const password = handlePasswordChange(form.login_password)
@@ -22,20 +36,21 @@ export default function LoginForm(){
             success = false
         }
         else{
-            setLoading(true)
             const request = {email: email, password: password}
-            const response = await post_login(request)
+            const response = await postLogin(request)
             if (response.status === 200){
                 const data = await response.json()
                 console.log(data)
                 console.log("đăng nhập thành công")
                 success = true
+                await checkLogin()
             }
             else{
                 setSubmitError("Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu.")
                 success = false
             }
         }
+        console.log(user)
         setLoading(false)
         return success
     }

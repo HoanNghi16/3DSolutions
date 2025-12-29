@@ -1,15 +1,15 @@
 'use client';
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import './shortedHeader.css'
 import Link from 'next/link'
 import {navData} from '../data/navData';
-import userData from '../data/getUserData';
 
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     const [background, setBackground] = useState({display: 'none'})
-    
+    const timer = useRef(null);
+
     function onHidden(){ //Chuyển đổi trạng thái ẩn/hiện
         if(isHidden){
             setStyleHidden( ({}) => ({display: `block`, transform:`translateX(100%)`}))
@@ -24,16 +24,15 @@ export default function ShortedHeader(){
     }
     
     useEffect(() => {
-        let timer;
 
         if (isHidden) {
-            timer = setTimeout(() => {
+            timer.current = setTimeout(() => {
                 setStyleHidden({ display: 'none' });
             }, 500);
         }
 
     return () => {
-        if (timer) clearTimeout(timer);  //Cleanup Effect, tránh Effect chạy chồng nhau khi nhấn liên tục
+        if (timer.current) clearTimeout(timer.current);  //Cleanup Effect, tránh Effect chạy chồng nhau khi nhấn liên tục
     };
     }, [isHidden]);
 

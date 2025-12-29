@@ -1,10 +1,10 @@
 'use client'
 import './Form.css'
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSearchParams } from 'next/navigation'
 import LoginForm from './loginForm'
 import SignupForm from './signupForm'
-import { get_login_status } from '../../lib/api/handle_login'
+
 export default function Form(){
     const searchParams = useSearchParams()
     const [isLogin, setIsLogin] = useState((searchParams.get("isLogin") == 'false'? false: true || true))  //Lưu trạng thái đăng nhập hay đăng ký

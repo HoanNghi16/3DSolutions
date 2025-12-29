@@ -1,5 +1,5 @@
 "use client"
-export async function post_login(request){
+export async function postLogin(request){
     const api_url = process.env.NEXT_PUBLIC_API_URL +process.env.NEXT_PUBLIC_USERS_APPLICATION + process.env.NEXT_PUBLIC_LOGIN
     const res = await fetch(api_url, {
         method: "POST",
@@ -11,10 +11,10 @@ export async function post_login(request){
     return res
 }
 
-export async function get_login_status(){
+export async function getUserInfo(){
     const api_url = process.env.NEXT_PUBLIC_API_URL +process.env.NEXT_PUBLIC_USERS_APPLICATION + process.env.NEXT_PUBLIC_INFO
     const res = await fetch( api_url, {
         method: "GET",
-        credentials: 'include'}).then(res => res.json())
+        credentials: 'include'}) // Lấythông tin người dùng từ server 
     return res
 }
