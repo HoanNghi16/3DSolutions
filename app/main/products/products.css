@@ -8,11 +8,3 @@ section{
 .show_products{
     display: inline-block;
 }
-.product_card{
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid gray;
-    border-radius: 20px;
-    width: 150px;
-    height: 200px;
-}

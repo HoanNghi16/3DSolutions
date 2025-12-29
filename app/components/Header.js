@@ -4,22 +4,32 @@ import Link from 'next/link';
 import {useState, useEffect} from 'react'
 import { useAuth } from '../authProvider';
 import Loading from "./loading"
+import ShortedName from "../lib/shortedName"
 export default function Header() {
-    const {user} = useAuth();
+    const {user, logout} = useAuth();
     const [link1, setLink1] = useState({title: "Đăng nhập", href: "/login", img:"/login.png"});
-    const [link2, setLink2] = useState({title: "Đăng ký", href: "/login?isLogin=False", img:'add-user.png'});
+    const [link2, setLink2] = useState({title: "Đăng ký", href: "/login?isLogin=false", img:'add-user.png'});
     const [loading,setLoading] = useState(false);
+
+    function handleLogout(){
+        if (user){
+            logout()
+        }else{
+            return
+        }
+    }
+
     console.log(link1, link2)
     console.log(user)
     useEffect(()=> {
         function changeUser(){
             if (user){
-                setLink1({title: `${user.profile.name}`, href: "/user", img: "none"})
-                setLink2({title: "Đăng xuất", href: "/login?isLogin=False", img: "none"})
+                setLink1({title: `${ShortedName(user.profile.name)}`, href: `/user`, img: user.avt == ""?'/user.png': user.avt})
+                setLink2({title: "Đăng xuất", href: "", img: "/logout.png"})
             }
             else{
                 setLink1({title: "Đăng nhập", href: "/login", img: "/login.png"})
-                setLink2({title: "Đăng ký", href: "/login?isLogin=False", img: "/add-user.png"})
+                setLink2({title: "Đăng ký", href: "/login?isLogin=false", img: "/add-user.png"})
             }
         }
         try{
@@ -41,7 +51,7 @@ export default function Header() {
                         <Link className='headerMenuLink' href={link1.href}><img className='loginIcon' src={link1.img}></img>{link1.title}</Link>
                     </li>
                     <li className='headerMenuItem'>
-                        <Link className='headerMenuLink' href={link2.href}><img className='registerIcon' src={link2.img}></img>{link2.title}</Link>
+                        <Link className='headerMenuLink' onClick={handleLogout} href={link2.href}><img className='registerIcon' src={link2.img}></img>{link2.title}</Link>
                     </li>
                 </ul>
             </header>

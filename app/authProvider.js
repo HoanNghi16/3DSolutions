@@ -8,6 +8,10 @@ export function AuthProvider({children}) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     
+    function logout(){
+        setUser(null);
+    }
+
     async function checkLogin(){
         try{
             const res = await getUserInfo();
@@ -32,7 +36,7 @@ export function AuthProvider({children}) {
         checkLogin()
     }, [])
     return (
-        <AuthContext.Provider value={{user, setUser, loading, checkLogin, setLoading}}>
+        <AuthContext.Provider value={{user, setUser, loading, checkLogin, setLoading, logout}}>
             {children}
         </AuthContext.Provider>
     )

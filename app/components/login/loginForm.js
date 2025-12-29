@@ -3,6 +3,7 @@ import validator from 'validator'
 import{postLogin} from '../../lib/api/handleLogin'
 import Loading from '../loading'
 import {useAuth} from '../../authProvider'
+
 export default function LoginForm(){
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
@@ -44,13 +45,13 @@ export default function LoginForm(){
                 console.log("đăng nhập thành công")
                 success = true
                 await checkLogin()
+                window.location.href = '/'
             }
             else{
                 setSubmitError("Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu.")
                 success = false
             }
         }
-        console.log(user)
         setLoading(false)
         return success
     }
