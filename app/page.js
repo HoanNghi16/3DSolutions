@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import ShortedHeader from "./components/shortedHeader";
 import {images, slides, cardsContent} from './data/slider'
+import { useAuth } from "./authProvider";
 
 export default async function Home() {
   return (
