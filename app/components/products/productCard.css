@@ -1,6 +1,6 @@
 .product_card{
     display: block;
-    width: 200px;
+    width: 250px;
     min-height: 200px;
     padding: 0;
     margin: 20px;
@@ -14,7 +14,7 @@
 .product_thumb{
     max-width: 100%;
     min-width: 100%;
-    max-height: 200px;
+    max-height: 250px;
     object-fit: cover;
 }
 .product_name{
@@ -26,4 +26,27 @@
 .product_price{
     margin-bottom: 10px;
     color: rgb(187, 4, 4);
+}
+.product_buttons{
+    display: flex;
+    width: 100%;
+}
+.buy_now{
+    width: 70%;
+    height: 40px;
+    background-image: linear-gradient(#00579a, #072161);
+    border: none;
+    color: white;
+    font-size: 17px;
+    border-radius: 20px;
+}
+.add_to_cart{
+    width: 30%;
+    background-color: #fff;
+    border: none;
+    height: 40px;
+}
+.cart_icon{
+    width: 40px;
+    height: 100%;
 }
