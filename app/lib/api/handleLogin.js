@@ -18,3 +18,11 @@ export async function getUserInfo(){
         credentials: 'include'}) // Lấythông tin người dùng từ server 
     return res
 }
+
+export async function postLogout(){
+    const api_url = process.env.NEXT_PUBLIC_API_URL +process.env.NEXT_PUBLIC_USERS_APPLICATION + process.env.NEXT_PUBLIC_LOGOUT
+    const res = await fetch(api_url, {
+        method: "POST",
+        credentials: 'include',})
+    return res
+}

@@ -1,5 +1,5 @@
 'use client'
-import {getUserInfo} from './lib/api/handleLogin';
+import {getUserInfo, postLogout} from './lib/api/handleLogin';
 import React, {useState, useEffect, createContext, useContext} from 'react';
 
 const AuthContext = createContext(null);
@@ -10,11 +10,13 @@ export function AuthProvider({children}) {
     
     function logout(){
         setLoading(true)
-        setTimeout( () => {
-            setLoading(false)
+        const res = postLogout();
+        if(res.ok){
             setUser(null);
-        }, 500)
-        
+        }else{
+            console.log("Logout failed")
+        }
+        setLoading(false)
     }
 
     async function checkLogin(){

@@ -6,5 +6,5 @@ section{
     color: rgb(178, 30, 30);
 }
 .show_products{
-    display: inline-block;
+    display: flex;
 }

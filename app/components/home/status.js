@@ -4,7 +4,7 @@ import "./status.css";
 import Link from 'next/link';
 import SmallView from "../../lib/SmallView";
 
-function Status({slides = [], autoPlay = true, interval = 2500}) {
+function Status({slides = [], autoPlay = true, interval = 2000}) {
     const isSmallView = SmallView(800)
     const [index, setIndex] = useState(0);
     const length = slides.length;
@@ -68,18 +68,15 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
         setTimeout(()=>{
             setIsDrag(false)
         },500)
+        startTimer();
     }
 
     function nextSlide(){
-        stopTimer();
         setIndex( (i) => {if (i + 2 == length) return 0; else return (i+1)%length});
-        setTimeout(()=>startTimer, 500);
     }
 
     function prevSlide(){
-        stopTimer();
         setIndex( (i) => {if (i == 0) return length -2; else return (i-1+length)%length});
-        setTimeout(()=>startTimer,300);
     }
 
     function stopTimer(){
@@ -97,7 +94,6 @@ function Status({slides = [], autoPlay = true, interval = 2500}) {
     useEffect( () => {
         if(!autoPlay || length <= 1) return;
         startTimer();
-        return () => stopTimer();
     },[autoPlay, interval, length])
 
     if (length <= 1) return null;

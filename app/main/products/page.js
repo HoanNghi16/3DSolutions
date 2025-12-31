@@ -18,7 +18,6 @@ export default async function ProductsPage() {
         {data == "None"? message:  data.filter((item) => {if(item.quantity > 0) return item}).map((item, i) => (
           <ProductCard item={item} key={item.id}></ProductCard>
         ))}
-        
       </section>
     </div>
   );
