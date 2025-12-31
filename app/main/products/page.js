@@ -10,13 +10,13 @@ export default async function ProductsPage() {
   const message = (<span className="mess">Không có sản phẩm nào để hiển thị.</span>)
   const term = await getProducts(1);
   const data = term[1];
-  const pages = term[0]
+  console.log(data)
   return (
     <div className='productContainer'>
       <img src={"https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832134/Banner2_v4thv9.png"} style={{width: "100%"}}></img>
       <section className='show_products'>
-        {data == "None"? message:  data.map((item, i) => (
-          <ProductCard item={item} key={i}></ProductCard>
+        {data == "None"? message:  data.filter((item) => {if(item.quantity > 0) return item}).map((item, i) => (
+          <ProductCard item={item} key={item.id}></ProductCard>
         ))}
         
       </section>

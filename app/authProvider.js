@@ -9,7 +9,12 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true);
     
     function logout(){
-        setUser(null);
+        setLoading(true)
+        setTimeout( () => {
+            setLoading(false)
+            setUser(null);
+        }, 500)
+        
     }
 
     async function checkLogin(){

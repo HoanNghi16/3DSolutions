@@ -4,12 +4,12 @@ import Link from 'next/link';
 import {useState, useEffect} from 'react'
 import { useAuth } from '../authProvider';
 import Loading from "./loading"
-import ShortedName from "../lib/shortedName"
+import {ShortedName} from "../lib/handleTextShow"
 export default function Header() {
     const {user, logout} = useAuth();
     const [link1, setLink1] = useState({title: "Đăng nhập", href: "/login", img:"/login.png"});
     const [link2, setLink2] = useState({title: "Đăng ký", href: "/login?isLogin=false", img:'add-user.png'});
-    const [loading,setLoading] = useState(false);
+    const {loading,setLoading} = useAuth();
 
     function handleLogout(){
         if (user){
@@ -24,7 +24,7 @@ export default function Header() {
     useEffect(()=> {
         function changeUser(){
             if (user){
-                setLink1({title: `${ShortedName(user.profile.name)}`, href: `/user`, img: user.avt == ""?'/user.png': user.avt})
+                setLink1({title: `${ShortedName(user.profile.name)}`, href: `/user`, img: user.avt})
                 setLink2({title: "Đăng xuất", href: "", img: "/logout.png"})
             }
             else{
