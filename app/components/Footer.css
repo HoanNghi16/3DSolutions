@@ -1,6 +1,5 @@
 footer{
     width: 100%;
-    clear: both;
     bottom: 0px;
     padding: 20px 100px;
     background-color: #213a43;
@@ -8,6 +7,5 @@ footer{
 @media (max-width: 1000px){
     footer{
         padding: 100px 20px;
-        clear: both;
     }
 }

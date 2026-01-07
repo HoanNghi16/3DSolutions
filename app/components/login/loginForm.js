@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import validator from 'validator'
 import{postLogin} from '../../lib/api/handleLogin'
-import Loading from '../loading'
 import {useAuth} from '../../authProvider'
 
 export default function LoginForm(){
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
-    const {loading, setLoading} = useAuth();
+    const {setLoading} = useAuth();
     const {checkLogin} = useAuth();
     const {user} = useAuth();
     
@@ -58,42 +57,40 @@ export default function LoginForm(){
 
     function handleEmailChange(e){
         const elemet = e.target || e
-        let termEmailError = emailError
+        let termError = emailError
         let result = elemet.value
         setSubmitError("")
-        if (elemet.value.length == 0){
-            termEmailError = "Vui lòng nhập email!"
+        if (result.length == 0){
+            termError = "Vui lòng nhập email!"
             result = false
         }else{
-            if(validator.isEmail(elemet.value)){
-                termEmailError = ""
+            if(validator.isEmail(result)){
+                termError = ""
             }else{
-                termEmailError = "Email sai!"
+                termError = "Email không hợp lệ!"
                 result = false
             }
         }
-        setEmailError(termEmailError)
+        setEmailError(termError)
         return result
     }
     
     function handlePasswordChange(e){
         setSubmitError("")
         const elemet = e.target || e
-        let termPasswordError = passwordError
+        let termError = passwordError
         let result = elemet.value
-        if (elemet.value.length == 0){
-            termPasswordError  = "Vui lòng nhập mật khẩu!"
+        if (result.length == 0){
+            termError  = "Vui lòng nhập mật khẩu!"
             result = false      
         }
         else{
-            termPasswordError = ""
+            termError = ""
         }
-        setPasswordError(termPasswordError)
+        setPasswordError(termError)
         return result
     }
     return (
-        <>
-            {loading?<Loading></Loading>:null}
             <form key={"login"} onSubmit={handleSubmit} id="login">
                 <span className='error first'><b>{submitError}</b></span>
                 <label><b>Email:</b></label>
@@ -104,5 +101,5 @@ export default function LoginForm(){
                 <span id="loign_password_error" className='error'><b>{passwordError}</b></span>
                 <button className='loginButton' type='submit'><b>Đăng nhập</b></button>
             </form>
-        </>)
+        )
 }

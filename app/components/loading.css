@@ -3,6 +3,7 @@
     100% {transform: rotate(-360deg);}
 }
 .loadingContainer{
+    z-index: 1000;
     width: 100dvw;
     height: 100dvh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -12,19 +13,51 @@
     pointer-events: none;
 }
 .loadingWindow{
-    width: 200px;
+    width: 300px;
     height: 200px;
     margin: 200px auto;
+    padding: 20px;
+    border-radius: 19px;
+    background-color: #fff;
 }
 
-
-
 .loadingImage{
+    margin-top: 10px;
     width: 100px;
     height: 100px;
     animation: spin 10s linear infinite;
 }
 .loadingTitle{
-    margin-top: 10px;
-    color: #fff;
+    text-align: center;
+    color: #140a35;
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 200px;
+    height: 22px;
+    margin:0 auto;
+    margin-top: 50px;
+    margin-bottom: 10px;;
+    border-radius: 40px;
+    color: #514b82;
+    border: 2px solid;
+    position: relative;
+    overflow: hidden;
+}
+.loader::before {
+    content: "";
+    position: absolute;
+    margin: 2px;
+    width: 14px;
+    top: 0;
+    bottom: 0;
+    left: -20px;
+    border-radius: inherit;
+    background: currentColor;
+    box-shadow: -10px 0 12px 3px currentColor;
+    clip-path: polygon(0 5%, 100% 0,100% 100%,0 95%,-30px 50%);
+    animation: l14 1s infinite linear;
+}
+@keyframes l14 {
+    100% {left: calc(100% + 20px)}
 }

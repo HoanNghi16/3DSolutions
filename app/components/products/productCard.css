@@ -6,9 +6,10 @@
     padding-bottom: 10px;
     text-decoration: none;
     border-radius: 10px;
+    text-align: left;
 }
 .product_card:hover{
-    box-shadow: 5px 5px 5px rgba(75, 75, 111, 0.3);
+    box-shadow: 5px 5px 5px 5px rgba(75, 75, 111, 0.2);
     transition: 0.3s;
 }
 .product_thumb{
@@ -41,15 +42,15 @@
     width: 80%;
     height: 40px;
     /*background-image: linear-gradient(#00579a, #072161);*/
-    background-color: lightgray;
+    background-color: #00579a;
     border: none;
-    color: #131a31;
+    color: white;
     font-size: 17px;
     border-radius: 5px;
 }
 .buy_now:hover{
-    color: lightgray;
-    background-color: #131a31;
+    color: white;
+    background-color: #213a43;
     scale: 1.04;
     transition: 0.3s
 }
@@ -60,15 +61,16 @@
     border: none;
     height: 40px;
     align-items: center;
-    background-color: #fdff9f;
+    background-color: #daeffc;
     border-radius: 5px;
 }
 .add_to_cart:hover{
     scale: 1.04;
     transition: 0.3s;
+    background-color: #adbec9 ;
 }
 .cart_icon{
-    width: 28px;
-    height: 28px;
-
+    width: 35px;
+    height: 35px;
+    margin-top: 2px;
 }

@@ -3,12 +3,16 @@ import React, { useEffect, useState, useRef} from 'react';
 import './shortedHeader.css'
 import Link from 'next/link'
 import {navData} from '../data/navData';
-
+import {useUser} from '../lib/handleUser'
+import { useAuth } from '../authProvider';
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     const [background, setBackground] = useState({display: 'none'})
+    const [link1, link2] = useUser();
+    const {logout} = useAuth()
     const timer = useRef(null);
+    
 
     function onHidden(){ //Chuyển đổi trạng thái ẩn/hiện
         if(isHidden){
@@ -36,6 +40,7 @@ export default function ShortedHeader(){
     };
     }, [isHidden]);
 
+
     return(
         <div className='shortedContainer'>
             <header className='shortedHeader'>
@@ -54,10 +59,12 @@ export default function ShortedHeader(){
                         </li>
                     ))}
                     <li className='hiddenItem'>
-                        <Link className='hiddenLink' href="/login">Đăng nhập</Link>
+                        <Link className='hiddenLink' href={link1.href}>
+                            {link1.title}
+                        </Link>
                     </li>
                     <li className='hiddenItem'>
-                        <Link className='hiddenLink final' href="/login?isLogin=false">Đăng ký</Link>
+                        <Link className='hiddenLink final' onClick={logout} href={link2.href}>{link2.title}</Link>
                     </li>
                 </ul>
             </div>       

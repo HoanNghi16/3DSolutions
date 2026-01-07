@@ -8,5 +8,5 @@ export function ShortedName(name){
 }
 
 export function ShowPriceFormat(price){
-    return new Intl.NumberFormat("vi-VN").format(price) + " đ";
+    return new Intl.NumberFormat("vi-VN").format(price);
 }

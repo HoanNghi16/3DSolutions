@@ -1,22 +1,47 @@
 'use client'
-import {getUserInfo, postLogout} from './lib/api/handleLogin';
-import React, {useState, useEffect, createContext, useContext} from 'react';
+import {getUserInfo, postLogout, postRegister} from './lib/api/handleLogin';
+import {useState, useEffect, createContext, useContext} from 'react';
+import Loading from './components/loading';
+import { useNoti } from './notification';
+
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({children}) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    
-    function logout(){
+    const {setMessage, setType} = useNoti()
+    async function logout(){
         setLoading(true)
-        const res = postLogout();
-        if(res.ok){
-            setUser(null);
-        }else{
-            console.log("Logout failed")
+        if (user){
+            const res = await postLogout();
+            console.log(res)
+            if(res.ok){
+                setUser(null);
+                checkLogin();
+            }else{
+                console.log("Logout failed")
+            }
         }
         setLoading(false)
+    }
+
+    async function register(request){
+        setLoading(true)
+        try {
+            const res = await postRegister(request)
+            if (res.ok){
+                setMessage("Đăng ký thành công")
+                setType("success")
+                return "Đăng ký thành công"
+            }else if (res.status == 409){
+                setMessage("Đăng ký thất bại")
+                setType("error")
+                return "Tài khoản đã tồn tại!"
+            }
+        }finally{
+            setLoading(false)
+        }
     }
 
     async function checkLogin(){
@@ -43,7 +68,8 @@ export function AuthProvider({children}) {
         checkLogin()
     }, [])
     return (
-        <AuthContext.Provider value={{user, setUser, loading, checkLogin, setLoading, logout}}>
+        <AuthContext.Provider value={{user, setUser, loading, checkLogin, setLoading, logout, register}}>
+            {loading ? <Loading></Loading> : null}
             {children}
         </AuthContext.Provider>
     )

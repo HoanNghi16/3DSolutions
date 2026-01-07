@@ -34,7 +34,10 @@ header {
 .loginIcon, .registerIcon {
     height: 60%;
 }
-
+.userIcon{
+    border-radius: 50%;
+    height: 60%;
+}
 .headerMenuLink:hover {
     color: #ffd700;
     transition: 0.5s;
