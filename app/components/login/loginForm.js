@@ -7,9 +7,8 @@ export default function LoginForm(){
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
-    const {setLoading} = useAuth();
     const {checkLogin} = useAuth();
-    const {user} = useAuth();
+    const {user, setUser} = useAuth();
     
     useEffect(() => {
         function deniedAccessLogin(){
@@ -22,7 +21,6 @@ export default function LoginForm(){
 
     async function handleSubmit(e){
         e.preventDefault()
-        setLoading(true)
         const form = e.target
         const email = handleEmailChange(form.login_email)
         const password = handlePasswordChange(form.login_password)
@@ -43,15 +41,22 @@ export default function LoginForm(){
                 console.log(data)
                 console.log("đăng nhập thành công")
                 success = true
-                await checkLogin()
-                window.location.href = '/'
+                const res =  await fetch('/api/auth/me/', {
+                    credentials: 'include',
+                }).then(res => res.json())
+                if (res?.message){
+                    setUser(null)
+                }else{
+                    setUser(data)
+                }
+                //await checkLogin()
+                window.location.reload()
             }
             else{
                 setSubmitError("Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu.")
                 success = false
             }
         }
-        setLoading(false)
         return success
     }
 

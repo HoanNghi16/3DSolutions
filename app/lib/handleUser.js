@@ -9,7 +9,7 @@ export function useUser(getProfile){
     useEffect(()=> {
         function changeUser(){
             if (user){
-                setLink1({title: `${ShortedName(user.profile.name)}`, href: `/main/user`, img: user.avt})
+                setLink1({title: `${ShortedName(user.profile.name)}`, href: `/user`, img: user.avt})
                 setLink2({title: "Đăng xuất", href: "", img: "/logout.png"})
             }
             else{

@@ -1,8 +1,8 @@
 const navData = [
     {title: ['Trang chủ', 'Home'], link: '/'},
-    {title: ['Sản phẩm', 'Products'], link: '/main/products'},
-    {title: ['Giải pháp', 'Solutions'], link: '/main/solutions'},
-    {title: ['Liên hệ', 'Contact'], link: '/main/contact'},
-    {title: ['Chính sách', 'Policy'], link: '/main/policy'}
+    {title: ['Sản phẩm', 'Products'], link: '/products'},
+    {title: ['Giải pháp', 'Solutions'], link: '/solutions'},
+    {title: ['Liên hệ', 'Contact'], link: '/contact'},
+    {title: ['Chính sách', 'Policy'], link: '/policy'}
 ];
 export { navData };

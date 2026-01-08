@@ -1,13 +1,21 @@
-"use client"
+// export async function postLogin(request){
+//     const api_url = process.env.API_URL +process.env.USERS_APPLICATION + process.env.LOGIN
+//     const res = await fetch(api_url, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(request),
+//         credentials: 'include',})
+//     return res
+
+// }
 export async function postLogin(request){
-    const api_url = process.env.NEXT_PUBLIC_API_URL +process.env.NEXT_PUBLIC_USERS_APPLICATION + process.env.NEXT_PUBLIC_LOGIN
-    const res = await fetch(api_url, {
+    const res = await fetch("/api/auth/login/", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(request),
-        credentials: 'include',})
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(request)
+    })
     return res
 }
 

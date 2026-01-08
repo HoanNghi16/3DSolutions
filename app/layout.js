@@ -1,17 +1,18 @@
 //app/layout.js
 import "./globals.css";
 import {AuthProvider} from './authProvider';
-import {Notification} from './notification'
+import {GET} from './api/auth/me/route'
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const data = await GET().then(res => res.json())
+  console.log(data)
+  const user = data?.message ? null : data.user //Nếu data trả về message thì user = null
   return (
     <html lang="vi">
       <body>
-        <Notification>
-          <AuthProvider>
+          <AuthProvider thisUser={user}>
             {children}
           </AuthProvider>
-        </Notification>
       </body>
     </html>
   );
