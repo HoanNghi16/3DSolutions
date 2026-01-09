@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import validator from 'validator'
-import{postLogin} from '../../lib/api/handleLogin'
+import{postLogin} from '../../api/api'
 import {useAuth} from '../../authProvider'
 
 export default function LoginForm(){

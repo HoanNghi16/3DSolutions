@@ -11,13 +11,7 @@
 
 // }
 export async function postLogin(request){
-    const res = await fetch("/api/auth/login/", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(request)
-    })
-    return res
-}
+
 
 export async function getUserInfo(){
     const api_url = process.env.NEXT_PUBLIC_API_URL +process.env.NEXT_PUBLIC_USERS_APPLICATION + process.env.NEXT_PUBLIC_INFO

@@ -1,22 +1,34 @@
 'use client'
 import {createContext, useContext, useState} from 'react'
-
+import {postLogout, getMe} from './api/api'
 const AuthContext = createContext(null);
 
 export function AuthProvider({children, thisUser}) {
     const [user, setUser] = useState(thisUser)
     const [loading, setLoading] = useState(true)
     
-    async function logout(){
-        const res = await fetch('app/api/auth/logout/', {
-            method: "POST",
-            credentials: 'include'
-        })
+    async function checkLogin(){
+        const res = await getMe()
         if (res.ok){
-            console.log(res.json())
-            return res.json()
+            setUser(res.json().user)
+        }else{
+            setUser(null)
         }
     }
+
+    async function logout(){
+        if (user){
+            const res = await postLogout()
+            if (res.ok){
+                checkLogin()
+                return res.json()
+            }
+        }else{
+            return
+        }   
+    }
+
+
     return (
         <AuthContext.Provider value={{user, setUser, setLoading, logout}}>
             {children}
