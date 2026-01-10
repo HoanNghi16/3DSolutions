@@ -1,5 +1,7 @@
+const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
+
 export const postLogout = async () =>{
-    const res = await fetch('/api/auth/logout/', {
+    const res = await fetch(`${BASE_URL}/api/auth/logout/`, {
         method: "POST",
         credentials: 'include',
         })
@@ -7,7 +9,7 @@ export const postLogout = async () =>{
 }
 
 export const getMe = async () => {
-    const res = await fetch('/api/auth/me/',
+    const res = await fetch(`${BASE_URL}/api/auth/me/`,
         {
             credentials: 'include'
         }
@@ -16,16 +18,21 @@ export const getMe = async () => {
 }
 
 export const postLogin = async (request) => {
-    const res = await fetch("/api/auth/login/", {
+    const res = await fetch(`${BASE_URL}/api/auth/login/`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(request)
     })
-    return res
+    return res.json()
 }
 
 export const getProducts = async (page) => {
-    const res = fetch("/api/products/")
-    console.log(res)
+    const res = await fetch(`${BASE_URL}/api/products?page=${page}`);
     return res.json()
+}
+
+export const getDetails = async (id) => {
+    console.log("Test id", id)
+    const res = await fetch(`${BASE_URL}/api/products/${id}`)
+    console.log("thử response", res)
 }
