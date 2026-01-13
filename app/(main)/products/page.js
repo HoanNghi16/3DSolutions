@@ -7,11 +7,15 @@ export default async function ProductsPage({searchParams}) {
   const page = Number((await searchParams)?.page ?? 1)
   const message = (<span className="mess">Không có sản phẩm nào để hiển thị.</span>)
   const res = await getProducts(page);
-  const data = await res.results
+  const data = (await res.json()).results
   return (
     <div className='productContainer'>
-      <img src={"https://res.cloudinary.com/dewy9gtgw/image/upload/v1764832134/Banner2_v4thv9.png"} style={{width: "100%"}}></img>
-      <section className='show_products'>
+      <div className='productsBanner'>
+        <p className='link'>TRANG CHỦ / SẢN PHẨM</p>
+        <input type='search' className='searchBox' placeholder='Tìm kiếm sản phẩm'></input>
+
+      </div>
+      <section className='showProducts'>
         {data == "None"? message:  data.filter((item) => {if(item.quantity > 0) return item}).map((item, i) => (
           <ProductCard item={item} key={item.id}></ProductCard>
         ))}

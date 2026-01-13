@@ -10,6 +10,8 @@ export default function SignUpForm(){
     const [rePasswordError, setRePasswordError] = useState('')
     const [submitError, setSubmitError] = useState('')
     const {register} = useAuth()
+
+
     function handleEmailChange(e){
         let email = e.target || e
         email = email.value
@@ -157,7 +159,8 @@ export default function SignUpForm(){
         }else{
             const request = {email: email, name: name, date_of_birth: date, password: password, phone: phone}
             const res = await register(request)
-            setSubmitError(res)
+            const message = (await res.json())?.message
+            setSubmitError(message)
             return true
         }
     }

@@ -5,6 +5,33 @@ section{
     text-align: center;
     color: rgb(178, 30, 30);
 }
-.show_products{
+.showProducts{
     display: flex;
+}
+
+.productsBanner{
+    height: 100px;
+    /* background-image: linear-gradient(#43b0f1,#b1d4e0); */
+    text-align: center;
+}
+.link{
+    float: left;
+    text-align: left;
+    padding-top: 22px;
+    padding-left: 20px;
+    font-size: 20px;
+    color: #00579a;
+}
+.searchBox{
+    float: left;
+    height: 35px;
+    margin-top: 15px;
+    margin-left: 20px;
+    border-radius: 40px;
+    border: 1px solid;
+    padding:0 20px;
+    font-size: 17px;
+    width:70%;
+    background-color: rgb(244, 244, 244);
+    color: black;
 }

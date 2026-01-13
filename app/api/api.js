@@ -23,16 +23,27 @@ export const postLogin = async (request) => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(request)
     })
-    return res.json()
+    return res
+}
+
+
+export const postSignup = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/auth/signup`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(request)
+    })
+    return res
 }
 
 export const getProducts = async (page) => {
     const res = await fetch(`${BASE_URL}/api/products?page=${page}`);
-    return res.json()
+    return res
 }
 
-export const getDetails = async (id) => {
+export const getProductDetails = async (id) => {
     console.log("Test id", id)
     const res = await fetch(`${BASE_URL}/api/products/${id}`)
+    return res
     console.log("thử response", res)
 }

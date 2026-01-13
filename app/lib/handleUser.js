@@ -5,7 +5,7 @@ import {ShortedName} from "../lib/handleTextShow"
 export function useUser(getProfile){
     const {user, setLoading} = useAuth()
     const [link1, setLink1] = useState({title: "Đăng nhập", href: "/login", img:"/login.png"});
-    const [link2, setLink2] = useState({title: "Đăng ký", href: "/login?isLogin=false", img:'add-user.png'});
+    const [link2, setLink2] = useState({title: "Đăng ký", href: "/login?isLogin=false", img:'/addUser.png'});
     useEffect(()=> {
         function changeUser(){
             if (user){
@@ -14,7 +14,7 @@ export function useUser(getProfile){
             }
             else{
                 setLink1({title: "Đăng nhập", href: "/login", img: "/login.png"})
-                setLink2({title: "Đăng ký", href: "/login?isLogin=false", img: "/add-user.png"})
+                setLink2({title: "Đăng ký", href: "/login?isLogin=false", img: "/addUser.png"})
             }
         }
         try{

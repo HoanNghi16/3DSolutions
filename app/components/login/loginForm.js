@@ -8,7 +8,7 @@ export default function LoginForm(){
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
     const {checkLogin} = useAuth();
-    const {user, setUser} = useAuth();
+    const {user} = useAuth();
     
     useEffect(() => {
         function deniedAccessLogin(){
@@ -36,19 +36,9 @@ export default function LoginForm(){
         else{
             const request = {email: email, password: password}
             const response = await postLogin(request)
-            if (response.status === 200){
-                const data = await response.json()
-                console.log(data)
-                console.log("đăng nhập thành công")
-                success = true
-                const res =  await fetch('/api/auth/me/', {
-                    credentials: 'include',
-                }).then(res => res.json())
-                if (res?.message){
-                    setUser(null)
-                }else{
-                    setUser(data)
-                }
+            console.log(await response)
+            if (response.ok){
+                checkLogin()
                 //await checkLogin()
                 window.location.reload()
             }

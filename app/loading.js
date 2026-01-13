@@ -1,6 +1,4 @@
-'use client'
 import './loading.css'
-import React, { useEffect, useRef } from 'react'
 export default function Loading({loading_title = "Kiểm tra"}){
     // const loadingStatus = ['','.', '..', '...']
     // const [index, setIndex] = React.useState(0)
