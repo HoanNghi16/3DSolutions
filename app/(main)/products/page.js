@@ -2,6 +2,7 @@
 import './products.css'
 import {getProducts} from "../../api/api"
 import ProductCard from '../../components/products/productCard';
+import Link from 'next/link';
 
 export default async function ProductsPage({searchParams}) {
   const page = Number((await searchParams)?.page ?? 1)
@@ -11,7 +12,8 @@ export default async function ProductsPage({searchParams}) {
   return (
     <div className='productContainer'>
       <div className='productsBanner'>
-        <input type='search' className='searchBox' placeholder='Tìm kiếm sản phẩm'></input>
+        <div className='links'><Link className='link' href={'/'}>TRANG CHỦ</Link>{' / '}<Link className='link' href={'/products'}>SẢN PHẨM</Link></div> 
+        <input type='search' className='searchBox' placeholder='Tìm kiếm sản phẩm'></input><br></br>
         <select className='filterBox'>
           <option default>Giá</option>
           <option>Tăng dần</option>

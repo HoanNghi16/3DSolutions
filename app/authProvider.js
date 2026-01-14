@@ -1,12 +1,13 @@
 'use client'
-import {createContext, useContext, useState} from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 import {postLogout, getMe, postSignup} from './api/api'
 const AuthContext = createContext(null);
 
 export function AuthProvider({children, thisUser}) {
     const [user, setUser] = useState(thisUser)
     const [loading, setLoading] = useState(true)
-    
+    const [isAdmin, setIsadmin] = useState(user?.is_superuser)
+
     async function register(request) {
         const res = await postSignup(request)
         return res
@@ -28,6 +29,7 @@ export function AuthProvider({children, thisUser}) {
             const res = await postLogout()
             if (res.ok){
                 checkLogin()
+                window.location.href='/'
                 return res.json()
             }
         }else{
@@ -36,7 +38,7 @@ export function AuthProvider({children, thisUser}) {
     }
 
     return (
-        <AuthContext.Provider value={{user, setUser, setLoading, logout, checkLogin, register}}>
+        <AuthContext.Provider value={{user, setUser, setLoading, logout, checkLogin, register, isAdmin}}>
             {children}
         </AuthContext.Provider>
     )
