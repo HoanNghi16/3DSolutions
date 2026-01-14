@@ -9,8 +9,19 @@ section{
     display: flex;
 }
 
+
+.filterBox{
+    float: left;
+    height: 35px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
 .productsBanner{
     height: 100px;
+    margin-top: 100px;
     /* background-image: linear-gradient(#43b0f1,#b1d4e0); */
     text-align: center;
 }

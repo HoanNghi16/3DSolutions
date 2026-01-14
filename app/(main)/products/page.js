@@ -11,12 +11,21 @@ export default async function ProductsPage({searchParams}) {
   return (
     <div className='productContainer'>
       <div className='productsBanner'>
-        <p className='link'>TRANG CHỦ / SẢN PHẨM</p>
         <input type='search' className='searchBox' placeholder='Tìm kiếm sản phẩm'></input>
-
+        <select className='filterBox'>
+          <option default>Giá</option>
+          <option>Tăng dần</option>
+          <option>Giảm dần</option>
+        </select>
+        <select className='filterBox'>
+          <option default>Chất liệu</option>
+          <option>PLD</option>
+          <option>PLA</option>
+          <option></option>
+        </select>
       </div>
       <section className='showProducts'>
-        {data == "None"? message:  data.filter((item) => {if(item.quantity > 0) return item}).map((item, i) => (
+        {data == "None"? message:  data.filter((item) => {if(item.quantity > 0) return item}).map((item) => (
           <ProductCard item={item} key={item.id}></ProductCard>
         ))}
       </section>
