@@ -11,8 +11,8 @@ export const GET = async (req) => {
             return Response.json({message: 'Failed'},{status: 401})
         }
         return Response.json(data)
-    }catch (error){
-        return Response.json({message: "Lỗi chỗ này"}, {error: error})
+    }catch{
+        return Response.json({message: "Lỗi chỗ này"}, {status: 404})
     }
 
 }
