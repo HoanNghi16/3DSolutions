@@ -3,13 +3,15 @@ import './products.css'
 import {getProducts} from "../../api/api"
 import ProductCard from '../../components/products/productCard';
 import Link from 'next/link';
+import Pagination from './pagination';
 
 export default async function ProductsPage({searchParams}) {
   const page = Number((await searchParams)?.page ?? 1)
-  console.log("Trang máy", page)
   const message = (<span className="mess">Không có sản phẩm nào để hiển thị.</span>)
   const res = await getProducts(page);
-  const products = (await res.json())?.results ?? null
+  const data = await res.json()
+  const products = data?.results ?? null
+  const totalPage =  data?.total_pages ?? 0
   console.log(products)
   return (
     <div className='productContainer'>
@@ -39,14 +41,15 @@ export default async function ProductsPage({searchParams}) {
           <button className='cancelButton'><b>Xóa tất cả</b></button>
         </form>
       </aside>
-      <secction className="productShow">
+      <section className="productShow">
         <h2 className='listTitle'>Khám phá sản phẩm của chúng tôi</h2><br></br>
         <div className='productList'>
           {!products? message:  products.filter((item) => {if(item.quantity > 0) return item}).map((item) => (
             <ProductCard item={item} key={item.id}></ProductCard>
           ))}
         </div>
-      </secction>
+        <Pagination page={page} totalPage={totalPage}></Pagination>
+      </section>
     </div>
   );
 }

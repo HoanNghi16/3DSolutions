@@ -1,17 +1,11 @@
 .mainContainer{
     background-color: #f0f0f0;
 }
-section{
-    text-align: center;
-}
 .mess{
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
     color: rgb(178, 30, 30);
-}
-.showProducts{
-    display: flex;
 }
 
 .links{
@@ -25,12 +19,12 @@ section{
 }
 
 .filterBox{
-    width: 230px;
+    width: 15%;
     font-size: smaller;
+    margin-left: 3%;
     float: left;
     border-radius: 20px;
     background-color: white;
-    margin-left: 30px;
     margin-top: 30px;
     margin-bottom: 50px;
     box-shadow: 2px 2px 2px 2px lightgray;
@@ -63,6 +57,9 @@ section{
     padding: 5px;
     border-radius: 10px;
 }
+.filterBoxInput[type=text]{
+    padding-left: 10px;
+}
 
 .productsBanner{
     height: 100px;
@@ -84,16 +81,16 @@ section{
     color: black;
 }
 .productShow{
-    width: 78%;
+    width: 76%;
+    margin: 0 3%;
+    float: left;
     background-color: white;
     box-shadow: 2px 2px 2px 2px lightgray;
     padding-top: 20px;
     padding-bottom: 30px;
     border-radius: 20px;
-    float: left;
     text-align: center;
     margin-top: 30px;
-    margin-left: 30px;
     margin-bottom: 100px;
 }
 .productList{
@@ -141,8 +138,56 @@ section{
     border: none
 }
 
+.pagination{
+    width: 100%;
+    clear: both;
+    justify-content: center;
+}
+.paginateButton{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #b1d4e0;
+    margin: 3px;
+    border: 0.5px solid black;
+}
+
+.active{
+    background-color: #072161;
+    color: white;
+}
+
 @media(max-width: 1000px){
-    .productContainter{
-        justify-content: center;
+    .mainContainer{
+        text-align: center;
+        padding: 0;
+        overflow: hidden;
+    }
+    .filterBox{
+        width: 90%;
+        float:left;
+        margin: 20px 5%;
+    }
+    .filterForm{
+        text-align: left;
+    }
+    .filterBoxInput{
+        float: left;
+        text-align: left;
+        width: 95%;
+    }
+    .filterBoxLabel{
+        width: 95%;
+        float: left;
+    }
+    .applyButton, .cancelButton{
+        width: 95%;
+    }
+
+    .productShow{
+        width: 90%;
+        margin: 30px auto;
+        margin-left: 5%;
+        margin-top: 0px;
     }
 }
