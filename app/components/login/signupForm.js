@@ -167,27 +167,27 @@ export default function SignUpForm(){
     return (
         <form key={"signup"} onSubmit={handleSubmit} id="signup">
             <span className='error first'><b>{submitError}</b></span>
-            <label><b>Email:</b></label>
+            <label className='loginLabel'><b>Email:</b></label>
             <input className='input' type='email' id='signup_email' onChange={handleEmailChange} placeholder='Email'></input>
             <span id='signup_email_error' className='error'><b>{emailError}</b></span>
 
-            <label><b>Số điện thoại:</b></label>
+            <label className='loginLabel'><b>Số điện thoại:</b></label>
             <input className='input' type='tel' id='signup_phone' onChange={handlePhoneChange} placeholder='Số điện thoại'></input>
             <span id='signup_phone_error' className='error'><b>{phoneError}</b></span>
 
-            <label><b>Họ và tên:</b></label>
+            <label className='loginLabel'><b>Họ và tên:</b></label>
             <input className='input' type='text' id='signup_name' placeholder='Họ và tên' onChange={handleNameChange}></input>
             <span id='signup_name_error' className='error'><b>{nameError}</b></span>
 
-            <label><b>Ngày sinh:</b></label>
+            <label className='loginLabel'><b>Ngày sinh:</b></label>
             <input type='date' className='input' id='signup_date' placeholder='Ngày sinh' onChange={handleDateChange}></input>
             <span id='signup_date' className='error'><b>{dateError}</b></span>
 
-            <label><b>Mật khẩu:</b></label>
+            <label className='loginLabel'><b>Mật khẩu:</b></label>
             <input className='input' type='password' id='signup_password' placeholder='Mật khẩu' onChange={handlePasswordChange}></input>
             <span id='signup_password_error' className='error'><b>{passwordError}</b></span>
 
-            <label><b>Nhập lại mật khẩu:</b></label>
+            <label className='loginLabel'><b>Nhập lại mật khẩu:</b></label>
             <input className='input' type='password' id='signup_repassword' placeholder='Nhập lại mật khẩu' onChange={handleRePassword}></input>
             <span id='signup_repassword_error' className='error'><b>{rePasswordError}</b></span>
 

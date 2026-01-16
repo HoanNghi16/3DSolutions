@@ -1,7 +1,7 @@
 
 .shortedHeader{
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     height: 60px;
     padding: 30px;
 }
@@ -45,7 +45,7 @@
     border-radius: 0 0 0 20px;
     list-style: none;
     float: right;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     max-width: 45%;
     min-width: 45%;
 }
@@ -66,7 +66,7 @@
 }
 .hiddenLink:hover{
     background-color: #072161;
-    color: #f0f0f0;
+    color: #ffffff;
     transform: 0.5s ease;
 }
 

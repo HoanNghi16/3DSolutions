@@ -2,6 +2,7 @@ footer{
     width: 100%;
     bottom: 0px;
     padding: 20px 100px;
+    clear: both;
     background-color: #213a43;
 }
 @media (max-width: 1000px){

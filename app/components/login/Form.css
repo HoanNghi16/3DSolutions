@@ -46,7 +46,7 @@
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
 }
-label{
+.loginLabel{
     float: left;
     margin-left: 20px;
     margin-bottom: 10px;

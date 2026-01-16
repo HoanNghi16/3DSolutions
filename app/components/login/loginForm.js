@@ -88,10 +88,10 @@ export default function LoginForm(){
     return (
             <form key={"login"} onSubmit={handleSubmit} id="login">
                 <span className='error first'><b>{submitError}</b></span>
-                <label><b>Email:</b></label>
+                <label className='loginLabel'><b>Email:</b></label>
                 <input type='email' className='input' id='login_email' placeholder='Email' onChange={handleEmailChange}></input>
                 <span id="loign_email_error" className='error'><b>{emailError}</b></span>
-                <label><b>Mật khẩu:</b></label>
+                <label className='loginLabel'><b>Mật khẩu:</b></label>
                 <input type='password' className='input' id='login_password' placeholder='Mật khẩu' onChange={handlePasswordChange}></input>
                 <span id="loign_password_error" className='error'><b>{passwordError}</b></span>
                 <button className='loginButton' type='submit'><b>Đăng nhập</b></button>

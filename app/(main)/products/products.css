@@ -1,7 +1,12 @@
+.mainContainer{
+    background-color: #f0f0f0;
+}
 section{
     text-align: center;
 }
 .mess{
+    margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
     color: rgb(178, 30, 30);
 }
@@ -18,14 +23,45 @@ section{
     color: #072161;
     text-decoration: none;
 }
+
 .filterBox{
+    width: 230px;
+    font-size: smaller;
     float: left;
-    height: 30px;
     border-radius: 20px;
-    margin-top: 15px;
-    margin-left: 10px;
-    font-size: 14px;
-    padding: 0 3px;
+    background-color: white;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    box-shadow: 2px 2px 2px 2px lightgray;
+}
+.filterBoxHeader{
+    background-color: #00579a;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 10px;
+    padding: 15px;
+    color: white;
+    font-size: smaller;
+}
+
+.filterForm{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.filterBoxLabel{
+    margin-top: 5px;
+    width: 90%;
+    height: 28px;
+}
+.filterBoxInput{
+    border: 0.5px solid gray;
+    height: 28px;
+    margin-top: 5px;
+    width: 90%;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .productsBanner{
@@ -46,4 +82,67 @@ section{
     width:500px;
     background-color: rgb(244, 244, 244);
     color: black;
+}
+.productShow{
+    width: 78%;
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px lightgray;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+    float: left;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 100px;
+}
+.productList{
+    padding: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    float: left;
+    width: 100%;
+}
+.listTitle{
+    margin-top: 20px;
+    width: 100%;
+    color: #131a31;
+}
+.filterTitle{
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.applyButton{
+    width: 90%;
+    text-align: center;
+    height: 28px;
+    border-radius: 10px;
+    margin-top: 3px;
+    border: none;
+    background-color: #00579a;
+    color: white;
+}
+.applyButton:hover{
+    background-color: #003762;
+    transition: 0.5s;
+}
+.cancelButton:hover{
+    background-color: lightgray;
+    transition: 0.5s;
+}
+.cancelButton{
+    width: 90%;
+    text-align: center;
+    height: 28px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none
+}
+
+@media(max-width: 1000px){
+    .productContainter{
+        justify-content: center;
+    }
 }
