@@ -82,6 +82,7 @@
 }
 .productShow{
     width: 76%;
+    min-height: 450px;
     margin: 0 3%;
     float: left;
     background-color: white;
@@ -152,42 +153,55 @@
     border: 0.5px solid black;
 }
 
-.active{
+.thisPage{
     background-color: #072161;
     color: white;
 }
-
-@media(max-width: 1000px){
+@media(max-width: 1000px) {
     .mainContainer{
-        text-align: center;
-        padding: 0;
-        overflow: hidden;
+        font-size: smaller;
+        flex-wrap: nowrap;
     }
     .filterBox{
-        width: 90%;
-        float:left;
-        margin: 20px 5%;
+        width: 20%;
     }
-    .filterForm{
-        text-align: left;
-    }
-    .filterBoxInput{
-        float: left;
-        text-align: left;
-        width: 95%;
-    }
-    .filterBoxLabel{
-        width: 95%;
-        float: left;
-    }
-    .applyButton, .cancelButton{
-        width: 95%;
-    }
-
     .productShow{
-        width: 90%;
-        margin: 30px auto;
-        margin-left: 5%;
-        margin-top: 0px;
+        width: 71%;
+    }
+    @media(max-width: 800px){
+        .mainContainer{
+            text-align: center;
+            padding: 0;
+            overflow: hidden;
+        }
+        .filterBox{
+            flex-wrap: nowrap;
+            width: 90%;
+            float:left;
+            margin: 20px 5%;
+        }
+        .filterForm{
+            text-align: left;
+        }
+        .filterBoxInput{
+            float: left;
+            text-align: left;
+            width: 95%;
+        }
+        .filterBoxLabel{
+            width: 95%;
+            float: left;
+        }
+        .applyButton, .cancelButton{
+            width: 95%;
+        }
+
+        .productShow{
+            width: 90%;
+            margin: 30px auto;
+            margin-left: 5%;
+            margin-top: 0px;
+        }
     }
 }
+

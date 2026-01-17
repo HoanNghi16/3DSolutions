@@ -21,7 +21,7 @@ export default function Pagination({page, totalPage}){
     return (
         <div className="pagination">
             {listPage.map((item, index)=>(
-                <button className={`paginateButton ${page==item?"active":""}`} id={item} key={index} onClick={changePage}>{item}</button>
+                <button className={`paginateButton ${page==item?"thisPage":""}`} id={item} key={index} onClick={changePage}>{item}</button>
             ))}
         </div>
 
