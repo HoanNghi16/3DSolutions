@@ -1,10 +1,12 @@
 "use client"
 import { useRouter, useSearchParams } from "next/navigation"
+import { getMaterials } from "../../api/api"
 
-export default function FilterBox({searchParams}){
+export default function FilterBox({searchParams, matList}){
     const router = useRouter()
-
-
+    if (matList.message){
+        matList = [{name: 'PLA'},{name: 'PETG'}, {name: 'ABS'}, {name: 'TPU'} ]
+    }
     function handleFilterBox(e){
         e.preventDefault()
         const form = e.target 
@@ -55,10 +57,9 @@ export default function FilterBox({searchParams}){
           <label className='filterBoxLabel'><b>Chất liệu</b></label>
           <select id='material' className='filterBoxInput'>
             <option default value={null}></option>
-            <option value={'PLA'}>PLA</option>
-            <option value={'PETG'}>PETG</option>
-            <option value={'ABS'}>ABS</option>
-            <option value={'TPU'}>TPU</option>
+            {matList.map((item)=>(
+                <option key={item.name} value={item.name}>{item.name}</option>
+            ))}
           </select>
           <button className='applyButton'><b>Áp dụng</b></button>
           <button type="reset" className='cancelButton'><b>Xóa tất cả</b></button>

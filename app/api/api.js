@@ -39,14 +39,19 @@ export const postSignup = async (request) => {
 }
 
 export const getProducts = async (kwargs) => {
-    let searchURL = `keyword=${kwargs?.keyword}&sort=${kwargs?.sort}&material=${kwargs.material}&page=${kwargs?.page}`
-    const res = await fetch(`${BASE_URL}/api/products?${searchURL}`);
+    const params = new URLSearchParams(kwargs)
+    //let searchURL = `keyword=${kwargs?.keyword}&sort=${kwargs?.sort}&material=${kwargs.material}&page=${kwargs?.page}`
+    console.log ("getProducts", params)
+    const res = await fetch(`${BASE_URL}/api/products?${params.toString()}`);
     return res
 }
 
 export const getProductDetails = async (id) => {
-    console.log("Test id", id)
     const res = await fetch(`${BASE_URL}/api/products/${id}`)
     return res
-    console.log("thử response", res)
+}
+
+export const getMaterials = async () =>{
+    const res = await fetch(`${BASE_URL}/api/materials`)
+    return res
 }

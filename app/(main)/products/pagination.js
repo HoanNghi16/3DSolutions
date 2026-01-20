@@ -1,6 +1,6 @@
 "use client"
 import { useRouter, useSearchParams } from "next/navigation"
-
+import { useEffect } from "react"
 export default function Pagination({page, totalPage}){
     const router =  useRouter()
     const searchParams = useSearchParams()

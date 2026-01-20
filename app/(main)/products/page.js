@@ -1,8 +1,7 @@
 // app/products/page.js
 import './products.css'
-import {getProducts} from "../../api/api"
+import {getProducts, getMaterials} from "../../api/api"
 import ProductCard from '../../components/products/productCard';
-import Link from 'next/link';
 import Pagination from './pagination';
 import FilterBox from './filterBox';
 
@@ -11,16 +10,13 @@ export default async function ProductsPage({searchParams}) {
   const kwargs = await searchParams
   const res = await getProducts(kwargs);
   const data = await res.json()
-  const products = data?.results ?? null
-  const totalPage =  data?.total_pages ?? 0
-  console.log(products)
-
-  // Handle filterBox function
-
-
+  const products = data?.results.length == 0? null: data.results ?? null
+  const totalPage =  products? data?.total_pages ?? 0 : 0
+  const res2 = await getMaterials()
+  const matList = await res2.json()
   return (
     <div className='productContainer'>
-      <FilterBox></FilterBox>
+      <FilterBox matList={matList}></FilterBox>
       <section className="productShow">
         <h2 className='listTitle'>Khám phá sản phẩm của chúng tôi</h2><br></br>
         <div className='productList'>
@@ -28,7 +24,7 @@ export default async function ProductsPage({searchParams}) {
             <ProductCard item={item} key={item.id}></ProductCard>
           ))}
         </div>
-        <Pagination page={kwargs?.page} totalPage={totalPage}></Pagination>
+        <Pagination page={kwargs?.page || 1} totalPage={totalPage}></Pagination>
       </section>
     </div>
   );
