@@ -15,7 +15,7 @@ export default function Pagination({page, totalPage}){
         const params = new URLSearchParams(searchParams)
         console.log("test search params", params)
         params.set('page', newPage)
-        router.push(`?page=${params.get('page')}`)
+        router.push(`?${params.toString()}`)
         return
     }
     return (

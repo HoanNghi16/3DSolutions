@@ -17,8 +17,8 @@
 .product_thumb{
     max-width: 100%;
     min-width: 100%;
-    max-height: 200px;
-    min-height: 200px;
+    max-height: 190px;
+    min-height: 190px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
 }
@@ -44,9 +44,9 @@
     width: 80%;
     height: 40px;
     /*background-image: linear-gradient(#00579a, #072161);*/
-    background-color: #00579a;
-    border: none;
-    color: white;
+    background-color: white;
+    border: solid 0.5px #00579a;
+    color:#00579a;
     font-size: 17px;
     border-radius: 5px;
 }

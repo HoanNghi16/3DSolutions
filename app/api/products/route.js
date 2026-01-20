@@ -2,9 +2,11 @@
 export const GET = async (req) => {
     try{
         const {searchParams} = new URL(req.url)
-        const page = searchParams.get('page') ?? 1
-        console.log("Trang nè", page)
-        const api_url = process.env.API_URL + process.env.PRODUCTS_APPLICATION + process.env.PRODUCTS + `?page=${page}`
+        console.log("route params",searchParams.toString())
+        //const page = searchParams.get('page') ?? 1
+        //console.log("Trang nè", page)
+        const api_url = process.env.API_URL + process.env.PRODUCTS_APPLICATION + process.env.PRODUCTS + `?${searchParams.toString()}`
+        console.log("api_url", api_url)
         const res = await fetch(api_url)
         const data = await res.json()
         if(!res.ok){

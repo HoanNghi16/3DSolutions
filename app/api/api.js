@@ -1,3 +1,5 @@
+
+
 const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
 
 export const postLogout = async () =>{
@@ -36,8 +38,9 @@ export const postSignup = async (request) => {
     return res
 }
 
-export const getProducts = async (page) => {
-    const res = await fetch(`${BASE_URL}/api/products?page=${page}`);
+export const getProducts = async (kwargs) => {
+    let searchURL = `keyword=${kwargs?.keyword}&sort=${kwargs?.sort}&material=${kwargs.material}&page=${kwargs?.page}`
+    const res = await fetch(`${BASE_URL}/api/products?${searchURL}`);
     return res
 }
 
