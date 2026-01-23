@@ -54,3 +54,8 @@ export const getMaterials = async () =>{
     const res = await fetch(`${BASE_URL}/api/materials`)
     return res
 }
+
+export const getServices = async () => {
+    const res = await fetch(`${BASE_URL}/api/services`)
+    return res
+}

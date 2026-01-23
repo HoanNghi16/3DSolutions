@@ -6,6 +6,6 @@ export async function GET(){
             return res}
     }
     catch{
-        return Response.json({message: "Không có sản chất liệu để hiển thị"}, {status: 200})
+        return Response.json({message: "Không có chất liệu để hiển thị"}, {status: 200})
     }
 }

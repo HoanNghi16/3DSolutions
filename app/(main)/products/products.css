@@ -157,6 +157,29 @@
     background-color: #072161;
     color: white;
 }
+
+.toggle{
+    height: 31px;
+    width: 62px;
+    border: 1px solid #072161;
+    border-radius: 50px 50px 50px 50px;
+    justify-content: center;
+    padding: 0px;
+    margin: 30px auto;
+    background-color: #131a31;
+}
+.toggleMode{
+    height: 29px;
+    width: 30px;
+    border-radius: 50px;
+    opacity: 0.3;
+    padding: 0.5px;
+}
+.show{
+    transition: 1s;
+    opacity: 1;
+    background-color: white;
+}
 @media(max-width: 1000px) {
     .mainContainer{
         font-size: smaller;
