@@ -40,7 +40,6 @@ export const postSignup = async (request) => {
 
 export const getProducts = async (kwargs) => {
     const params = new URLSearchParams(kwargs)
-    //let searchURL = `keyword=${kwargs?.keyword}&sort=${kwargs?.sort}&material=${kwargs.material}&page=${kwargs?.page}`
     console.log ("getProducts", params)
     const res = await fetch(`${BASE_URL}/api/products?${params.toString()}`);
     return res

@@ -10,9 +10,9 @@ export default async function ProductsPage({searchParams}) {
   const kwargs = await searchParams
   const res = await getProducts(kwargs);
   const data = await res.json()
-  const products = data?.results.length == 0? null: data.results ?? null
+  const products = (data?.results)? data.results : null
   const totalPage =  products? data?.total_pages ?? 0 : 0
-  const res2 = await getMaterials()
+  const res2 = await getMaterials() || null
   const matList = await res2.json()
   return (
     <div className='productContainer'>

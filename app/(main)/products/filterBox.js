@@ -4,7 +4,8 @@ import { getMaterials } from "../../api/api"
 
 export default function FilterBox({searchParams, matList}){
     const router = useRouter()
-    if (matList.message){
+    console.log(matList)
+    if (matList?.message){
         matList = [{name: 'PLA'},{name: 'PETG'}, {name: 'ABS'}, {name: 'TPU'} ]
     }
     function handleFilterBox(e){
