@@ -11,7 +11,8 @@
     display: none;
 }
 .mainContainer{
-    margin-top: 105px;
+    background-color: #f0f0f0;
+    padding-top: 105px;
 }
 @media (max-width: 1000px) {
     .heading{
@@ -21,7 +22,7 @@
         display: block;
     }
     .homeContainer, .mainContainer{
-        margin-top: 60px;
+        padding-top: 60px;
     }
     p{
         font-size: 15px;

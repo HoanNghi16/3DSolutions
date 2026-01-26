@@ -29,11 +29,11 @@ export default function ShowImages({images=[]}){
 
 
     return (
-        <div>
+        <div className="imageBox">
             <div className='imageView'>
-                <img className="image" src={current?.path}></img>
+                <img className="currentShow" src={current?.path}></img>
             </div>
-            <div className="imagesList">
+            <div className="imageList">
                 {images.map((item, i) => (
                     <img className={`imagePreview ${i == index? 'onShow' : ''}`} onClick={changeIndex} key={item?.fileID} src={item?.path} id={i}>
                     </img>

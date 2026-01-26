@@ -1,6 +1,3 @@
-.mainContainer{
-    background-color: #f0f0f0;
-}
 .mess{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -159,18 +156,18 @@
 }
 
 .toggle{
-    height: 31px;
-    width: 62px;
+    height: 41px;
+    width: 82px;
     border: 1px solid #072161;
     border-radius: 50px 50px 50px 50px;
-    justify-content: center;
     padding: 0px;
-    margin: 30px auto;
+    margin: 20px auto;
+    margin-right: 70px;
     background-color: #131a31;
 }
 .toggleMode{
-    height: 29px;
-    width: 30px;
+    height: 39px;
+    width: 40px;
     border-radius: 50px;
     opacity: 0.3;
     padding: 0.5px;
