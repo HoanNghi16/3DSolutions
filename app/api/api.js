@@ -35,6 +35,7 @@ export const postSignup = async (request) => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(request)
     })
+    console.log(res)
     return res
 }
 

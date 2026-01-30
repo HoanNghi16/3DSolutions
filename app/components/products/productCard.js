@@ -1,6 +1,7 @@
 
 import './productCard.css'
 import { ShowPriceFormat } from '../../lib/handleTextShow'
+import { BiSolidCartAdd } from 'react-icons/bi'
 
 export default function ProductCard({item}){
     console.log(item.id)
@@ -12,7 +13,7 @@ export default function ProductCard({item}){
             <div className='product_buttons'>
                 <button className='buy_now'><b>Mua ngay</b></button>
                 <button className='add_to_cart'>
-                    <img src='/cart.png' loading='lazy' className='cart_icon'></img>
+                    <BiSolidCartAdd className='cart_icon'></BiSolidCartAdd>
                 </button>
             </div>
         </a>)

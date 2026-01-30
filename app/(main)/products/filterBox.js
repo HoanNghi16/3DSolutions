@@ -1,6 +1,6 @@
 "use client"
 import { useRouter, useSearchParams } from "next/navigation"
-import { getMaterials } from "../../api/api"
+import { BiFilterAlt } from "react-icons/bi"
 
 export default function FilterBox({searchParams, matList}){
     const router = useRouter()
@@ -43,7 +43,10 @@ export default function FilterBox({searchParams, matList}){
     return (
     <aside className='filterBox'>
         <div className='filterBoxHeader'>
-          <h4 className='filterTitle'>Bộ lọc tìm kiếm</h4>
+          <div style={{display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '5px'}}>
+            <BiFilterAlt className="filterIcon"></BiFilterAlt><h4 className='filterTitle'>Bộ lọc tìm kiếm</h4>
+          </div>
+
           <p>Tìm sản phẩm phù hợp với nhu cầu của bạn.</p>
         </div>
         <form className='filterForm' onSubmit={handleFilterBox} onReset={handleDelete}>

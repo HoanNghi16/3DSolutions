@@ -53,6 +53,7 @@
 .buy_now:hover{
     color: white;
     background-color: #213a43;
+    border: solid 0.5px #213a43;
     scale: 1.04;
     transition: 0.3s
 }
@@ -72,7 +73,6 @@
     background-color: #adbec9 ;
 }
 .cart_icon{
-    width: 35px;
-    height: 35px;
-    margin-top: 2px;
+    font-size: 30px;
+    color: gray;
 }

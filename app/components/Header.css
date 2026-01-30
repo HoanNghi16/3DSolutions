@@ -44,9 +44,12 @@ header {
 
 
 .loginIcon, .registerIcon {
-    height: 60%;
+    font-size: 30px;
+    color: black;
 }
 .userIcon{
+    font-size: 30px;
+    color: black;
     border-radius: 50%;
     height: 60%;
 }

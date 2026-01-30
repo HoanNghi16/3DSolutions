@@ -3,6 +3,7 @@ import './Header.css'
 import Link from 'next/link';
 import {useUser} from '../lib/handleUser'
 import { useAuth } from '../authProvider';
+import { BiLogIn,BiUserPlus, BiLogOut, BiUser } from 'react-icons/bi';
 export default function Header() {
     const [link1, link2] = useUser();
     const {logout, user, isAdmin} = useAuth()
@@ -14,10 +15,10 @@ export default function Header() {
                     <Link className='headerMenuLink spec' href={'/admin'}>Quản lý</Link>
                 </li>): null}
                 <li className='headerMenuItem'>
-                    <Link className='headerMenuLink' href={link1.href}><img className={user?'userIcon':'loginIcon'} src={link1.img}></img>{link1.title}</Link>
+                    <Link className='headerMenuLink' href={link1.href}>{user? (link1?.img == 'default'?<BiUser className='userIcon'></BiUser>:<img className='userIcon' src={link1.img}></img>): <BiLogIn className='loginIcon'></BiLogIn>}{link1.title}</Link>
                 </li>
                 <li className='headerMenuItem'>
-                    <Link className='headerMenuLink' onClick={logout} href={link2.href}><img className='registerIcon' src={link2.img}></img>{link2.title}</Link>
+                    <Link className='headerMenuLink' onClick={logout} href={link2.href}>{user? <BiLogOut className='registerIcon'></BiLogOut>: <BiUserPlus className='registerIcon'></BiUserPlus>}{link2.title}</Link>
                 </li>
 
             </ul>

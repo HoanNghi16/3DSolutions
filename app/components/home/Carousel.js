@@ -1,5 +1,5 @@
 'use client';
-import React, {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import './Carousel.css'
 
 export default function Carousel({images = [], autoPlay = true, interval = 2000}){

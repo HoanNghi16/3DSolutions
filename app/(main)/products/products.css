@@ -26,6 +26,9 @@
     margin-bottom: 50px;
     box-shadow: 2px 2px 2px 2px lightgray;
 }
+.filterIcon{
+    font-size: 20px;
+}
 .filterBoxHeader{
     background-color: #00579a;
     border-radius: 20px 20px 0 0;

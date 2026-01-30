@@ -29,9 +29,11 @@
 }
 .detailLink{
     text-decoration: none;
+    transition: 0.3s;
 }
 .detailLink:hover{
-    color: rgb(185, 174, 22);
+    transition: 0.3s;
+    color: #f2cb0e;
 }
 .imageBox{
     width: 35%;
@@ -43,6 +45,7 @@
     object-fit: contain;
 }
 .imageView .currentShow{
+    transition: 0.3s;
     border: 1px solid black;
     border-radius: 5px;
     aspect-ratio: 1/1;
@@ -62,18 +65,47 @@
     width: 50px;
 }
 .onShow{
+    transition: 0.5s;
     border: solid 1px black;
 }
 .descriptionBox{
     width: 65%;
+    padding-top: 2%;
     padding-left: 5%;
 }
 .productName{
     width: 100%;
-    font-size: 45px;
+    font-size: 33px;
 }
 .productId{
     margin-left: 10px;
+    font-size: 15px;
+}
+.productPrice{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.rateShow{
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+}
+.productRateFill{
+    color: #dbb312; /* vàng */
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.productRate{
+    color: lightgray;
+}
+.sumaryRate{
+    font-size: 15px;
+    color: black;
 }
 @media(max-width: 800px){
     .detailContainer{
