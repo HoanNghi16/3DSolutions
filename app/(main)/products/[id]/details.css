@@ -1,5 +1,5 @@
 .detailContainer{
-    width: 90%;
+    width: 80%;
     padding: 3% 6%;
     background-color: white;
     margin: 30px auto;
@@ -36,7 +36,7 @@
     color: #f2cb0e;
 }
 .imageBox{
-    width: 35%;
+    width: 40%;
     display: block;
 }
 .imageView{
@@ -54,46 +54,50 @@
     min-width: 100%;
 }
 .imageList{
-    margin-top: 10px;
+    display: flex;
+    margin-top: 5px;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
 }
 .imagePreview{
-    min-height: 50px;
-    max-height: 50px;
-    width: 50px;
+    min-height: 90px;
+    max-height: 90px;
+    width: 90px;
 }
 .onShow{
-    transition: 0.5s;
-    border: solid 1px black;
+    opacity: 0.4;
 }
 .descriptionBox{
-    width: 65%;
+    width: 60%;
     padding-top: 2%;
     padding-left: 5%;
 }
 .productName{
     width: 100%;
-    font-size: 33px;
+    font-size: 30px;
 }
-.productId{
-    margin-left: 10px;
-    font-size: 15px;
+.isRecommend{
+    font-size: 30px;
+    color: orange;
 }
 .productPrice{
-    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 30px;
+    color: rgb(191, 0, 0);
+}
+.rateBox{
     margin-top: 10px;
 }
 .rateShow{
-    margin-left: 10px;
+    margin-left: 5px;
     position: relative;
     display: inline-block;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1;
 }
 .productRateFill{
-    color: #dbb312; /* vàng */
+    color: #f2cb0e; 
     position: absolute;
     top: 0;
     left: 0;
@@ -104,8 +108,53 @@
     color: lightgray;
 }
 .sumaryRate{
-    font-size: 15px;
+    font-size: 18px;
     color: black;
+    border-bottom: 1px solid black;
+}
+.productQuantity{
+    font-size: 18px;
+    margin-left: 10px;
+    border-left: 2px solid gray;
+    padding-left: 10px;
+}
+.description{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    max-height: 100px;
+    overflow-y: hidden;
+}
+.showAll{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.descriptionHeader{
+    background-color: #b1d4e0;
+    height: 40px;
+}
+.descriptionTitle{
+    line-height: 40px;
+    margin-left: 10px;
+}
+.productDescription{
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 1.3;
+    margin-left: 10px;
+}
+.productDescription br{
+    line-height: 2.5;
+}
+.name{
+    color: gray;
+}
+.productMaterial{
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 1.4;
+    margin-left: 10px;
 }
 @media(max-width: 800px){
     .detailContainer{

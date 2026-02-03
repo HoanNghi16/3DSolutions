@@ -35,7 +35,7 @@ export default function ShowImages({images=[]}){
             </div>
             <div className="imageList">
                 {images.map((item, i) => (
-                    <img className={`imagePreview ${i == index? 'onShow' : ''}`} onClick={changeIndex} key={item?.fileID} src={item?.path} id={i}>
+                    <img className={`imagePreview ${i == index? 'onShow' : ''}`} onMouseEnter={changeIndex} key={item?.fileID} src={item?.path} id={i}>
                     </img>
                 ))}
             </div>

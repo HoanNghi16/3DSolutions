@@ -194,7 +194,6 @@
     @media(max-width: 800px){
         .mainContainer{
             text-align: center;
-            padding: 0;
             overflow: hidden;
         }
         .filterBox{

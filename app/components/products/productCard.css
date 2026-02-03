@@ -64,7 +64,7 @@
     border: none;
     height: 40px;
     align-items: center;
-    background-color: #daeffc;
+    background-color: #aecadc;
     border-radius: 5px;
 }
 .add_to_cart:hover{
@@ -74,5 +74,5 @@
 }
 .cart_icon{
     font-size: 30px;
-    color: gray;
+    color: black;
 }

@@ -1,19 +1,37 @@
+"use client"
+import { useState, useEffect, use } from "react"
 import { ShowPriceFormat } from "../../../lib/handleTextShow"
-import { BiSolidStar } from "react-icons/bi"
-export default async function DescriptionBox({product}){
+import { BiSolidStar, BiSolidLike } from "react-icons/bi"
+export default function DescriptionBox({product}){
     const rate = product?.rate ?? 0
     const rateWidth = (rate/5)*100
     const startList = [0,1,2,3,4]
+    const [show, setShow] = useState(false)
+    function showAll(){
+        return setShow(!show)
+    }
     return(
         <div className="descriptionBox">
-            <h1 className="productName">{product?.name}</h1>
-            <div className="rateShow">
-                <div className="productRateFill" style={{width: `${rateWidth}%`}}>{startList.map((i) => <BiSolidStar key={i}></BiSolidStar>)}</div>
-                <div className="productRate">{startList.map((i) => <BiSolidStar key={i}></BiSolidStar>)}</div>
+            <h1 className="productName">{product?.name} {product?.rate>4.0?<BiSolidLike className="isRecommend"></BiSolidLike> : null}</h1>
+            <div className="rateBox">
+                <span className="sumaryRate">{rate.toFixed(1)}</span>
+                <div className="rateShow">
+                    <div className="productRateFill" style={{width: `${rateWidth}%`}}>{startList.map((i) => <BiSolidStar key={i}></BiSolidStar>)}</div>
+                    <div className="productRate">{startList.map((i) => <BiSolidStar key={i}></BiSolidStar>)}</div>
+                </div>
+                <span className="productQuantity">Số lượng còn lại: {product?.quantity}</span>
             </div>
-            <span className="sumaryRate">({rate}&#10025;)</span>
-            
-            <h2 className="productPrice">Giá: {ShowPriceFormat(product?.unit_price)}&#8363;</h2>
+            <p className="productPrice"><b>{ShowPriceFormat(product?.unit_price)}&#8363;</b></p>
+            <div>
+                <div className={!show?"description":"showAll"}>
+                    <div className="descriptionHeader">
+                    <h3 className="descriptionTitle">Mô tả sản phẩm</h3>
+                    </div>
+                    <p className="productDescription" dangerouslySetInnerHTML={{ __html: product.description }}></p>
+                    <p className="productMaterial"><span className="name">Chất liệu: </span>{product?.material?.name}</p>
+                </div>
+                <button onClick={showAll}>{show?"Ẩn bớt":"Xem thêm"}</button>
+            </div>
         </div>
     )
 }
