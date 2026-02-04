@@ -1,16 +1,5 @@
 import './loading.css'
 export default function Loading({loading_title = "Kiểm tra"}){
-    // const loadingStatus = ['','.', '..', '...']
-    // const [index, setIndex] = React.useState(0)
-    // const timer = useRef(null)
-    // useEffect(()=>{
-    //     timer.current = setInterval(() => {
-    //         setIndex((prevIndex) => (prevIndex + 1) % loadingStatus.length)
-    //     },500)
-    //     return () => {
-    //         clearInterval(timer.current)
-    //     }
-    // }, [loadingStatus, index])
     return (
         <>
             <div className="loadingContainer">
