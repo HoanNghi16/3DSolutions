@@ -198,6 +198,7 @@
         }
         .filterBox{
             flex-wrap: nowrap;
+            text-align: left;
             width: 90%;
             float:left;
             margin: 20px 5%;
