@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {navData} from '../data/navData';
 import {useUser} from '../lib/handleUser'
 import { useAuth } from '../authProvider';
+import { BiMenu } from 'react-icons/bi';
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
@@ -49,7 +50,7 @@ export default function ShortedHeader(){
                         <h2>3D Solutions</h2>
                     </Link>
                 </div>
-                <button className="hamburger" onClick={onHidden}>&#9776;</button>
+                <button className="hamburger" onClick={onHidden}><BiMenu></BiMenu></button>
             </header>
             <div className='hiddenNav' onClick={onHidden} style={background}>
                 <ul className='hiddenList' style={styleHidden}>

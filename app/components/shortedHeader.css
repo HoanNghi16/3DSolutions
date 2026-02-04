@@ -22,10 +22,9 @@
 .hamburger{
     width: 35px;
     height: 35px;
-    line-height: 1.25;
     text-align: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 30px;
     cursor: pointer;
     color: #072161;
     border: 1px solid #072161;
