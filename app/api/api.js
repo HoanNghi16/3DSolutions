@@ -35,7 +35,6 @@ export const postSignup = async (request) => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(request)
     })
-    console.log(res)
     return res
 }
 
@@ -58,5 +57,10 @@ export const getMaterials = async () =>{
 
 export const getServices = async () => {
     const res = await fetch(`${BASE_URL}/api/services`)
+    return res
+}
+
+export const getCategories = async () => {
+    const res = await fetch(`${BASE_URL}/api/categories`)
     return res
 }

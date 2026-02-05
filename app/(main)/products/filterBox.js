@@ -1,20 +1,16 @@
 "use client"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams} from "next/navigation"
 import { BiFilterAlt } from "react-icons/bi"
 
-export default function FilterBox({searchParams, matList}){
+export default function FilterBox(){
     const router = useRouter()
-    console.log(matList)
-    if (matList?.message){
-        matList = [{name: 'PLA'},{name: 'PETG'}, {name: 'ABS'}, {name: 'TPU'} ]
-    }
+    const searchParams = useSearchParams()
     function handleFilterBox(e){
         e.preventDefault()
         const form = e.target 
         
         const keyword = form.keyword.value || "None"
         const sort = form.sort.value || "None"
-        const material = form.material.value || "None"
 
         console.log(keyword)
         console.log("sort test",sort)
@@ -22,7 +18,6 @@ export default function FilterBox({searchParams, matList}){
         console.log("test params", params)
         params.set("keyword", keyword)
         params.set("sort", sort)
-        params.set("material", material)
         params.set("page", 1)
         router.push(`?${params.toString()}`)
     }
@@ -57,13 +52,6 @@ export default function FilterBox({searchParams, matList}){
             <option default value={null}></option>
             <option value={'up'}>Tăng dần</option>
             <option value={'down'}>Giảm dần</option>
-          </select>
-          <label className='filterBoxLabel'><b>Chất liệu</b></label>
-          <select id='material' className='filterBoxInput'>
-            <option default value={null}></option>
-            {matList.map((item)=>(
-                <option key={item.name} value={item.name}>{item.name}</option>
-            ))}
           </select>
           <button className='applyButton'><b>Áp dụng</b></button>
           <button type="reset" className='cancelButton'><b>Xóa tất cả</b></button>
