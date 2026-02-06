@@ -42,7 +42,8 @@ header {
 }
 
 
-.loginIcon, .registerIcon {
+.loginIcon, .registerIcon, .cartIcon {
+    gap: 5px;
     font-size: 30px;
     color: black;
 }

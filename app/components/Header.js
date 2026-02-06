@@ -3,7 +3,7 @@ import './Header.css'
 import Link from 'next/link';
 import {useUser} from '../lib/handleUser'
 import { useAuth } from '../authProvider';
-import { BiLogIn,BiUserPlus, BiLogOut, BiUser } from 'react-icons/bi';
+import { BiLogIn,BiUserPlus, BiLogOut, BiUser , BiCart} from 'react-icons/bi';
 export default function Header() {
     const [link1, link2] = useUser();
     const {logout, user, isAdmin} = useAuth()
@@ -11,6 +11,9 @@ export default function Header() {
         <header>
             <p className='headerTitle'>3D Solutions - kết nối giải pháp tới người dùng</p>
             <ul className='headerMenu'>
+                {user? <li>
+                    <Link className='headerMenuLink' style={{marginRight: "10px"}} href={'/cart'}><BiCart className='cartIcon'></BiCart></Link>
+                </li>: null}
                 {isAdmin? (<li>
                     <Link className='headerMenuLink spec' href={'/admin'}>Quản lý</Link>
                 </li>): null}

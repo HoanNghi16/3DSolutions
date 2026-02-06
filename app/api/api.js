@@ -1,5 +1,4 @@
 
-
 const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
 
 export const postLogout = async () =>{
@@ -40,7 +39,6 @@ export const postSignup = async (request) => {
 
 export const getProducts = async (kwargs) => {
     const params = new URLSearchParams(kwargs)
-    console.log ("getProducts", params)
     const res = await fetch(`${BASE_URL}/api/products?${params.toString()}`);
     return res
 }
@@ -62,5 +60,24 @@ export const getServices = async () => {
 
 export const getCategories = async () => {
     const res = await fetch(`${BASE_URL}/api/categories`)
+    return res
+}
+
+export const getUserCart = async () => {
+    const res = await fetch(`${BASE_URL}/api/cart`,{
+        credentials: "include",
+    })
+    return res
+}
+
+export const addToCart = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/cart`,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(request),
+        credentials: "include"
+    })
     return res
 }
