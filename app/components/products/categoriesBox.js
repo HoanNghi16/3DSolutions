@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams} from "next/navigation"
 
 
-export default function CategoriesBox({categories= null, call_time=0, inProducts=false}){
+export default function CategoriesBox({categories= [], call_time=0, inProducts=false}){
     const [openedId, setOpenedId] = useState(new Set());
     const searchParams = useSearchParams()
     const router = useRouter()
@@ -28,6 +28,11 @@ export default function CategoriesBox({categories= null, call_time=0, inProducts
         params.set("category", id)
         router.push(`?${params.toString()}`)
     }
+    function handleDeleteCategory(){
+        const params = new URLSearchParams(searchParams)
+        params.delete("category")
+        router.push(`?${params.toString()}`)
+    }
     const display = (
         <ul className={`categoryList __${call_time}`} style={{paddingLeft: call_time*10 +"px", listStyleType: "none"}}>
             {categories.map((category) => (
@@ -49,18 +54,28 @@ export default function CategoriesBox({categories= null, call_time=0, inProducts
         </ul>
     )
     if (call_time === 0){
-        return <div className={inProducts? "categoriesBox": "categoriesNav"}>
-            {inProducts?<div className="cateBoxHeader">
-                <div style={{display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '5px'}}>
-                    <BiCategory className="cateIcon"></BiCategory><h4 className="cateTitle">Danh mục</h4>
+        if (inProducts){
+            return <div className="categoriesBox">
+                <div className="cateBoxHeader">
+                    <div style={{display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '5px'}}>
+                        <BiCategory className="cateIcon"></BiCategory><h4 className="cateTitle">Danh mục</h4>
+                    </div>
+                    <p>Tìm kiếm sản phẩm của bạn theo danh mục</p>
                 </div>
-                <p>Tìm kiếm sản phẩm của bạn theo danh mục</p>
-            </div>: null
-            }
-            <div className="cateBody">
-                {display}
+                <div className="cateBody">
+                    {display}
+                    <button className="cateDeleteButton" onClick={handleDeleteCategory}><b>Hủy danh mục</b></button>
+                </div>
             </div>
-        </div>
+        }
+        else{
+            return (
+            <div className="categoriesNav">
+                <div className="cateBody">
+                    {display}
+                </div>
+            </div>)
+        }
     }
     return display
 }

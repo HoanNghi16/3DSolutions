@@ -25,7 +25,7 @@ export default async function ProductsPage({searchParams}) {
     <div className='productContainer'>
       <div className='leftBoxes'>
         <FilterBox></FilterBox>
-        <CategoriesBox categories={categories?.message? null : categories} inProducts={true}></CategoriesBox>
+        <CategoriesBox categories={categories?.message? [] : categories} inProducts={true}></CategoriesBox>
       </div>
       <ShowBox products={products} totalPage={totalPage} services={services?.message? null : services} messContent={services?.message} kwargs={kwargs}></ShowBox>
     </div>

@@ -24,7 +24,7 @@
 .filterBox{
     width: 100%;
     font-size: smaller;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: white;
     box-shadow: 2px 2px 2px 2px lightgray;
 }
@@ -33,11 +33,11 @@
 }
 .filterBoxHeader{
     background-color: #00579a;
-    border-radius: 20px 20px 0 0;
+    border-radius: 10px 10px 0 0;
     margin-bottom: 10px;
     padding: 15px;
     color: white;
-    font-size: smaller;
+    font-size: 13px;
 }
 
 .filterForm{
@@ -90,7 +90,7 @@
     box-shadow: 2px 2px 2px 2px lightgray;
     padding-top: 20px;
     padding-bottom: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
     margin-top: 30px;
     margin-bottom: 100px;
@@ -185,15 +185,15 @@
 .categoriesBox{
     width: 100%;
     font-size: smaller;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: white;
     box-shadow: 2px 2px 2px 2px lightgray;
     margin-top: 30px;
 }
 .cateBoxHeader{
     background-color: #00579a;
-    border-radius: 20px 20px 0 0;
-    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    padding: 13px;
     color: white;
 }
 .cateIcon{
@@ -212,6 +212,7 @@
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 20px;
+    min-height: 50px;
 }
 .cateItem{
     font-size: 15px;
@@ -238,6 +239,20 @@
 }
 ._0{
     border-left: none;
+}
+.cateDeleteButton{
+    width: 90%;
+    margin: 0 5%;
+    text-align: center;
+    height: 28px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: none;
+    background-color: lightgray;
+}
+.cateDeleteButton:hover{
+    background-color: gray;
+    transition: 0.5s;
 }
 @media(max-width: 1200px) {
     .mainContainer{
