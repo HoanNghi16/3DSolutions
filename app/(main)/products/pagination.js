@@ -1,6 +1,5 @@
 "use client"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
 export default function Pagination({page, totalPage}){
     const router =  useRouter()
     const searchParams = useSearchParams()
@@ -13,7 +12,6 @@ export default function Pagination({page, totalPage}){
         let newPage = e.target.id
         if (newPage===page || newPage>totalPage) return page
         const params = new URLSearchParams(searchParams)
-        console.log("test search params", params)
         params.set('page', newPage)
         router.push(`?${params.toString()}`)
         return

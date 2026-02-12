@@ -2,13 +2,9 @@
 import './productCard.css'
 import { ShowPriceFormat } from '../../lib/handleTextShow'
 import { BiCartAdd } from 'react-icons/bi'
-import handleAddToCart from '../../lib/handleAddToCart'
+import {HandleAddToCart} from '../../lib/handleAddToCart'
 
 export default function ProductCard({item}){
-    function addToCart(e){
-        const id = e.id
-        return handleAddToCart(id)
-    }
     return (
         <div  className='product_card'>
             <a href={`/products/${item.id}`} style={{textDecoration: "none"}}>
@@ -18,7 +14,7 @@ export default function ProductCard({item}){
             </a>
             <div className='product_buttons'>
                 <button className='buy_now'><b>Mua ngay</b></button>
-                <button className='add_to_cart' onClick={()=>addToCart(item)}>
+                <button className='add_to_cart' onClick={()=>HandleAddToCart(item?.id)}>
                     <BiCartAdd className='cart_icon'></BiCartAdd>
                 </button>
             </div>

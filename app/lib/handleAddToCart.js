@@ -1,8 +1,7 @@
-"use client"
 import { addToCart} from '../api/api'
 
-export default async function handleAddToCart(product_id){
-    const request =  {product:product_id}
+export async function HandleAddToCart(product_id, quantity=1){
+    const request =  {product:product_id, quantity: quantity}
     console.log(request)
     const res = await addToCart(request)
     if (res.ok){

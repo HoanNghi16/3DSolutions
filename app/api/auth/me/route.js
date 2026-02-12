@@ -6,7 +6,7 @@ export async function GET(){
         const access = cookieStore.get("access")?.value
         console.log(access)
         if (!access){
-            return Response.json({message: "No access token provide"}, {status: 401})
+            return Response.json({message: "No access token provided"}, {status: 401})
         }
 
         const res = await fetch(`${process.env.API_URL + process.env.USERS_APPLICATION + process.env.INFO}`,{
