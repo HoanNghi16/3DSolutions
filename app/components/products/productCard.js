@@ -10,8 +10,8 @@ export default function ProductCard({item}){
         return handleAddToCart(id)
     }
     return (
-        <div  className='product_card' href={`/products/${item.id}`}>
-            <a>
+        <div  className='product_card'>
+            <a href={`/products/${item.id}`} style={{textDecoration: "none"}}>
                 <img src={item.thumbnail} className='product_thumb'></img>
                 <h5 className='product_name'>{item.name}</h5>
                 <p className='product_price'><b>{ShowPriceFormat(item.unit_price)}<span style={{marginTop: "10"}}>&#8363;</span></b></p>

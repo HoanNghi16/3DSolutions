@@ -188,13 +188,14 @@
     border-radius: 10px;
     background-color: white;
     box-shadow: 2px 2px 2px 2px lightgray;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .cateBoxHeader{
     background-color: #00579a;
     border-radius: 10px 10px 0 0;
     padding: 13px;
     color: white;
+    text-align: left;
 }
 .cateIcon{
     font-size: 20px;
@@ -227,11 +228,12 @@
 }
 .cateName{
     width: 90%;
+    text-align: left;
+    padding-left: 5px;
 }
 .cateArrow{
-    font-size: 18px;
     color: gray;
-    float: right;
+    font-size: 18px;
 }
 .cateArrow:hover{
     color: black;
@@ -261,6 +263,7 @@
     }
     .leftBoxes{
         width: 25%;
+        display: block;
     }
     .productShow{
         width: 65%;
@@ -273,8 +276,9 @@
         .leftBoxes{
             width: 90%;
             margin: 20px 5%;
+            display: block;
         }
-        .filterBox{
+        .filterBox, .categoriesBox{
             width: 100%;
             flex-wrap: nowrap;
             text-align: left;
