@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState} from 'react'
 import validator from 'validator'
 import{postLogin} from '../../api/api'
 import {useAuth} from '../../authProvider'
@@ -8,16 +8,8 @@ export default function LoginForm(){
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
     const {checkLogin} = useAuth();
-    const {user} = useAuth();
     
-    useEffect(() => {
-        function deniedAccessLogin(){
-            if (user){
-                window.location.href = "/"
-            }
-        }
-        return deniedAccessLogin();
-    }, [])
+
 
     async function handleSubmit(e){
         e.preventDefault()

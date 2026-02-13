@@ -1,4 +1,3 @@
-
 const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
 
 export const postLogout = async () =>{
@@ -9,11 +8,12 @@ export const postLogout = async () =>{
     return res
 }
 
-export const getMe = async () => {
-    const res = await fetch(`${BASE_URL}/api/auth/me/`,
-        {
-            credentials: 'include'
+export const getMe = async (customCookies = {}) => {
+    const res = await fetch(`${BASE_URL}/api/auth/me/`,{
+        headers:{
+            ...customCookies
         }
+    }
     )
     return res
 }

@@ -16,7 +16,7 @@ export function AuthProvider({children, thisUser}) {
     async function checkLogin(){
         const res = await getMe()
         if (res.ok){
-            setUser(res.json().user)
+            setUser(res.json())
             return true
         }else{
             setUser(null)

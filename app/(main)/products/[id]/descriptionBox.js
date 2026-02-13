@@ -36,7 +36,12 @@ export default function DescriptionBox({product}){
             </div>
             <div className="addToCartBox">
                 <div className="quantityBox">
-                    <button onClick={() => setQuantity((i)=> {if(i > 1) return i - 1})}>-</button>
+                    <button onClick={() => setQuantity((i)=> {
+                        if(i > 1){
+                         return i - 1;
+                        }else{ 
+                            return 1
+                        }})}>-</button>
                     <input type="number" value={quantity} onChange={
                         (e) => {
                             if (e.target.value < 1){
@@ -48,7 +53,11 @@ export default function DescriptionBox({product}){
                             }
                         }
                     } />
-                    <button onClick={() => setQuantity((i)=> {if (i < product?.quantity) return i + 1})}>+</button>
+                    <button onClick={() => setQuantity((i)=> {
+                        if (i < product?.quantity){ 
+                            return i + 1;
+                        }else{
+                            return 1}})}>+</button>
                 </div>
                 <button onClick={() => HandleAddToCart(product?.id, quantity)}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
             </div>

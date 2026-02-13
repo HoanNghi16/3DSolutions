@@ -10,7 +10,6 @@ export async function GET(){
         }
 
         const res = await fetch(`${process.env.API_URL + process.env.USERS_APPLICATION + process.env.INFO}`,{
-            method: "GET",
             headers: {"Authorization": `${access}`},
         }
         )
@@ -18,7 +17,7 @@ export async function GET(){
             return Response.json({message:"Access token invalid!"}, {status: 401})
         }
         const user = await res.json()
-        return Response.json({user})
+        return Response.json(user)
     }catch{
         return Response.json({message: "Server failed"}, {status: 500})
     }

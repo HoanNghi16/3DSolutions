@@ -1,9 +1,10 @@
 'use client'
 import './Form.css'
-import React, {useEffect, useState} from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import LoginForm from './loginForm'
 import SignupForm from './signupForm'
+import { useAuth } from '../../authProvider'
 
 export default function Form(){
     const searchParams = useSearchParams()
@@ -15,6 +16,18 @@ export default function Form(){
     function onLogin(){
         setIsLogin(!isLogin)
     }
+
+    const {user} = useAuth()
+
+    useEffect(() => {
+        function deniedAccessLogin(){
+            if (user){
+                window.location.href = "/"
+            }
+        }
+        return deniedAccessLogin();
+    }, [])
+
     return (
         <div className='loginForm'>
             <div className='loginGroup'>

@@ -1,16 +1,16 @@
 //app/layout.js
+import { cookies } from "next/headers";
 import "./globals.css";
 import {AuthProvider} from './authProvider';
-import {GET} from './api/auth/me/route'
+import { getMe } from "./api/api";
 import { Analytics } from "@vercel/analytics/next"
 export default async function RootLayout({ children }) {
-  const data = await GET().then(res => res.json())
-  console.log(data)
-  const user = data?.message ? null : data.user //Nếu data trả về message thì user = null
+  const res= (await getMe({Cookie: (await cookies()).toString()}))
+  const user = await res.json()
   return (
     <html lang="vi">
       <body>
-          <AuthProvider thisUser={user}>
+          <AuthProvider thisUser={user?.message? null : user}>
             {children}
           </AuthProvider>
           <Analytics />
