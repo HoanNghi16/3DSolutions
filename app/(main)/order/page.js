@@ -1,12 +1,15 @@
+import { getPreview} from "../../api/api"
+import ListOrder from "./listOrder"
 export default async function OrderPage({searchParams}){
-    const params = await searchParams
-    const mode = params.mode
-    if (mode === "buyNow"){
-        
-    }
+
     return (
         <div className="orderContainer">
-
+            <div>
+            </div>
+            <div className="listOrder">
+                <h1>Chi tiết đơn hàng</h1>
+                <ListOrder></ListOrder>
+            </div>
         </div>
     )
 }

@@ -27,9 +27,9 @@ export default function FilterBox(){
         const params = new URLSearchParams(searchParams)
 
         form.reset();
-        params.set("keyword", "None")
-        params.set("sort", "None")
-        params.set("material", "None")
+        params.delet("keyword")
+        params.delet("sort")
+        params.delete("material")
         params.set("page", 1)
         router.push(`?${params.toString()}`)
         return

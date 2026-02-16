@@ -4,11 +4,8 @@ export default function Pagination({page, totalPage}){
     const router =  useRouter()
     const searchParams = useSearchParams()
     const listPage = Array.from({length: totalPage}, (_, numb)=> (numb+1))
-    console.log("totalpage",totalPage)
-    console.log(listPage)
 
     function changePage(e){
-        console.log(e.target)
         let newPage = e.target.id
         if (newPage===page || newPage>totalPage) return page
         const params = new URLSearchParams(searchParams)

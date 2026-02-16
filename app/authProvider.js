@@ -1,6 +1,7 @@
 'use client'
-import {createContext, useContext, useEffect, useState} from 'react'
+import {createContext, useContext, useState} from 'react'
 import {postLogout, getMe, postSignup} from './api/api'
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({children, thisUser}) {

@@ -1,5 +1,5 @@
 "use client"
-import { BiCategory, BiDownArrow, BiRightArrow } from "react-icons/bi";
+import { BiCategory } from "react-icons/bi";
 import { useState } from "react";
 import { useRouter, useSearchParams} from "next/navigation"
 

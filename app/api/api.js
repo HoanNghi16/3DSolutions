@@ -12,7 +12,8 @@ export const getMe = async (customCookies = {}) => {
     const res = await fetch(`${BASE_URL}/api/auth/me/`,{
         headers:{
             ...customCookies
-        }
+        },
+        credentials: "include"
     }
     )
     return res
@@ -78,6 +79,17 @@ export const addToCart = async (request) => {
         },
         body: JSON.stringify(request),
         credentials: "include"
+    })
+    return res
+}
+
+export const getPreview = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/order/preview`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(request),
     })
     return res
 }
