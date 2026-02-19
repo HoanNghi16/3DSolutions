@@ -93,3 +93,25 @@ export const getPreview = async (request) => {
     })
     return res
 }
+
+export const postAddress = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/auth/me/address`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+        credentials: 'include'
+    })
+    return res
+}
+
+export const postOrder = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/order`,{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(request),
+        credentials: 'include'
+    })
+    return res
+}

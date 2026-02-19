@@ -1,4 +1,3 @@
-import { getPreview} from "../../api/api"
 import ListOrder from "./listOrder"
 export default async function OrderPage({searchParams}){
 

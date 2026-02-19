@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import Nav from '../components/Nav'
 import ShortedHeader from '../components/shortedHeader'
 import Footer from '../components/Footer'
-import { ListProvider } from './cart/cartProvider'
+import { ListProvider } from './listProvider'
 
 export default function MainLayout({children}){
     return (

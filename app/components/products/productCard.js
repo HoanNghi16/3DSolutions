@@ -13,7 +13,7 @@ export default  function ProductCard({item}){
                 <p className='product_price'><b>{ShowPriceFormat(item.unit_price)}<span style={{marginTop: "10"}}>&#8363;</span></b></p>
             </a>
             <div className='product_buttons'>
-                <button className='buy_now' onClick={() => {window.location.href=`/order?mode=buyNow&product=${item?.id}&quantity=1`}}><b>Mua ngay</b></button>
+                <button className='buy_now' onClick={() => {window.location.href=`/checkout?mode=buyNow&product=${item?.id}&quantity=1`}}><b>Mua ngay</b></button>
                 <button className='add_to_cart' onClick={()=>HandleAddToCart(item?.id)}>
                     <BiCartAdd className='cart_icon'></BiCartAdd>
                 </button>

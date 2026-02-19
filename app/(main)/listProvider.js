@@ -13,7 +13,7 @@ export function ListProvider ({children}){
     }
 
     return (
-        <listContext.Provider value={{selected, addItem}}>
+        <listContext.Provider value={{selected, addItem,}}>
             {children}
         </listContext.Provider>
     )
