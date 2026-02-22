@@ -7,7 +7,7 @@ export default function ShowBox({products = [], services = [], totalPage, kwargs
     const message = (<span className="mess">{`Không có ${showProduct? "sản phẩm": "dịch vụ"} nào để hiển thị!`}</span>)
     const productList = (<>
                             <div className='productList'>
-                                {(!products || products.length==0)? message: products.filter((item) => {if(item.quantity > 0) return item}).map((item) => (
+                                {(!products || products.length==0)? message: products.map((item) => (
                                     <ProductCard item={item} key={item.id}></ProductCard>
                                 ))}
                             </div>

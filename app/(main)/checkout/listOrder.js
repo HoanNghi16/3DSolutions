@@ -1,17 +1,12 @@
 "use client"
-import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { getPreview, postAddress, postOrder } from "../../api/api"
-import { useList } from "../listProvider"
 import { useAuth } from "../../authProvider"
 import { ShowPriceFormat } from "../../lib/handleTextShow"
 
 export default function ListOrder(){
-    const {selected} = useList()
-    const params = useSearchParams()
     const [previewList, setPreviewList] = useState(null)
     const [message, setMessage] = useState(null)
-    const mode = params.get("mode") ?? "order"
     const [moreAddress, setMoreAddress] = useState(false)
     const [addError, setAddError] = useState(null)
     const {user} = useAuth()
@@ -21,31 +16,46 @@ export default function ListOrder(){
     
     const handleMoreAddress = async (e)=>{
         e.preventDefault()
-        console.log(e, e.target)
         const form = e.target
         const request = {
-            receiver_name: form.receiver_name.value,
-            receiver_phone: form.receiver_phone.value,
-            number: form.number.value,
-            street: form.street.value,
-            ward: form.ward.value,
-            city: form.city.value,
+            receiver_name: form.receiver_name.value ?? null,
+            receiver_phone: form.receiver_phone.value ?? null,
+            number: form.number.value ?? null,
+            street: form.street.value ?? null,
+            ward: form.ward.value ?? null,
+            city: form.city.value ?? null,
         }
-        const res = await postAddress(request)
-        if(res.ok){
-            setMoreAddress((i) => (!i))
-            form.reset()
-            window.location.reload()
+        const hasNull = Object.values(request).some(
+            value => value === null || value === undefined || value === ""
+        )
+        console.log(request)
+        if(hasNull){
+            setAddError("Vui lòng điền đầy đủ thông tin")
+            return
+        }
+        if(!user){
+            setAddress(request)
+        }else{
+            const res = await postAddress(request)
+            if(res.ok){
+                setMoreAddress((i) => (!i))
+                setAddError(null)
+                form.reset()
+                window.location.reload()
+            }
+            else{
+                setAddError('Vui lòng điền đầy đủ thông tin!')
+            }
         }
     }
     const addressForm = (<form onSubmit={handleMoreAddress}>
                 <input type="text" id='receiver_name' placeholder="Tên nhận hàng"/>
-                <input type="text" id="receiver_phone" placeholder="Số điện thoại nhận hàng"/>
+                <input type="tel" id="receiver_phone" placeholder="Số điện thoại nhận hàng"/>
                 <input type="text" id="number" placeholder="Số nhà"/>
                 <input type="text" id="street" placeholder="Đường"/>
                 <input type="text" id="ward" placeholder="Phường"/>
                 <input type="text" id="city" placeholder="Thành phố"/>
-                <button type="submit">Lưu</button>
+                {<button type="submit">Lưu</button>}
             </form>)
 
     function addMoreAddress(){
@@ -56,32 +66,33 @@ export default function ListOrder(){
         form.preventDefault()
         form = form.target
         console.log(form)
+        console.log(address)
         if(!address){
             setAddError('Vui lòng chọn địa chỉ')
+            console.log(addError)
             return false
-        }
+        }    
         let request = {header: {
-            total: total,
-            method: form.payMethod.value,
+            method: Number(form.payMethod.value),
             ...address,
-        }, details: []}
+        }, details: [], list_ids: JSON.parse(window.localStorage.getItem('checkout')).list_ids}
 
         for (let detail of previewList){
-            let term = {product: detail?.product?.id ?? detail, quantity: params.get('quantity')?? detail.quantity}
+            let term = {product: detail?.product?.id ?? detail, quantity: detail.quantity}
             request.details.push(term)
         }
-        console.log(JSON.stringify(request))
-        console.log(request)
         const res = await postOrder(request)
+
         if(res.ok){
             console.log('ok')
+            localStorage.setItem('checkout', JSON.stringify({list_ids: null, mode: 'Order'}))
+            window.location.href = `/checkout/result?pay=${request.header.method}`
         }
         return
     }
 
     useEffect( ()=>{
-        async function fetchPreview(){
-            const req = { mode: mode, list_ids : (mode === "buyNow"? [params.get("product")]: selected), quantity: params.get("quantity")}
+        async function fetchPreview(req){
             const res = await getPreview(req)
             const data = await res.json()
             if (data?.message){
@@ -92,21 +103,21 @@ export default function ListOrder(){
                 setPreviewList(data)
             }
         }
-        fetchPreview()
+        function getStorage(){
+            return JSON.parse(window.localStorage.getItem('checkout'))
+        }
+        fetchPreview(getStorage())
+        console.log(previewList)
     },[])
 
     useEffect(()=>{
         function getTotal(){
             if (previewList){
-                if (mode === "buyNow"){
-                    return setTotal(Number(previewList[0].unit_price)*Number(params.get('quantity')))
-                }else{
-                    let term_total = 0
-                    for (let item of previewList){
-                        term_total +=Number(item?.quantity) * Number(item?.product?.unit_price)
-                    }
-                    return setTotal(term_total)
+                let term_total = 0
+                for (let item of previewList){
+                    term_total +=Number(item?.sub_total)
                 }
+                return setTotal(term_total)
             }
         }
         getTotal()
@@ -123,14 +134,13 @@ export default function ListOrder(){
                             let {user, id, ...term} = add
                             setAddError(null)
                             return term})}/>
-                        <p>{`${add?.number} ${add?.street}, ${add?.ward}, ${add?.city} `}</p>
-                        <p>{" "+add?.receiver_name}</p>
-                        <p>{" "+add?.receiver_phone}</p>
+                        <label name='address'>{`${add?.number} ${add?.street}, ${add?.ward}, ${add?.city} (${add?.receiver_name} ${add?.receiver_phone})`}</label>
                     </div>
                 ))}
-                <p>{addError}</p>
-            </form>): "Không có địa chỉ"}
-            <button type="button" onClick={() => addMoreAddress()}>Thêm địa chỉ</button>
+
+            </form>): (address? (<p></p>) :addressForm)}
+            <p>{addError}</p>
+            {(!address ^ !user)?<button type="button" onClick={() => addMoreAddress()}>{(!user && address)?"Đổi địa chỉ":"Thêm địa chỉ"}</button>: null}
             {moreAddress? addressForm: null}
         </div>
         <table border={'true'}>
@@ -143,8 +153,8 @@ export default function ListOrder(){
                 </tr>
             </thead>
             <tbody>
-                {previewList? previewList.map((item) => {
-                    let term_item = mode == "buyNow"? item : item?.product
+                {previewList && previewList.length > 0? previewList.map((item) => {
+                    let term_item = item?.product
                     return (
                         <tr key={term_item?.id}>
                             <td display='flex'>
@@ -155,17 +165,17 @@ export default function ListOrder(){
                             </td>
                             <td>
                                 <p>
-                                    {term_item?.unit_price}
+                                    {ShowPriceFormat(term_item?.unit_price)}
                                 </p>
                             </td>
                             <td>
                                 <p>
-                                    {params.get('quantity') ?? item?.quantity}
+                                    {item?.quantity}
                                 </p>
                             </td>
                             <td>
                                 <p id="total">
-                                    {ShowPriceFormat(Number(params.get("quantity") ?? item?.quantity)*Number(term_item?.unit_price))}
+                                    {ShowPriceFormat(item?.sub_total)}
                                 </p>
                             </td>
                         </tr>
@@ -184,6 +194,7 @@ export default function ListOrder(){
                     <option value={0}>Tiền mặt</option>
                     <option value={1}>Chuyển khoản</option>
                 </select>
+                <p>Địa chỉ đã chọn: {address?`${address?.number} ${address?.street}, ${address?.ward}` : "Chưa chọn địa chỉ"}</p>
                 <button type="submit">Order</button>
             </form>
         </aside>

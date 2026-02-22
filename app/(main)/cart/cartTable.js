@@ -1,10 +1,15 @@
 "use client"
 import { useEffect, useState } from "react"
 import { getUserCart } from "../../api/api"
+import { useList } from "../listProvider"
 
 export default function CartTable(){
     const [cart, setCart] = useState(null)
-
+    const {selected, addItem} = useList()
+    console.log('inCart',selected)
+    function checkQuantity(cartItem){
+        return Number(cartItem?.quantity) > Number(cartItem?.product?.quantity)
+    }
     useEffect(()=>{
         async function fetchCart(){
             const res = await getUserCart()
@@ -25,12 +30,12 @@ export default function CartTable(){
                 <tbody>
                     {cart?.cart_details?.length> 0 ? cart?.cart_details?.map((cartItem)=>(
                     <tr key={cartItem.id}>
-                        <td>{cartItem.product.name}</td>
-                        <td>{cartItem.quantity}</td>
-                        <td></td>
-                    </tr>
-
-                )): 
+                        <td><input type="checkbox" onChange={()=>addItem(cartItem?.id)} disabled={checkQuantity(cartItem)} checked={selected.includes(cartItem?.id)}/></td>
+                        <td>{cartItem?.product.name}</td>
+                        <td>{!checkQuantity(cartItem)? cartItem?.quantity: "Hết hàng"}</td>
+                        <td>{cartItem?.sub_total}</td>
+                    </tr>)
+                    ): 
                     <tr>
                         <td>
                             Giỏ hàng trống
@@ -39,6 +44,7 @@ export default function CartTable(){
                 }
                 </tbody>
             </table>
+            {cart?.cart_details?.length > 0? <button onClick={()=>{window.location.href= '/checkout'}}>Đặt hàng</button>: null}
         </div>
     )
 }

@@ -7,7 +7,6 @@ export default async function DetailPage({params}){
     const id = (await params)?.id
     const res = await getProductDetails(id)
     const product = await res.json()
-    console.log(product)
     return (
         <>
             <div className="detailPath">
@@ -18,7 +17,7 @@ export default async function DetailPage({params}){
             <div className={`detailContainer ${product?.detail? 'notfound': null}`}>
                 {product?.detail? <span className="mess">Không tìm thấy sản phẩm.</span>:
                     <section className="detailContent">
-                        <ShowImages images={product.images}></ShowImages>
+                        <ShowImages images={product.images} soldOut={product.quantity===0}></ShowImages>
                         <DescriptionBox product={product}></DescriptionBox>
                     </section>
                 }

@@ -3,6 +3,7 @@ import { useState} from "react"
 import { ShowPriceFormat } from "../../../lib/handleTextShow"
 import {HandleAddToCart} from "../../../lib/handleAddToCart"
 import { BiSolidStar, BiSolidLike, BiSolidCart } from "react-icons/bi"
+import { HandleBuyNow } from "../../../lib/handleBuyNow"
 export default function DescriptionBox({product}){
     const [quantity, setQuantity] = useState(1)
     const rate = product?.rate ?? 0
@@ -59,7 +60,8 @@ export default function DescriptionBox({product}){
                         }else{
                             return 1}})}>+</button>
                 </div>
-                <button onClick={() => HandleAddToCart(product?.id, quantity)}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
+                <button onClick={()=> HandleAddToCart(product?.id, quantity)}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
+                <button onClick={()=> HandleBuyNow('checkout', {list_ids: [product?.id], mode: 'buyNow', quantity: quantity})}>Mua ngay</button>
             </div>
         </div>
     )

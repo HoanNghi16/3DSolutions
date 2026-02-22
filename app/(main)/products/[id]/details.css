@@ -37,12 +37,35 @@
 }
 .imageBox{
     width: 40%;
-    display: block;
+    position: relative;
+    display: inline-block;
 }
 .imageView{
     max-width: 100%;
     aspect-ratio: 1/1;
     object-fit: contain;
+    display: inline-block;
+    position: relative;
+}
+.soldOut{
+    opacity: 0.8;
+    filter: grayscale(80%);
+
+}
+.imageView .soldDisplay{
+    position: absolute;          /* che nửa dưới */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
 }
 .imageView .currentShow{
     transition: 0.3s;
@@ -50,6 +73,7 @@
     border-radius: 5px;
     aspect-ratio: 1/1;
     object-fit: cover;
+    display: block;
     max-width: 100%;
     min-width: 100%;
 }
