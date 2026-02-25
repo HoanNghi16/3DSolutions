@@ -34,6 +34,7 @@ export default function CartTable(){
                         <td>{cartItem?.product.name}</td>
                         <td>{!checkQuantity(cartItem)? cartItem?.quantity: "Hết hàng"}</td>
                         <td>{cartItem?.sub_total}</td>
+                        <td><button>Xóa</button></td>
                     </tr>)
                     ): 
                     <tr>

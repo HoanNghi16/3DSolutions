@@ -83,6 +83,31 @@ export const addToCart = async (request) => {
     return res
 }
 
+export const deleteCart = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/cart`,{
+        method:'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request),
+        credentials: 'include'
+    })
+    return res
+}
+
+export const patchCart = async (request) => {
+    const res = await fetch(`${BASE_URL}/api/cart`, {
+        method: 'PATCH',
+        headers: {
+            'Conten-Type': 'application/json'
+        },
+        body: JSON.stringify(request),
+        credentials: 'include'
+    })
+    return res
+}
+
+
 export const getPreview = async (request) => {
     const res = await fetch(`${BASE_URL}/api/order/preview`,{
         method: "POST",

@@ -28,17 +28,18 @@ export default function ListOrder(){
         const hasNull = Object.values(request).some(
             value => value === null || value === undefined || value === ""
         )
-        console.log(request)
         if(hasNull){
             setAddError("Vui lòng điền đầy đủ thông tin")
             return
         }
         if(!user){
             setAddress(request)
+            setMoreAddress(false)
+            setAddError(null)
         }else{
             const res = await postAddress(request)
             if(res.ok){
-                setMoreAddress((i) => (!i))
+                setMoreAddress(false)
                 setAddError(null)
                 form.reset()
                 window.location.reload()
@@ -55,7 +56,8 @@ export default function ListOrder(){
                 <input type="text" id="street" placeholder="Đường"/>
                 <input type="text" id="ward" placeholder="Phường"/>
                 <input type="text" id="city" placeholder="Thành phố"/>
-                {<button type="submit">Lưu</button>}
+                <button type="submit">Lưu</button>
+                <button type="reset">Hủy</button>
             </form>)
 
     function addMoreAddress(){
@@ -65,19 +67,19 @@ export default function ListOrder(){
     async function handleOrder(form){
         form.preventDefault()
         form = form.target
-        console.log(form)
-        console.log(address)
         if(!address){
             setAddError('Vui lòng chọn địa chỉ')
             console.log(addError)
             return false
         }    
+        let {term_id, ...term_address} = user? {id: null,address_id: address?.id}: address //Tạo id ảo để xóa id ra khỏi object nếu nhập form
         let request = {header: {
             method: Number(form.payMethod.value),
-            ...address,
+            ...term_address,
         }, details: [], list_ids: JSON.parse(window.localStorage.getItem('checkout')).list_ids}
 
         for (let detail of previewList){
+            console.log(detail)
             let term = {product: detail?.product?.id ?? detail, quantity: detail.quantity}
             request.details.push(term)
         }
@@ -85,8 +87,12 @@ export default function ListOrder(){
 
         if(res.ok){
             console.log('ok')
+            const result_data = await res.json()
             localStorage.setItem('checkout', JSON.stringify({list_ids: null, mode: 'Order'}))
-            window.location.href = `/checkout/result?pay=${request.header.method}`
+            window.location.href = `/checkout/result?pay=${request?.header?.method}&id=${result_data?.order_id}`
+        }else{
+            console.log(res)
+            setMessage('Đơn hàng không hợp lệ!')
         }
         return
     }
@@ -96,7 +102,7 @@ export default function ListOrder(){
             const res = await getPreview(req)
             const data = await res.json()
             if (data?.message){
-                setPreviewList(null)
+                setPreviewList([])
                 setMessage(data?.message)
             }
             else{
@@ -131,16 +137,20 @@ export default function ListOrder(){
                 {user?.profile?.address.map((add) => (
                     <div key={`add_${add.id}`} style={{display: 'flex'}}>
                         <input type="radio" name="address" onClick={()=>setAddress(()=>{
-                            let {user, id, ...term} = add
+                            let {user, ...term} = add
                             setAddError(null)
                             return term})}/>
                         <label name='address'>{`${add?.number} ${add?.street}, ${add?.ward}, ${add?.city} (${add?.receiver_name} ${add?.receiver_phone})`}</label>
                     </div>
                 ))}
 
-            </form>): (address? (<p></p>) :addressForm)}
+            </form>): (address? (<p>{`${address?.number} ${address?.street}, ${address?.ward}, ${address?.city} (${address?.receiver_name} ${address?.receiver_phone})`}</p>) :addressForm)}
             <p>{addError}</p>
-            {(!address ^ !user)?<button type="button" onClick={() => addMoreAddress()}>{(!user && address)?"Đổi địa chỉ":"Thêm địa chỉ"}</button>: null}
+            {(!address ^ !user)?
+                <div>
+                    <button type="button" onClick={() => {addMoreAddress()}}>{(!user && address)?"Đổi địa chỉ":"Thêm địa chỉ"}</button>
+                </div>
+                : null}
             {moreAddress? addressForm: null}
         </div>
         <table border={'true'}>

@@ -10,7 +10,10 @@ export default  function ProductCard({item}){
     return (
         <div  className='product_card'>
             <a href={`/products/${item.id}`} style={{textDecoration: "none"}}>
-                <img src={item.thumbnail} className='product_thumb'></img>
+                <div className='thumb_view'>
+                    <img src={item.thumbnail} className={`product_thumb ${Number(item.quantity)===0?'out_stock' : ''}`}></img>
+                    {Number(item.quantity)===0 && <div className='sold_out'>Hết hàng</div>}
+                </div>
                 <h5 className='product_name'>{item.name}</h5>
                 <p className='product_price'><b>{ShowPriceFormat(item.unit_price)}<span style={{marginTop: "10"}}>&#8363;</span></b></p>
             </a>
