@@ -12,10 +12,11 @@ export async function POST(request){
             body: JSON.stringify(body)
         })
         if(res.status === 400){
-            return Response.json({message: "Insufficient stock"}, {status: 400})
+            const term_data = await res.json()
+            return Response.json({message: term_data?.message ?? "Không đủ sản phẩm!"}, {status: 400})
         }
         return res
     }catch{
-        return Response.json({message: "Please choose a product or add something to your cart"}, {status: 404})
+        return Response.json({message: "Vui lòng chọn phẩm để có thể đặt hàng!"}, {status: 404})
     }
 }

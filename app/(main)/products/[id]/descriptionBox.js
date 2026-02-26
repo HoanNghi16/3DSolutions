@@ -1,7 +1,7 @@
 "use client"
 import { useState} from "react"
 import { ShowPriceFormat } from "../../../lib/handleTextShow"
-import {HandleAddToCart} from "../../../lib/handleAddToCart"
+import {HandleAddToCart} from "../../../lib/handleCart"
 import { BiSolidStar, BiSolidLike, BiSolidCart } from "react-icons/bi"
 import { HandleBuyNow } from "../../../lib/handleBuyNow"
 export default function DescriptionBox({product}){

@@ -2,7 +2,7 @@
 import './productCard.css'
 import { ShowPriceFormat } from '../../lib/handleTextShow'
 import { BiCartAdd } from 'react-icons/bi'
-import {HandleAddToCart} from '../../lib/handleAddToCart'
+import {HandleAddToCart} from '../../lib/handleCart'
 import { useStorage } from '../../lib/handleStorage'
 import { HandleBuyNow } from '../../lib/handleBuyNow'
 

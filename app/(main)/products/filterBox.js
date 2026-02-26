@@ -28,7 +28,7 @@ export default function FilterBox(){
 
         form.reset();
         params.delet("keyword")
-        params.delet("sort")
+        params.delete("sort")
         params.delete("material")
         params.set("page", 1)
         router.push(`?${params.toString()}`)

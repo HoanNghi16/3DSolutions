@@ -3,17 +3,43 @@ import { useEffect, useState } from "react"
 import { getPreview, postAddress, postOrder } from "../../api/api"
 import { useAuth } from "../../authProvider"
 import { ShowPriceFormat } from "../../lib/handleTextShow"
+import { HandleChangeCart } from "../../lib/handleCart"
 
 export default function ListOrder(){
     const [previewList, setPreviewList] = useState(null)
     const [message, setMessage] = useState(null)
+    const [previewRequest, setPreviewRequest] = useState(null)
     const [moreAddress, setMoreAddress] = useState(false)
     const [addError, setAddError] = useState(null)
+    const [render, setRender] = useState(true)
     const {user} = useAuth()
     const [total, setTotal]= useState(0)
     const [address, setAddress] = useState(null)
-
+    const [error, setError] = useState(null)
     
+    const handleChangeQuantity = (e, detail_id, product_id) => {
+        if (previewRequest?.mode === "buyNow"){
+            setPreviewRequest(checkout => {
+                checkout.quantity = e.target.value
+                return checkout
+            })
+            fetchPreview(previewRequest).then((res) =>{
+                if(!res){
+                    fetchPreview(getStorage())
+                    console.log('tới đây nè')
+                }
+            })
+            console.log(previewRequest)
+            getTotal()
+        }else if (previewRequest?.mode === "order"){
+            HandleChangeCart(detail_id, product_id, e.target.value, null).then((res) => {
+                e.target.value = res;
+            })
+            fetchPreview(previewRequest)
+            setRender(true)
+        }
+    }   
+
     const handleMoreAddress = async (e)=>{
         e.preventDefault()
         const form = e.target
@@ -49,6 +75,40 @@ export default function ListOrder(){
             }
         }
     }
+
+    async function fetchPreview(req){
+        if(!req){
+            return
+        }
+        const res = await getPreview(req)
+        const data = await res.json()
+
+        if (data?.message){
+            setPreviewList([])
+            setError(data?.message)
+            return false
+        }
+        else{
+            setPreviewList(data)
+            console.log(data)
+            setError(null)
+            return true
+        }
+    }
+    function getTotal(){
+        if (previewList){
+            let term_total = 0
+            for (let item of previewList){
+                term_total +=Number(item?.sub_total)
+            }
+            return setTotal(term_total)
+        }
+    }
+    function getStorage(){
+        setPreviewRequest(JSON.parse(window.localStorage.getItem('checkout')))
+        return JSON.parse(window.localStorage.getItem('checkout'))
+    }
+
     const addressForm = (<form onSubmit={handleMoreAddress}>
                 <input type="text" id='receiver_name' placeholder="Tên nhận hàng"/>
                 <input type="tel" id="receiver_phone" placeholder="Số điện thoại nhận hàng"/>
@@ -77,7 +137,10 @@ export default function ListOrder(){
             method: Number(form.payMethod.value),
             ...term_address,
         }, details: [], list_ids: JSON.parse(window.localStorage.getItem('checkout')).list_ids}
-
+        if (request.header.method == ''){
+            setError('Vui lòng chọn phương thức thanh toán')
+        }
+        form.reset()
         for (let detail of previewList){
             console.log(detail)
             let term = {product: detail?.product?.id ?? detail, quantity: detail.quantity}
@@ -98,37 +161,19 @@ export default function ListOrder(){
     }
 
     useEffect( ()=>{
-        async function fetchPreview(req){
-            const res = await getPreview(req)
-            const data = await res.json()
-            if (data?.message){
-                setPreviewList([])
-                setMessage(data?.message)
-            }
-            else{
-                setPreviewList(data)
-            }
-        }
-        function getStorage(){
-            return JSON.parse(window.localStorage.getItem('checkout'))
-        }
-        fetchPreview(getStorage())
-        console.log(previewList)
+        getStorage()
+        console.log(previewRequest)
     },[])
-
     useEffect(()=>{
-        function getTotal(){
-            if (previewList){
-                let term_total = 0
-                for (let item of previewList){
-                    term_total +=Number(item?.sub_total)
-                }
-                return setTotal(term_total)
-            }
+        fetchPreview(previewRequest)
+    },[previewRequest])
+    useEffect(()=>{
+        if(render){
+            getTotal()
+            setRender(false)
         }
-        getTotal()
     },
-    [previewList])
+    [previewList, render])
     return (
     <div className="ListOrder">
         <div>
@@ -180,7 +225,9 @@ export default function ListOrder(){
                             </td>
                             <td>
                                 <p>
-                                    {item?.quantity}
+                                    <input defaultValue={item?.quantity} onBlur={(e)=>{
+                                        handleChangeQuantity(e, item?.id, item?.product?.id)
+                                    }}/>
                                 </p>
                             </td>
                             <td>
@@ -201,10 +248,12 @@ export default function ListOrder(){
             <form onSubmit={handleOrder}>
                 <p>Tổng thành tiền: {ShowPriceFormat(total)}</p>
                 <select id="payMethod">
+                    <option default value={null}></option>
                     <option value={0}>Tiền mặt</option>
                     <option value={1}>Chuyển khoản</option>
                 </select>
                 <p>Địa chỉ đã chọn: {address?`${address?.number} ${address?.street}, ${address?.ward}` : "Chưa chọn địa chỉ"}</p>
+                <p>{error}</p>
                 <button type="submit">Order</button>
             </form>
         </aside>

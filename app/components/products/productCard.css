@@ -15,6 +15,7 @@
     transition: 0.3s;
 }
 .thumb_view{
+    border-radius: 8px 8px 0 0;
     display: inline-block;
     position: relative;
 }
@@ -31,6 +32,7 @@
     font-size: 20px;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px 8px 0 0;
 }
 .out_stock{
     filter:grayscale(0.3);
@@ -39,8 +41,7 @@
     display: block;
     max-width: 100%;
     min-width: 100%;
-    max-height: 190px;
-    min-height: 190px;
+    aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
 }
@@ -74,8 +75,8 @@
 }
 .buy_now:hover{
     color: white;
-    background-color: #213a43;
-    border: solid 0.5px #213a43;
+    background-color: #003762;
+    border: solid 0.5px #003762;
     scale: 1.04;
     transition: 0.3s
 }
@@ -97,4 +98,17 @@
 .cart_icon{
     font-size: 30px;
     color: black;
+}
+@media (max-width: 400px){
+    .product_card{
+        min-width: 43%;
+        max-width: 43%;
+        margin: 2%;
+    }
+    .product_name, .product_price, .buy_now, .add_to_cart{
+        font-size: small;
+    }
+    .product_thumb{
+        aspect-ratio: 1/1;
+    }
 }

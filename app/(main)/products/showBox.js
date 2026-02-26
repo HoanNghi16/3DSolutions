@@ -36,9 +36,10 @@ export default function ShowBox({products = [], services = [], totalPage, kwargs
                 <img className={`toggleMode ${!showProduct?'show': null}`} id="service" onClick={changeShow} src={'/service.png'}></img>
             </div>
             <h2 className='listTitle'>Khám phá {showProduct? "sản phẩm": "dịch vụ"} của chúng tôi</h2><br></br>
+            <div className="productItems">
                 {showProduct? productList : serviceList}
+            </div>
         </section>
-        
     </>
     )
 }

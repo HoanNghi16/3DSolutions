@@ -99,7 +99,7 @@ export const patchCart = async (request) => {
     const res = await fetch(`${BASE_URL}/api/cart`, {
         method: 'PATCH',
         headers: {
-            'Conten-Type': 'application/json'
+            'Conten-Type': 'application/json',
         },
         body: JSON.stringify(request),
         credentials: 'include'
