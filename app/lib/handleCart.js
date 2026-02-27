@@ -25,22 +25,17 @@ export async function HandleDeleteCart(detail, setCart){
     return "Xóa thất bại"
 }
 
-export async function HandleChangeCart(detail,product, quantity, setCart){
+export async function HandleChangeCart(detail,product, quantity){
     if (!Number(quantity)){
         return
     }
     const request = {detail, quantity, product}
-    patchCart(request)
-    const res_cart = await getUserCart()
-    const new_cart = await res_cart.json()
-    if (setCart){
-        setCart(new_cart)
+    const res = await patchCart(request)
+    const data = await res.json()
+    if (data?.message){
+        console.log("message nè")
+        return data
+    }else{
+        return true
     }
-    const term = new_cart.cart_details.filter((item) => {
-            if (item?.id === detail){
-                return item
-            }
-    })[0].quantity
-    return term
-
 }

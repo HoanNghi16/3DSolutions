@@ -115,6 +115,7 @@ export const getPreview = async (request) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(request),
+        cache: 'no-store'
     })
     return res
 }

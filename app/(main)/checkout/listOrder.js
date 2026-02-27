@@ -4,6 +4,7 @@ import { getPreview, postAddress, postOrder } from "../../api/api"
 import { useAuth } from "../../authProvider"
 import { ShowPriceFormat } from "../../lib/handleTextShow"
 import { HandleChangeCart } from "../../lib/handleCart"
+import { handleStorage } from "../../lib/handleStorage"
 
 export default function ListOrder(){
     const [previewList, setPreviewList] = useState(null)
@@ -11,32 +12,25 @@ export default function ListOrder(){
     const [previewRequest, setPreviewRequest] = useState(null)
     const [moreAddress, setMoreAddress] = useState(false)
     const [addError, setAddError] = useState(null)
-    const [render, setRender] = useState(true)
+    const [render, setRender] = useState(false)
     const {user} = useAuth()
     const [total, setTotal]= useState(0)
     const [address, setAddress] = useState(null)
     const [error, setError] = useState(null)
     
-    const handleChangeQuantity = (e, detail_id, product_id) => {
-        if (previewRequest?.mode === "buyNow"){
-            setPreviewRequest(checkout => {
-                checkout.quantity = e.target.value
-                return checkout
-            })
-            fetchPreview(previewRequest).then((res) =>{
-                if(!res){
-                    fetchPreview(getStorage())
-                    console.log('tới đây nè')
-                }
-            })
-            console.log(previewRequest)
-            getTotal()
-        }else if (previewRequest?.mode === "order"){
-            HandleChangeCart(detail_id, product_id, e.target.value, null).then((res) => {
-                e.target.value = res;
-            })
-            fetchPreview(previewRequest)
-            setRender(true)
+    const handleChangeQuantity = (e, detail) => {
+        if(e.target.value == ""){
+            e.target.value = e.target.defaultValue
+            return
+        }
+        if (Number(detail?.quantity) != Number(e.target.value)){
+            if (previewRequest?.mode === "buyNow"){
+                setPreviewRequest((checkout)=> ({...checkout, quantity:Number(e.target.value)}))
+            }else{
+                HandleChangeCart(detail?.id, detail?.product?.id, Number(e.target.value)).then((res)=>{
+                    e.target.value = res
+                })
+            }
         }
     }   
 
@@ -84,13 +78,14 @@ export default function ListOrder(){
         const data = await res.json()
 
         if (data?.message){
-            setPreviewList([])
+            setPreviewList(previewList)
+            getStorage()
             setError(data?.message)
             return false
         }
         else{
+            handleStorage(previewRequest, 'checkout')
             setPreviewList(data)
-            console.log(data)
             setError(null)
             return true
         }
@@ -160,18 +155,18 @@ export default function ListOrder(){
         return
     }
 
+
     useEffect( ()=>{
         getStorage()
         console.log(previewRequest)
     },[])
     useEffect(()=>{
         fetchPreview(previewRequest)
+        getTotal()
     },[previewRequest])
     useEffect(()=>{
-        if(render){
-            getTotal()
-            setRender(false)
-        }
+        getTotal()
+        setRender(false)
     },
     [previewList, render])
     return (
@@ -226,7 +221,7 @@ export default function ListOrder(){
                             <td>
                                 <p>
                                     <input defaultValue={item?.quantity} onBlur={(e)=>{
-                                        handleChangeQuantity(e, item?.id, item?.product?.id)
+                                        handleChangeQuantity(e,item)
                                     }}/>
                                 </p>
                             </td>

@@ -7,23 +7,28 @@ export default function CartTable(){
     const [initialized, setInitialized] = useState(false)
     const [cart, setCart] = useState(null)
     const [selected, setSelected] = useState(null)
+    const [cartError, setCartError] = useState(null)
     function checkQuantity(cartItem){
         return Number(cartItem?.quantity) > Number(cartItem?.product?.quantity)
     }
-
+    async function fetchCart(){
+        const res = await getUserCart()
+        const data = await res.json()
+        if (data?.message){
+            setCartError(data?.message)
+            return
+        }else{
+            setCart(data)
+        }return true
+    }
     useEffect(()=>{
-        async function fetchCart(){
-            const res = await getUserCart()
-            const data = await res.json()
-            if (res?.message){
-                return
-            }else{
-                setCart(data)
-            }return true
-        }
-        fetchCart()
+        const wait = () => fetchCart()
+        wait().then((res)=>{
+            if(res?.json()?.message){
+                setCartError(res?.message)
+            }
+        })
     },[])
-   
     useEffect(()=>{
         function getSelected(){
             if(cart){
@@ -78,23 +83,36 @@ export default function CartTable(){
                         <td>{cartItem?.product.name}</td>
                         <td>
                             <input type="number" className={cartItem?.id} disabled={checkQuantity(cartItem)} defaultValue={cartItem.quantity} onBlur={(e)=>{
-                                HandleChangeCart(cartItem?.id,cartItem?.product?.id, e.target.value, setCart).then((res)=>{
-                                    e.target.value = res
-                                })
+                                if(e.target.value != e.target.defaultValue && e.target.value != ""){
+                                    HandleChangeCart(cartItem?.id, cartItem?.product?.id, Number(e.target.value)).then(
+                                        (res) => {
+                                            if(res?.message){
+                                                console.log('chỗ này')
+                                                setCartError(res?.message)
+                                            }
+                                            fetchCart()
+                                        }
+                                    )
+                                }
+                                else{
+                                    e.target.value = e.target.defaultValue
+                                }
                             }}/>
                         </td>
+                        <td>{cartItem?.product?.unit_price}</td>
                         <td>{cartItem?.sub_total}</td>
                         <td><button type="button" onClick={()=> HandleDeleteCart(cartItem?.id,setCart)}>Xóa</button></td>
                     </tr>)
-                    ): 
+                    ): null
+                }
                     <tr>
                         <td>
-                            Giỏ hàng trống
+                            
                         </td>
                     </tr>
-                }
                 </tbody>
             </table>
+            <p>{cartError}</p>
             {cart?.cart_details?.length > 0? <button onClick={()=>{window.location.href= '/checkout'}}>Đặt hàng</button>: null}
         </div>
     )
