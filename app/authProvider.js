@@ -1,6 +1,7 @@
 'use client'
 import {createContext, useContext, useState} from 'react'
 import {postLogout, getMe, postSignup} from './api/api'
+import { useNoti } from './notification';
 
 const AuthContext = createContext(null);
 
@@ -8,6 +9,8 @@ export function AuthProvider({children, thisUser}) {
     const [user, setUser] = useState(thisUser)
     const [loading, setLoading] = useState(true)
     const [isAdmin, setIsadmin] = useState(user?.is_superuser)
+    const [cartCount, setCartCount] = useState(user?.cart_count)
+    const {setMessage, setType} = useNoti()
 
     async function register(request) {
         const res = await postSignup(request)
@@ -31,6 +34,8 @@ export function AuthProvider({children, thisUser}) {
             if (res.ok){
                 checkLogin()
                 window.location.href='/'
+                setMessage('Đăng xuất thành công')
+                setType('success')
                 return res.json()
             }
         }else{
@@ -39,7 +44,7 @@ export function AuthProvider({children, thisUser}) {
     }
 
     return (
-        <AuthContext.Provider value={{user, setUser, setLoading, logout, checkLogin, register, isAdmin}}>
+        <AuthContext.Provider value={{user, setUser, setLoading, logout, checkLogin, register, isAdmin, cartCount, setCartCount}}>
             {children}
         </AuthContext.Provider>
     )

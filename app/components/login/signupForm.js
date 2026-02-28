@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import validator from 'validator'
 import {useAuth} from '../../authProvider'
+import { useNoti } from '../../notification'
 export default function SignUpForm(){
     const [emailError, setEmailError] = useState('')
     const [phoneError, setPhoneError] = useState('')
@@ -10,6 +11,7 @@ export default function SignUpForm(){
     const [rePasswordError, setRePasswordError] = useState('')
     const [submitError, setSubmitError] = useState('')
     const {register} = useAuth()
+    const {setMessage, setType} = useNoti()
 
 
     function handleEmailChange(e){
@@ -157,10 +159,12 @@ export default function SignUpForm(){
             form.getElementsByTagName("span").innerHTML = ""
             return false
         }else{
+            setMessage('Đang xác thực thông tin!')
             const request = {email: email, name: name, date_of_birth: date, password: password, phone: phone}
             const res = await register(request)
-            const message = (await res.json())?.message
-            setSubmitError(message)
+            const data = await res.json()
+            setMessage(data?.message)
+            setType(res.ok?'success': 'warning')
             return true
         }
     }

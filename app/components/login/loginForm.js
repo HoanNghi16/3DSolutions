@@ -2,12 +2,14 @@ import {useState} from 'react'
 import validator from 'validator'
 import{postLogin} from '../../api/api'
 import {useAuth} from '../../authProvider'
+import { useNoti } from '../../notification'
 
 export default function LoginForm(){
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [submitError, setSubmitError] = useState("")
     const {checkLogin} = useAuth();
+    const {setMessage, setType} = useNoti()
     
 
 
@@ -26,18 +28,19 @@ export default function LoginForm(){
             success = false
         }
         else{
+            setMessage('Đang xác thực thông tin!')
+            setType('noti')
             const request = {email: email, password: password}
             const response = await postLogin(request)
-            console.log(await response)
+            const data = await response.json()
+            setMessage(data?.message)
+            setType(response.ok ? 'success': 'warning')
             if (response.ok){
                 checkLogin()
-                //await checkLogin()
                 window.location.reload()
+                success = true
             }
-            else{
-                setSubmitError("Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu.")
-                success = false
-            }
+            
         }
         return success
     }

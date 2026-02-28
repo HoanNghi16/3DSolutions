@@ -4,7 +4,11 @@ import { ShowPriceFormat } from "../../../lib/handleTextShow"
 import {HandleAddToCart} from "../../../lib/handleCart"
 import { BiSolidStar, BiSolidLike, BiSolidCart } from "react-icons/bi"
 import { HandleBuyNow } from "../../../lib/handleBuyNow"
+import { useNoti } from "../../../notification"
+import { useAuth } from "../../../authProvider"
 export default function DescriptionBox({product}){
+    const {setMessage, setType} = useNoti()
+    const {setCartCount} = useAuth()
     const [quantity, setQuantity] = useState(1)
     const rate = product?.rate ?? 0
     const rateWidth = (rate/5)*100
@@ -60,8 +64,22 @@ export default function DescriptionBox({product}){
                         }else{
                             return 1}})}>+</button>
                 </div>
-                <button onClick={()=> HandleAddToCart(product?.id, quantity)}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
-                <button onClick={()=> HandleBuyNow('checkout', {list_ids: [product?.id], mode: 'buyNow', quantity: quantity})}>Mua ngay</button>
+                <button onClick={()=> {
+                    HandleAddToCart(product?.id, quantity).then((res)=>{
+                        setMessage(res?.message)
+                        if (Number(res.cart_count)){
+                            setCartCount(res.cart_count)
+                            setType('success')
+                        }
+                        else{
+                            setType('error')
+                        }
+                    })
+                }}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
+                <button onClick={()=> {
+                    setMessage('Đang xác thực thông tin!')
+                    HandleBuyNow('checkout', {list_ids: [product?.id], mode: 'buyNow', quantity: quantity})
+                }}>Mua ngay</button>
             </div>
         </div>
     )

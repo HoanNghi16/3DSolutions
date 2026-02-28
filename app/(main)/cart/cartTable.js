@@ -2,14 +2,51 @@
 import { useEffect, useState } from "react"
 import { getUserCart } from "../../api/api"
 import { HandleChangeCart, HandleDeleteCart } from "../../lib/handleCart"
+import { ShowPriceFormat } from "../../lib/handleTextShow"
+import { useAuth } from "../../authProvider"
+import { useNoti } from "../../notification"
 
 export default function CartTable(){
     const [initialized, setInitialized] = useState(false)
     const [cart, setCart] = useState(null)
     const [selected, setSelected] = useState(null)
     const [cartError, setCartError] = useState(null)
+    const [total, setTotal]= useState(0)
+    const {setCartCount} = useAuth()
+    const {setType, setMessage} = useNoti()
+    function handleQuantityChange(e,cartItem){
+        if (e.target.value == ""){
+            setCartError(null)
+            e.target.value = e.target.defaultValue
+            getTotal(selected)
+            return
+        }
+        if (e.target.value != e.target.defaultValue){
+            HandleChangeCart(cartItem?.id, cartItem?.product?.id, Number(e.target?.value)).then(result => {
+                if (result?.message){
+                    setCartError(result?.message)
+                }else{
+                    fetchCart()
+                }
+            })
+        }else{
+            setCartError(null)
+            getTotal(selected)
+        }
+    }
+
     function checkQuantity(cartItem){
         return Number(cartItem?.quantity) > Number(cartItem?.product?.quantity)
+    }
+    function getTotal(selected){
+        let term_total = 0
+        if(!cart?.cart_details || !selected) return
+        for (let detail of cart?.cart_details){
+            if (selected.includes(detail?.id)){
+                term_total+=Number(detail?.quantity*detail?.product?.unit_price)
+            }
+        }
+        setTotal(term_total)
     }
     async function fetchCart(){
         const res = await getUserCart()
@@ -19,16 +56,23 @@ export default function CartTable(){
             return
         }else{
             setCart(data)
+            if(selected){
+                getTotal(selected)
+            }
+            setCartError(null)
         }return true
     }
     useEffect(()=>{
         const wait = () => fetchCart()
         wait().then((res)=>{
-            if(res?.json()?.message){
+            if(res?.message){
                 setCartError(res?.message)
             }
         })
     },[])
+    useEffect(()=>{
+        getTotal(selected)
+    },[cart])
     useEffect(()=>{
         function getSelected(){
             if(cart){
@@ -50,11 +94,11 @@ export default function CartTable(){
 
     function addItem(id){
         if(selected.includes(id)){
-            setSelected((arr) => (arr.filter((item) => {
+            setSelected((arr) => [...arr.filter((item) => {
                 if (item!= id){
                     return item
                 }
-            })))
+            })])
         }else{
             setSelected((arr) => [...arr, id])
         }
@@ -65,6 +109,7 @@ export default function CartTable(){
             if (!selected){
                 return
             }
+            getTotal(selected)
             let checkout = {list_ids: selected, mode: 'order'}
             window.localStorage.setItem('checkout', JSON.stringify(checkout))
         }
@@ -75,45 +120,37 @@ export default function CartTable(){
     return (
         <div>
             <div className="cartTitle">Giỏ hàng của bạn</div>
-            <table>
+            <table border={'true'}>
                 <tbody>
                     {cart?.cart_details?.length> 0 ? cart?.cart_details?.map((cartItem)=>(
                     <tr key={cartItem.id}>
                         <td><input type="checkbox" onChange={()=>addItem(cartItem?.id)} disabled={checkQuantity(cartItem)} checked={selected?.includes(cartItem?.id) ?? true}/></td>
                         <td>{cartItem?.product.name}</td>
                         <td>
-                            <input type="number" className={cartItem?.id} disabled={checkQuantity(cartItem)} defaultValue={cartItem.quantity} onBlur={(e)=>{
-                                if(e.target.value != e.target.defaultValue && e.target.value != ""){
-                                    HandleChangeCart(cartItem?.id, cartItem?.product?.id, Number(e.target.value)).then(
-                                        (res) => {
-                                            if(res?.message){
-                                                console.log('chỗ này')
-                                                setCartError(res?.message)
-                                            }
-                                            fetchCart()
-                                        }
-                                    )
-                                }
-                                else{
-                                    e.target.value = e.target.defaultValue
-                                }
-                            }}/>
+                            <input type="number" className={cartItem?.id} disabled={checkQuantity(cartItem)} defaultValue={cartItem.quantity} onBlur={(e)=>handleQuantityChange(e, cartItem)}/>
                         </td>
-                        <td>{cartItem?.product?.unit_price}</td>
-                        <td>{cartItem?.sub_total}</td>
-                        <td><button type="button" onClick={()=> HandleDeleteCart(cartItem?.id,setCart)}>Xóa</button></td>
+                        <td>{ShowPriceFormat(cartItem?.product?.unit_price)}</td>
+                        <td>{ShowPriceFormat(cartItem?.sub_total)}</td>
+                        <td><button type="button" onClick={()=> {
+                            HandleDeleteCart(cartItem?.id,setCart).then((res)=>{
+                                setMessage(res?.message)
+                                if (res.cart_count != null){
+                                    setCartCount(res.cart_count)
+                                    setType('success')
+                                }else{
+                                    setType('warning')
+                                }
+                                
+                            })
+                            }}>Xóa</button></td>
                     </tr>)
                     ): null
                 }
-                    <tr>
-                        <td>
-                            
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <p>{cartError}</p>
-            {cart?.cart_details?.length > 0? <button onClick={()=>{window.location.href= '/checkout'}}>Đặt hàng</button>: null}
+            <p>Tổng tiền: {ShowPriceFormat(total)}</p>
+            {cart?.cart_details?.length > 0? <button disabled={cartError!=null} onClick={()=>{window.location.href= '/checkout'}}>Đặt hàng</button>: null}
         </div>
     )
 }

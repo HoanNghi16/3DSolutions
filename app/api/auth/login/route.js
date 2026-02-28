@@ -12,7 +12,7 @@ export async function POST(req){
             }
         )
         if (!res.ok){
-            return Response.json({message: "Login Failed"}, {status: 401})
+            return Response.json({message: "Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin!"}, {status: 401})
         }
         const {access, refresh} = await res.json()
         console.log(access, refresh)
@@ -30,7 +30,7 @@ export async function POST(req){
             sameSite: 'lax',
             path: '/'
         })
-        return Response.json({message: "Login successful"}, {status: 200})
+        return Response.json({message: "Đăng nhập thành công!"}, {status: 200})
     }
     catch{
         return Response.json({message: "server Error"}, {status: 500})

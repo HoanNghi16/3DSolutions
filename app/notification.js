@@ -1,46 +1,37 @@
 "use client"
 import {useState, useEffect, createContext, useContext, useRef} from 'react';
-
+import './notification.css'
 const NotiContext = createContext(null)
 
 export function Notification({children}) {
-    const [color, setColor] = useState({})
+    // const background = {success :"#15630b", warning: "#930000",noti:  "#013a66"}
     const [type, setType] = useState(null)
     const [message, setMessage] = useState(null)
-    const [isClosed, setIsClosed] = useState(true)
-    const timeLife = 20000
-    const timer = useRef(null)
-    
-    useEffect(()=> {
-        function changeStyle(){
-            switch (type){
-                case "error":
-                    setColor("#d92727")
-                    break;
-                case "success":
-                    setColor("#209911")
-                    break
-                default:
-                    setColor("#00579a")
-            }
-        }
-        function changeClosed(){
-            if (isClosed){
-                setIsClosed(false)
-            }else{
-                setIsClosed(true)
-            }
-        }
-        if(isClosed && message){
-            changeClosed()
-            changeStyle()
-            timer.current = setTimeout(()=>setIsClosed(true, timeLife))
-        }
-        return () => clearTimeout(timer.current)
-    }, [message])
+    const closeTimer = useRef(null)
+    useEffect(()=>{
+        if (!type || !message) return
+        closeTimer.current = setTimeout(() => {
+            setMessage(null)
+            setType(null)
+        }, 3000)
+        return clearTimeout(closeTimer.current)
+    },[type, message])
+
     return (
-        <NotiContext.Provider value={{setMessage, type, setType}}>
-            {isClosed?null:<div style={{backgroundColor:color}}>{message}</div>}
+        <NotiContext.Provider value={{setMessage, setType}}>
+            {message?<div className={`notiContainer${' '+type}`} onMouseEnter={()=> clearTimeout(closeTimer.current)} onMouseLeave={()=> {
+                closeTimer.current = setTimeout(()=>{
+                    setMessage(null)
+                    setType(null)
+                }, 3000)
+            }}>
+                <p className='notiMessage'>{message}</p>
+                <button className='closeButton' onClick={()=>{
+                    setMessage(null)
+                    setType(null)
+                    clearTimeout(closeTimer.current)
+                }}>x</button>
+            </div>: null}
             {children}
         </NotiContext.Provider>
     )

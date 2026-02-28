@@ -1,0 +1,147 @@
+.orderContainer{
+    background-color: white;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 40px 40px;
+    border-radius: 14px;
+    margin-bottom: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.orderContainer h1{
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* ===== Filter Nav ===== */
+.orderFilter{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.orderFilter button{
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 12px;
+}
+
+.orderFilter button:hover{
+    background: #f2f2f2;
+}
+.message{
+    color: rgb(180, 0, 0);
+    text-align: center;
+    margin: 20px;
+}
+.orderFilter button.active{
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
+/* ===== List ===== */
+.orderList{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ===== Row ===== */
+.header{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 120px;
+    align-items: center;
+
+    padding: 16px;
+    padding-left: 20px;
+    border-radius: 12px;
+    background: black;
+    color: white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.2s ease;
+}
+.orderRow{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 120px;
+    align-items: center;
+
+    padding: 16px;
+    padding-left: 20px;
+    border-radius: 12px;
+    background: white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.2s ease;
+}
+
+.orderRow:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+/* Receiver */
+.receiver p{
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+/* Giá tiền */
+.orderRow > p:nth-child(2){
+    font-weight: 600;
+}
+
+/* ===== Status Badge ===== */
+.status{
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status.pending{
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.cancelled{
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status.completed{
+    background: #d4edda;
+    color: #155724;
+}
+
+/* ===== Button ===== */
+.orderRow button{
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: #c0392b;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.orderRow button:hover{
+    background: #a93226;
+}
+
+.orderRow button:disabled{
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+@media(max-width: 800px){
+    p{
+        font-size: smaller;
+    }
+}

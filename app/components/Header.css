@@ -47,6 +47,21 @@ header {
     font-size: 30px;
     color: black;
 }
+.cartSummary{
+    font-size: 10px;
+    color: black;
+    justify-content: center;
+    line-height: 15px;
+    text-align: center;
+    font-weight: 700;
+    background-color: #f2cb0e;
+    border-radius: 40%;
+    min-width: 15px;
+    padding: 2px;
+    position: relative;
+    left: -17px;
+    top: -7px;
+}
 .userIcon{
     font-size: 30px;
     color: black;

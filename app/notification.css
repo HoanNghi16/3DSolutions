@@ -1,0 +1,75 @@
+.notiContainer{
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-width: 350px;
+    gap: 10px;
+    min-height: 55px;
+    padding: 0 16px;
+
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    font-size: 15px;
+    font-weight: 500;
+
+    z-index: 5000;
+
+    animation: slideDown 0.25s ease;
+    background: rgba(1, 58, 102, 0.9);
+    color: white;
+}
+
+/* Các loại thông báo */
+.success{
+    background: rgba(21, 99, 11, 0.9);
+}
+
+.warning{
+    background: rgb(194, 45, 45,0.9);
+}
+
+.noti{
+    color: white;
+}
+
+.notiMessage{
+    flex: 1;
+    text-align: center;
+}
+
+/* Nút close */
+.closeButton{
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.closeButton:hover{
+    opacity: 1;
+}
+
+/* Animation */
+@keyframes slideDown{
+    from{
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}

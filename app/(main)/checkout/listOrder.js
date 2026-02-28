@@ -19,19 +19,7 @@ export default function ListOrder(){
     const [error, setError] = useState(null)
     
     const handleChangeQuantity = (e, detail) => {
-        if(e.target.value == ""){
-            e.target.value = e.target.defaultValue
-            return
-        }
-        if (Number(detail?.quantity) != Number(e.target.value)){
-            if (previewRequest?.mode === "buyNow"){
-                setPreviewRequest((checkout)=> ({...checkout, quantity:Number(e.target.value)}))
-            }else{
-                HandleChangeCart(detail?.id, detail?.product?.id, Number(e.target.value)).then((res)=>{
-                    e.target.value = res
-                })
-            }
-        }
+
     }   
 
     const handleMoreAddress = async (e)=>{
@@ -78,8 +66,8 @@ export default function ListOrder(){
         const data = await res.json()
 
         if (data?.message){
-            setPreviewList(previewList)
             getStorage()
+            setPreviewList([])
             setError(data?.message)
             return false
         }
@@ -221,7 +209,26 @@ export default function ListOrder(){
                             <td>
                                 <p>
                                     <input defaultValue={item?.quantity} onBlur={(e)=>{
-                                        handleChangeQuantity(e,item)
+                                        if(e.target.value == ""){
+                                            e.target.value = e.target.defaultValue
+                                            return
+                                        }
+                                        if (Number(item?.quantity) != Number(e.target.value)){
+                                            if (previewRequest?.mode === "buyNow"){
+                                                setPreviewRequest((checkout)=> ({...checkout, quantity:Number(e.target.value)}))
+                                            }else{
+                                                HandleChangeCart(item?.id, item?.product?.id, Number(e.target.value)).then((res)=>{
+                                                    if(res?.message){
+                                                        setError(res?.message)
+                                                    }
+                                                    else{
+                                                        fetchPreview(previewRequest)
+                                                    }
+                                                })
+                                            }
+                                        }else{
+                                            fetchPreview(previewRequest)
+                                        }
                                     }}/>
                                 </p>
                             </td>
@@ -249,7 +256,7 @@ export default function ListOrder(){
                 </select>
                 <p>Địa chỉ đã chọn: {address?`${address?.number} ${address?.street}, ${address?.ward}` : "Chưa chọn địa chỉ"}</p>
                 <p>{error}</p>
-                <button type="submit">Order</button>
+                <button type="submit" disabled={error !== null}>Order</button>
             </form>
         </aside>
     </div>)

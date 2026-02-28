@@ -10,7 +10,7 @@ export async function POST(req){
         if (res.ok){
             return Response.json({message: "Đăng ký thành công"}, {status: 200})
         }
-        return Response.json({message: "Đăng ký thất bại, vui lòng kiểm tra lại thông tin người dùng"}, {status: res.status})
+        return Response.json({message: "Đăng ký thất bại, vui lòng kiểm tra lại thông tin người dùng!"}, {status: res.status})
     }
     catch{
         return res
