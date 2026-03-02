@@ -1,13 +1,14 @@
-import ListOrder from "./listOrder"
+import ListCheckout from "./listCheckout"
+import './checkout.css'
 export default async function OrderPage({searchParams}){
 
     return (
-        <div className="orderContainer">
+        <div className="checkoutContainer">
             <div>
             </div>
-            <div className="listOrder">
-                <h1>Chi tiết đơn hàng</h1>
-                <ListOrder></ListOrder>
+            <div className="listCheckout">
+                <h1 style={{color: "#072161"}}>Chi tiết đơn hàng</h1>
+                <ListCheckout></ListCheckout>
             </div>
         </div>
     )

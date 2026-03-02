@@ -1,23 +1,33 @@
+/* ================= CONTAINER ================= */
+
+.message{
+    text-align: center;
+    color: rgb(172, 0, 0);
+    margin: 10px;
+}
+
 .orderContainer{
     background-color: white;
     max-width: 1000px;
     margin: 40px auto;
-    padding: 40px 40px;
+    padding: 40px;
     border-radius: 14px;
-    margin-bottom: 200px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .orderContainer h1{
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-size: 24px;
 }
 
-/* ===== Filter Nav ===== */
+
+/* ================= FILTER ================= */
+
 .orderFilter{
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
 .orderFilter button{
@@ -33,115 +43,162 @@
 .orderFilter button:hover{
     background: #f2f2f2;
 }
-.message{
-    color: rgb(180, 0, 0);
-    text-align: center;
-    margin: 20px;
-}
+
 .orderFilter button.active{
-    background: #111;
+    background: #072161;
     color: white;
-    border-color: #111;
+    border-color: #072161;
 }
 
-/* ===== List ===== */
+
+/* ================= LIST ================= */
+
 .orderList{
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
-/* ===== Row ===== */
+
+/* ================= HEADER ================= */
+
 .header{
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 120px;
-    align-items: center;
-
-    padding: 16px;
-    padding-left: 20px;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 16px 20px;
+    padding-left: 30px;
     border-radius: 12px;
-    background: black;
+    background: #00579a;
     color: white;
+    font-weight: 500;
+}
 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.2s ease;
+
+/* ================= ORDER CARD ================= */
+.orderRowHeader{
+    width: 100%;
+    padding: 0 10px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgb(185, 185, 185);
+    color: rgb(87, 87, 87);
+    font-size: small;
 }
 .orderRow{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 120px;
-    align-items: center;
-
-    padding: 16px;
-    padding-left: 20px;
-    border-radius: 12px;
     background: white;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.101);
     transition: 0.2s ease;
+    color: #131a31;
 }
 
 .orderRow:hover{
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
-/* Receiver */
-.receiver p{
-    margin: 2px 0;
-    font-size: 14px;
+
+
+/* ===== Top Info Grid ===== */
+
+.orderInfo{
+    display: grid;
+    padding-left: 10px;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+}
+.orderStatus{
+    margin-left: 30px;
 }
 
-/* Giá tiền */
-.orderRow > p:nth-child(2){
+.receiver p{
+    margin: 3px 0;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.orderInfo > p:nth-child(2){
     font-weight: 600;
 }
 
-/* ===== Status Badge ===== */
-.status{
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
+
+/* ================= BUTTON SECTION ================= */
+
+.orderButtons{
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1.1px solid rgb(185, 185, 185);
+    padding-top: 10px;
+    padding-right: 30px;
 }
 
-.status.pending{
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status.cancelled{
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.status.completed{
-    background: #d4edda;
-    color: #155724;
-}
-
-/* ===== Button ===== */
-.orderRow button{
-    padding: 6px 10px;
+.orderButtons button{
+    padding: 7px 14px;
     border-radius: 8px;
-    border: none;
-    background: #c0392b;
-    color: white;
     cursor: pointer;
     transition: 0.2s ease;
+    font-size: 13px;
 }
 
-.orderRow button:hover{
+/* Reorder */
+.reOrder{
+    border: 1px solid #131a31;
+    color: #131a31;
+    background-color: white;
+}
+
+.reOrder:hover{
+    background: #333;
+    color: white;
+}
+
+.cancelOrder{
+    color: #a93226;
+    background-color: white;
+    border: 1px solid #a93226;
+}
+
+.cancelOrder:hover{
     background: #a93226;
+    color: white;
 }
 
-.orderRow button:disabled{
+.cancelOrder:disabled{
     background: #ccc;
+    border: none;
+    color: rgb(114, 114, 114);
     cursor: not-allowed;
 }
 
-@media(max-width: 800px){
-    p{
-        font-size: smaller;
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px){
+
+    .header{
+        display: none;
     }
+    .orderRow{
+        padding: 20px;
+    }
+    .orderInfo{
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    .orderStatus{
+        margin: 0px;
+    }
+    .orderButtons{
+        padding-right: 0px;
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .orderButtons button{
+        width: 100%;
+    }
+
 }

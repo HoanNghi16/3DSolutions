@@ -23,10 +23,11 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
     },[])
     function handleConfirm(e){
         e.preventDefault()
-        console.log('hủy nè')
         callFirstFunc({...kwargs})
         callEndFunc(false)
-        window.location.reload()
+        setTimeout(()=>{
+            window.location.reload()
+        },1000)
     }
     function handleCancel(e){
         e.preventDefault()
@@ -40,10 +41,12 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
         }
         }}>
         <div className="confirmContainer">
-            <button className="closeConfirm" onClick={()=>{
-                callEndFunc(false)
-            }}>x</button>
-            <h3>Xác nhận {type == 'orderCancel'? "hủy đơn": ""}</h3>
+            <div className="confirmHeader">
+                <button className="closeConfirm" onClick={()=>{
+                    callEndFunc(false)
+                }}>x</button>
+                <h3>Xác nhận {type == 'orderCancel'? "hủy đơn": ""}</h3>
+            </div>
             <form>
                 {detailShow}
                 <button type="submit" onClick={(e)=>handleConfirm(e)}>Xác nhận</button>

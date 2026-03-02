@@ -9,7 +9,7 @@ export function Notification({children}) {
     const [message, setMessage] = useState(null)
     const closeTimer = useRef(null)
     useEffect(()=>{
-        if (!type || !message) return
+        if (!type && !message) return
         closeTimer.current = setTimeout(() => {
             setMessage(null)
             setType(null)
