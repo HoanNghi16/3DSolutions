@@ -1,8 +1,7 @@
 import CartTable from "./cartTable"
+import './cart.css'
 export default async function CartPage(){
     return (
-        <div className="cartContainer">
-            <CartTable />
-        </div>
+        <CartTable />
     )
 }

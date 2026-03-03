@@ -3,7 +3,7 @@
     padding: 3% 6%;
     background-color: white;
     margin: 30px auto;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: 3px 3px 3px 3px lightgray;
 }
 .notfound{
@@ -96,7 +96,12 @@
     width: 60%;
     padding-top: 2%;
     padding-left: 5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
+
 .productName{
     width: 100%;
     font-size: 30px;
@@ -180,6 +185,73 @@
     line-height: 1.4;
     margin-left: 10px;
 }
+.addToCartBox {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quantityBox {
+    display: flex;
+    width: fit-content;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.quantityBox button {
+    width: 40px;
+    border: none;
+    background: #dcdcdc;
+    cursor: pointer;
+    font-size: 18px;
+}
+#quantityInput{
+    width: 60px;
+    padding-left: 10px;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+/* ===== BUTTONS ===== */
+.addToCartBox > button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.addToCartBox > button:first-of-type {
+    background: black;
+    color: white;
+}
+
+.addToCartBox > button:first-of-type:hover {
+    background: #333;
+}
+
+.addToCartBox > button:last-of-type {
+    background: #e53935;
+    color: white;
+}
+
+.addToCartBox > button:last-of-type:hover {
+    background: #c62828;
+}
+.viewMoreButton{
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+}
+
 
 @media(max-width: 800px){
     .detailContainer{

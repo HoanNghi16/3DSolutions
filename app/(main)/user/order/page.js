@@ -3,6 +3,7 @@ import { fetchOrders } from "../../../api/api"
 import { cookies } from "next/headers"
 import OrderList from "./orderList"
 import './order.css'
+import ProfileSideBar from "../profileSideBar"
 
 export default async function OderPage({searchParams}){
     const status = (await searchParams)?.status ?? null
@@ -14,8 +15,10 @@ export default async function OderPage({searchParams}){
     }
     const orders = await res_orders.json()
     return (
-    <div className="orderContainer">
-        <h1 style={{color: "#072161"}}>Danh sách đơn hàng</h1>
-        <OrderList orders={orders}></OrderList>
+    <div className="orderLayout">
+        <ProfileSideBar active={'order'}></ProfileSideBar>
+        <div className="orderContainer">
+            <OrderList orders={orders}></OrderList>
+        </div>
     </div>)
 }

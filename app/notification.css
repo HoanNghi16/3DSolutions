@@ -73,3 +73,13 @@
         transform: translate(-50%, 0);
     }
 }
+
+@media(max-width: 700px){
+    .notiContainer{
+        width: 80%;
+        font-size: smaller;
+    }
+    .notiMessage{
+        font-size: 14px;
+    }
+}

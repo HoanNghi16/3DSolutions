@@ -84,44 +84,6 @@ button{
 
 /* ================= ADD ADDRESS FORM ================= */
 
-.ListOrder form:last-of-type{
-    margin-top: 15px;
-    display: grid;
-    gap: 10px;
-}
-
-.ListOrder form:last-of-type input{
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-}
-
-.ListOrder form:last-of-type input:focus{
-    outline: none;
-    border-color: #111;
-}
-
-.ListOrder form:last-of-type button{
-    padding: 9px;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-}
-
-.ListOrder form:last-of-type button[type="submit"]{
-    background: #00579a;
-    color: white;
-}
-
-.ListOrder form:last-of-type button[type="submit"]:hover{
-    background: #072161;
-}
-
-.ListOrder form:last-of-type button[type="reset"]{
-    background: #eee;
-}
-
 /* ================= PRODUCT TABLE ================= */
 
 .productTable{
@@ -179,7 +141,7 @@ aside{
     border: 1px solid #eee;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     position: sticky;
-    top: 140px;
+    top: 120px;
 }
 
 aside p{
@@ -194,24 +156,33 @@ aside select{
     border: 1px solid #ddd;
     margin-bottom: 15px;
 }
+.orderButton{
+    background-color: rgb(228, 0, 0);
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.orderButton:hover{
+    background-color: rgb(188, 0, 0);
+}
 
 aside button[type="submit"]{
     width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: none;
-    background: #00579a;
     color: white;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
-aside button[type="submit"]:hover{
-    background: #00579a;
-}
-
-aside button[type="submit"]:disabled{
+.orderButton:disabled{
     background: #ccc;
     cursor: not-allowed;
 }

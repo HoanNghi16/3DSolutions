@@ -1,0 +1,327 @@
+/* ===== CONTAINER ===== */
+.error{
+    text-align: center;
+    color: rgb(206, 1, 1);
+}
+.cartContainer{
+  width: 80%;
+  margin: 60px auto;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 50px;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.cartLeft{
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.checkAll{
+    margin-right: 30px;
+}
+/* Header */
+
+.cartHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 30px;
+  width: 100%;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+}
+.cartBody{
+    padding: 0 30px;
+}
+.cartTitle{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ===== CART ITEM ===== */
+input[type='checkbox']{
+    width: 17px;
+    height: 17px;
+}
+
+.cartItem{
+  display: grid;
+  grid-template-columns: 40px 90px 1fr 120px 120px 80px;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.itemImage img{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.itemName{
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.itemPrice{
+  color: #777;
+  font-size: 14px;
+}
+
+.itemQuantity input{
+  width: 70px;
+  padding: 6px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.itemTotal{
+  font-weight: 600;
+}
+
+
+
+/* ===== ERROR ===== */
+
+.cartError{
+  margin-top: 20px;
+  color: rgb(190, 0, 0);
+}
+
+/* ===== RIGHT SIDE (RESULT) ===== */
+
+.cartResult{
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  height: fit-content;
+  position: sticky;
+  top: 30px;
+}
+
+.cartResult h3{
+  margin-bottom: 20px;
+}
+
+.resultRow,
+.resultTotal{
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.resultTotal{
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.deleteButton{
+    background-color: rgb(227, 0, 0);
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    border-radius: 8px;
+    width: 50px;
+    padding: 10px;
+}
+.deleteButton:hover{
+    background-color:rgb(164, 1, 1) ;
+}
+/* Checkout button */
+
+.checkoutBtn{
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #1e4d7b;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.checkoutBtn:hover{
+  background: #163a5c;
+}
+
+.checkoutBtn:disabled{
+  background: #ccc;
+  cursor: not-allowed;
+}
+@media (max-width: 1024px){
+
+  .cartContainer{
+    width: 90%;
+    grid-template-columns: 1fr; /* 1 cột */
+    gap: 30px;
+  }
+
+  .cartResult{
+    position: static; /* bỏ sticky */
+  }
+
+}
+
+
+/* ========================= */
+/* ====== MOBILE < 768px === */
+/* ========================= */
+
+@media (max-width: 768px){
+
+  /* ===== CONTAINER ===== */
+
+  .cartContainer{
+    width: 95%;
+    margin: 30px auto;
+    grid-template-columns: 1fr; /* stack dọc */
+    gap: 25px;
+  }
+
+  .cartResult{
+    position: static; /* bỏ sticky trên mobile */
+  }
+
+  /* ===== HEADER ===== */
+
+  .cartHeader{
+    padding: 20px;
+    height: auto;
+  }
+
+  .cartBody{
+    padding: 0 20px 20px;
+  }
+
+  /* ===== CART ITEM GIỮ NGANG ===== */
+
+  .cartItem{
+    grid-template-columns: 
+      25px      /* checkbox */
+      70px      /* image */
+      1fr       /* name */
+      70px      /* quantity */
+      80px      /* total */
+      50px;     /* action */
+    gap: 10px;
+    padding: 15px 0;
+  }
+
+  .itemImage img{
+    width: 65px;
+    height: 65px;
+  }
+
+  .itemName{
+    font-size: 14px;
+  }
+
+  .itemPrice{
+    font-size: 13px;
+  }
+
+  .itemQuantity input{
+    width: 55px;
+    padding: 4px;
+    font-size: 13px;
+  }
+
+  .itemTotal{
+    font-size: 14px;
+  }
+
+  .itemAction button{
+    font-size: 13px;
+  }
+
+}
+@media (max-width: 400px){
+
+  .cartContainer{
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
+
+  .cartResult{
+    position: static;
+  }
+
+  /* ==== CART ITEM ==== */
+
+  .cartItem{
+    display: grid;
+    grid-template-columns: 25px 80px 2fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    padding: 15px 0;
+  }
+
+  /* checkbox */
+  .itemSelect{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* image */
+  .itemImage{
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .itemImage img{
+    width: 75px;
+    height: 75px;
+  }
+
+  /* name + price */
+  .itemInfo{
+    width: 100px;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  /* quantity */
+  .itemQuantity{
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .itemQuantity input{
+    width: 60px;
+  }
+
+  /* total */
+  .itemTotal{
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  /* 🔥 nút xóa nằm dưới full ngang */
+
+  .itemAction{
+    grid-column: 1 / span 3;
+    grid-row: 4;
+    margin-top: 10px;
+  }
+
+  .itemAction button{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+}

@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation"
-import { getMe} from "../../api/api"
+import { getMe, postLogout} from "../../api/api"
 import { cookies } from "next/headers"
 import './user.css'
 import { BiUser } from "react-icons/bi"
+import ProfileSideBar from "./profileSideBar"
 export default async function UserPage(){
     const cookieStore = await cookies()
     const allCookies = cookieStore.toString()
@@ -17,18 +18,8 @@ export default async function UserPage(){
     return (
 
         <div className="profileLayout">
-            <aside className="profileSidebar">
-                <h3 className="sidebarTitle">Tài khoản</h3>
 
-                <ul className="sidebarMenu">
-                    <li className="active">Hồ sơ</li>
-                   <a style={{textDecoration:'none'}} href="/user/order"><li>Đơn hàng</li></a>
-                    <li>Địa chỉ</li>
-                    <li>Đổi mật khẩu</li>
-                    <li>Đăng xuất</li>
-                </ul>
-            </aside>
-
+            <ProfileSideBar active={'profile'}></ProfileSideBar>
 
             <div className="profileContent">
 

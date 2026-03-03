@@ -37,7 +37,7 @@ export default function DescriptionBox({product}){
                     <p className="productDescription" dangerouslySetInnerHTML={{ __html: product.description }}></p>
                     <p className="productMaterial"><span className="name">Chất liệu: </span>{product?.material?.name}</p>
                 </div>
-                <button onClick={showAll}>{show?"Ẩn bớt":"Xem thêm"}</button>
+                <button className="viewMoreButton" onClick={showAll}>{show?"Ẩn bớt":"Xem thêm"}</button>
             </div>
             <div className="addToCartBox">
                 <div className="quantityBox">
@@ -47,11 +47,13 @@ export default function DescriptionBox({product}){
                         }else{ 
                             return 1
                         }})}>-</button>
-                    <input type="number" value={quantity} onChange={
+                    <input id="quantityInput" type="number" defaultValue={quantity} onBlur={
                         (e) => {
                             if (e.target.value < 1){
                                 e.target.value = 1
                             }else if (e.target.value> product?.quantity){
+                                setMessage("Sản phẩm không đủ!")
+                                setType('warning')
                                 e.target.value = 1
                             }else{
                                 setQuantity(Number(e.target.value))
@@ -59,9 +61,11 @@ export default function DescriptionBox({product}){
                         }
                     } />
                     <button onClick={() => setQuantity((i)=> {
-                        if (i < product?.quantity){ 
+                        if (i < product?.quantity){
+                            window.document.getElementById('quantityInput').value = i+1
                             return i + 1;
                         }else{
+                            window.document.getElementById('quantityInput').value = i+1
                             return 1}})}>+</button>
                 </div>
                 <button onClick={()=> {
@@ -75,7 +79,7 @@ export default function DescriptionBox({product}){
                             setType('error')
                         }
                     })
-                }}><BiSolidCart></BiSolidCart>Thêm vào giỏ hàng</button>
+                }}>Thêm vào giỏ hàng</button>
                 <button onClick={()=> {
                     setMessage('Đang xác thực thông tin!')
                     HandleBuyNow('checkout', {list_ids: [product?.id], mode: 'buyNow', quantity: quantity})

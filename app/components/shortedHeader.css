@@ -49,6 +49,32 @@
     max-width: 45%;
     min-width: 45%;
 }
+.shortedCart{
+    text-decoration: none;
+    float: right;
+}
+.shortedCartIcon {
+    gap: 5px;
+    font-size: 30px;
+    margin-right: 0px;
+    color: black;
+    
+}
+.shortedCartSummary{
+    font-size: 10px;
+    color: black;
+    justify-content: center;
+    line-height: 15px;
+    text-align: center;
+    font-weight: 700;
+    background-color: #f2cb0e;
+    border-radius: 40%;
+    min-width: 15px;
+    padding: 4px;
+    position: relative;
+    left: -7px;
+    top: -10px;
+}
 
 .hiddenLink{
     display: flex;

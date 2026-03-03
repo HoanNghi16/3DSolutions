@@ -153,6 +153,17 @@ export const fetchOrders = async (customCookie = {}, status) => {
     return res
 }
 
+export const fetchOrderDetails = async (id, cookie)=>{
+    const res = await fetch(`${BASE_URL}/api/order/${id}`, {
+        headers:{
+            Cookie: cookie
+        },
+        method: 'GET',
+        credentials: 'include'
+    })
+    return res
+}
+
 export const cancelOrder = async (request) => {
     const res = await fetch(`${BASE_URL}/api/order/cancel`,{
         method: 'POST', 

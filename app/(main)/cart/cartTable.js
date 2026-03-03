@@ -5,6 +5,7 @@ import { HandleChangeCart, HandleDeleteCart } from "../../lib/handleCart"
 import { ShowPriceFormat } from "../../lib/handleTextShow"
 import { useAuth } from "../../authProvider"
 import { useNoti } from "../../notification"
+import ConfirmForm from "../../components/confirmForm"
 
 export default function CartTable(){
     const [initialized, setInitialized] = useState(false)
@@ -12,9 +13,44 @@ export default function CartTable(){
     const [selected, setSelected] = useState(null)
     const [cartError, setCartError] = useState(null)
     const [total, setTotal]= useState(0)
-    const {setCartCount} = useAuth()
+    const {setCartCount, user} = useAuth()
     const {setType, setMessage} = useNoti()
+    const [showComfirm, setShowConfirm] = useState(false)
+    const [confirmDetail, setConfirmDetail] = useState(null)
+    const [toDelete, setToDelete] = useState(null)
+    const [checkAll, setCheckAll] = useState(true)
+
+    const handleCheckAll = (e)=>{
+        if(e.target.checked){
+            setInitialized(false)
+        }else{
+            setSelected([])
+        }
+    }
+    const beforeConfirm = (kwargs) => {
+        const cartItem = kwargs.cartItem
+        const setCart = kwargs.setCart
+        HandleDeleteCart(cartItem?.id, setCart).then((res) => {
+                      setMessage(res?.message);
+                      if (res.cart_count != null) {
+                        setCartCount(res.cart_count);
+                        setType("success");
+                      } else {
+                        setType("warning");
+                      }
+        });
+    }
+    const afterConfirm = () => {
+        setShowConfirm(false)
+    }
+
     function handleQuantityChange(e,cartItem){
+        if( Number(e.target.value)<=0){
+            setMessage('Số lượng sản phẩm phải lớn hơn 0')
+            setType('warning')
+            e.target.value = 1;
+            return
+        }
         if (e.target.value == ""){
             setCartError(null)
             e.target.value = e.target.defaultValue
@@ -101,8 +137,23 @@ export default function CartTable(){
             })])
         }else{
             setSelected((arr) => [...arr, id])
+            let checkboxes = window.document.getElementsByClassName('itemCheckBox')
+            for (let check of checkboxes){
+                if (check.target.checked == false){
+                    return
+                }
+            }
+            setCheckAll(true)
+            window.document.getElementById('checkAll').checked = true
         }
     }
+    useEffect(()=>{
+        if (!user){
+            setMessage('Vui lòng đăng nhập để sử dụng giỏ hàng!')
+            setTimeout(()=> window.location.href = '/login', 1000)
+            
+        }
+    },[])
 
     useEffect(()=>{
         function changeStorage(){
@@ -117,40 +168,119 @@ export default function CartTable(){
     },[selected])
 
     console.log(cart)
-    return (
-        <div>
-            <div className="cartTitle">Giỏ hàng của bạn</div>
-            <table border={'true'}>
-                <tbody>
-                    {cart?.cart_details?.length> 0 ? cart?.cart_details?.map((cartItem)=>(
-                    <tr key={cartItem.id}>
-                        <td><input type="checkbox" onChange={()=>addItem(cartItem?.id)} disabled={checkQuantity(cartItem)} checked={selected?.includes(cartItem?.id) ?? true}/></td>
-                        <td>{cartItem?.product.name}</td>
-                        <td>
-                            <input type="number" className={cartItem?.id} disabled={checkQuantity(cartItem)} defaultValue={cartItem.quantity} onBlur={(e)=>handleQuantityChange(e, cartItem)}/>
-                        </td>
-                        <td>{ShowPriceFormat(cartItem?.product?.unit_price)}</td>
-                        <td>{ShowPriceFormat(cartItem?.sub_total)}</td>
-                        <td><button type="button" onClick={()=> {
-                            HandleDeleteCart(cartItem?.id,setCart).then((res)=>{
-                                setMessage(res?.message)
-                                if (res.cart_count != null){
-                                    setCartCount(res.cart_count)
-                                    setType('success')
-                                }else{
-                                    setType('warning')
-                                }
-                                
-                            })
-                            }}>Xóa</button></td>
-                    </tr>)
-                    ): null
-                }
-                </tbody>
-            </table>
-            <p>{cartError}</p>
-            <p>Tổng tiền: {ShowPriceFormat(total)}</p>
-            {cart?.cart_details?.length > 0? <button disabled={cartError!=null} onClick={()=>{window.location.href= '/checkout'}}>Đặt hàng</button>: null}
-        </div>
-    )
+return (
+  <main className="cartContainer">
+    {showComfirm? <ConfirmForm callFirstFunc={beforeConfirm} kwargs={toDelete} callEndFunc={afterConfirm} detail={confirmDetail} type={'cartDelete'}></ConfirmForm>: null}
+    {/* LEFT */}
+    <section className="cartLeft">
+      <header className="cartHeader">
+        <h2 className="cartTitle">Giỏ hàng của bạn</h2>
+      </header>
+    {cartError && <p className="error">{cartError}</p>}
+      <div className="cartBody">
+        <label className="selectAll">
+          <input type="checkbox" defaultChecked={checkAll} id="checkAll" className="checkAll" onClick={(e)=>handleCheckAll(e)}/>
+          Chọn tất cả
+        </label>
+        {cart?.cart_details?.length > 0 ?
+          cart.cart_details.map((cartItem) => (
+            <article className="cartItem" key={cartItem.id}>
+
+              <div className="itemSelect">
+                <input
+                  className="itemCheckbox"
+                  type="checkbox"
+                  onChange={(e) => {
+                    if(!e.target.checked){
+                        window.document.getElementById('checkAll').checked = false
+                    }
+                    addItem(cartItem?.id)}
+                  }
+                  disabled={checkQuantity(cartItem)}
+                  checked={selected?.includes(cartItem?.id) ?? true}
+                />
+              </div>
+                <div className="itemImage">
+                    <a href={`/products/${cartItem?.product?.id}`}>
+                        <img src={cartItem?.product?.thumbnail} alt={cartItem?.product?.name}/>
+                    </a>
+                    </div>
+                    <div className="itemInfo">
+                    <p className="itemName">
+                        {cartItem?.product?.name}
+                    </p>
+                    <p className="itemPrice">
+                        {ShowPriceFormat(cartItem?.product?.unit_price)} đ
+                    </p>
+                </div>
+
+
+              <div className="itemQuantity">
+                <input
+                  type="number"
+                  className={cartItem?.id}
+                  disabled={checkQuantity(cartItem)}
+                  defaultValue={cartItem.quantity}
+                  onBlur={(e) => handleQuantityChange(e, cartItem)}
+                />
+              </div>
+
+              <div className="itemTotal">
+                {ShowPriceFormat(cartItem?.sub_total)} đ
+              </div>
+
+              <div className="itemAction">
+                <button className="deleteButton"
+                  type="button"
+                  onClick={() => {
+                    setConfirmDetail(cartItem)
+                    setShowConfirm(true)
+                    setToDelete({cartItem: cartItem, setCart: setCart})
+                  }}
+                >
+                  Xóa
+                </button>
+              </div>
+
+            </article>
+          )):<div className="cartRow" ><p className="error">Giỏ hàng trống</p></div>}
+      </div>
+
+    </section>
+
+    {/* RIGHT */}
+    <aside className="cartResult">
+
+      <h3>Kết quả đơn hàng</h3>
+
+      <div className="resultRow">
+        <span>Tạm tính</span>
+        <span>{ShowPriceFormat(total)} đ</span>
+      </div>
+
+      <hr />
+
+      <div className="resultTotal">
+        <span>Tổng cộng</span>
+        <span>{ShowPriceFormat(total)} đ</span>
+      </div>
+
+      {cart?.cart_details?.length > 0 && (
+        <button
+          className="checkoutBtn"
+          disabled={cartError != null}
+          onClick={() => {
+            setMessage('Đang kiểm tra!')
+            setType(null)
+            window.location.href = "/checkout";
+          }}
+        >
+          Đặt hàng
+        </button>
+      )}
+
+    </aside>
+
+  </main>
+);
 }

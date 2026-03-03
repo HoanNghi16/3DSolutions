@@ -17,6 +17,6 @@ export async function POST(request){
         }
         return res
     }catch{
-        return Response.json({message: "Vui lòng chọn phẩm để có thể đặt hàng!"}, {status: 404})
+        return Response.json({message: "Vui lòng chọn sản phẩm để có thể đặt hàng!"}, {status: 404})
     }
 }

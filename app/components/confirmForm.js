@@ -5,18 +5,33 @@ import { ShowPriceFormat } from "../lib/handleTextShow"
 import './confirmForm.css'
 export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail, type}){
     const [detailShow, setDetailShow] = useState(null)
+    const [title, setTitle] = useState(null)
     
     useEffect(()=>{
         function changeDetailShow(){
-            if (type == 'orderCancel'){
-                setDetailShow(<>
-                    <p><b>Đơn hàng:</b> {detail?.id}</p>
-                    <p><b>Trạng thái:</b> {orderStatus[detail?.order_status]}</p>
-                    <p><b>Tổng thành tiền:</b> {ShowPriceFormat( detail?.total)} &#8363;</p>
-                    <p><b>Địa chỉ giao hàng:</b> {`${detail?.number} ${detail?.street}, ${detail?.ward}`}</p>
-                    <p><b>Người nhận:</b> {detail?.receiver_name} ({detail?.receiver_phone})</p>
-                    <p><b>Bạn có chắc muốn hủy đơn?</b></p>
-                </>)
+            console.log(detail)
+            switch (type){
+                case ('orderCancel'):
+                    setTitle('hủy đơn')
+                    setDetailShow(<>
+                        <p><b>Đơn hàng:</b> {detail?.id}</p>
+                        <p><b>Trạng thái:</b> {orderStatus[detail?.order_status]}</p>
+                        <p><b>Tổng thành tiền:</b> {ShowPriceFormat( detail?.total)} &#8363;</p>
+                        <p><b>Địa chỉ giao hàng:</b> {`${detail?.number} ${detail?.street}, ${detail?.ward}`}</p>
+                        <p><b>Người nhận:</b> {detail?.receiver_name} ({detail?.receiver_phone})</p>
+                        <p><b>Bạn có chắc muốn hủy đơn?</b></p>
+                    </>)
+                    break;
+                case ('cartDelete'):
+                    setTitle('xóa sản phẩm')
+                    let product = detail?.product
+                    setDetailShow(
+                    <>
+                        <p><b>Sản phẩm:</b> {product?.name}</p>
+                        <p><b>Đơn giá:</b> {ShowPriceFormat(product?.unit_price)} &#8363;</p>
+                        <p><b>Tổng tiền:</b> {ShowPriceFormat(detail?.sub_total)} &#8363;</p>
+                        <p><b>Bạn có chắc muốn xóa sản phẩm này ra khỏi giỏ hàng?</b></p>
+                    </>)
             }
         }
         changeDetailShow()
@@ -25,9 +40,11 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
         e.preventDefault()
         callFirstFunc({...kwargs})
         callEndFunc(false)
-        setTimeout(()=>{
-            window.location.reload()
-        },1000)
+        if(type == 'orderCancel'){
+            setTimeout(()=>{
+                window.location.reload()
+            },1000)
+        }
     }
     function handleCancel(e){
         e.preventDefault()
@@ -45,7 +62,7 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
                 <button className="closeConfirm" onClick={()=>{
                     callEndFunc(false)
                 }}>x</button>
-                <h3>Xác nhận {type == 'orderCancel'? "hủy đơn": ""}</h3>
+                <h3>Xác nhận {title}</h3>
             </div>
             <form>
                 {detailShow}

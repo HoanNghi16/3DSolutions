@@ -9,12 +9,11 @@ export function Notification({children}) {
     const [message, setMessage] = useState(null)
     const closeTimer = useRef(null)
     useEffect(()=>{
-        if (!type && !message) return
         closeTimer.current = setTimeout(() => {
             setMessage(null)
             setType(null)
-        }, 3000)
-        return clearTimeout(closeTimer.current)
+        }, 1000)
+        return () => clearTimeout(closeTimer.current)
     },[type, message])
 
     return (
@@ -23,7 +22,7 @@ export function Notification({children}) {
                 closeTimer.current = setTimeout(()=>{
                     setMessage(null)
                     setType(null)
-                }, 3000)
+                }, 1000)
             }}>
                 <p className='notiMessage'>{message}</p>
                 <button className='closeButton' onClick={()=>{

@@ -1,7 +1,7 @@
 .product_card{
     display: block;
-    min-width: 190px;
-    max-width: 190px;
+    min-width: 180px;
+    max-width: 180px;
     margin: 10px;
     padding: 0;
     padding-bottom: 10px;
@@ -31,7 +31,7 @@
     font-weight: bold;
     font-size: 20px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.647);
     border-radius: 8px 8px 0 0;
 }
 .out_stock{
@@ -56,7 +56,7 @@
     margin-bottom: 10px;
     margin-left: 10px;
     font-size: 17px;
-    color: rgb(194, 45, 45);
+    color: rgb(228, 0, 0);
 }
 .product_buttons{
     display: flex;
@@ -98,6 +98,12 @@
 .cart_icon{
     font-size: 30px;
     color: black;
+}
+@media(max-width: 700px){
+    .product_card{
+        min-width: 150px;
+        max-width: 150px;
+    }
 }
 @media (max-width: 400px){
     .product_card{

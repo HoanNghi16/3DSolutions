@@ -5,11 +5,19 @@
     color: rgb(172, 0, 0);
     margin: 10px;
 }
+.orderLayout{
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 30px;
+    max-width: 1500px;
+    margin: 40px auto;
+    padding: 0 150px;
+}
 
 .orderContainer{
     background-color: white;
     max-width: 1000px;
-    margin: 40px auto;
+    margin: 10px auto;
     padding: 40px;
     border-radius: 14px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -72,7 +80,10 @@
     color: white;
     font-weight: 500;
 }
-
+.detailLink:hover{
+    color: black;
+    transition: 0.5s ease;
+}
 
 /* ================= ORDER CARD ================= */
 .orderRowHeader{
@@ -81,6 +92,11 @@
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid rgb(185, 185, 185);
+    display: flex;
+    justify-content: space-between;
+}
+.orderId,.detailLink{
+    text-decoration: none;
     color: rgb(87, 87, 87);
     font-size: small;
 }
@@ -131,8 +147,8 @@
     justify-content: flex-end;
     gap: 10px;
     border-top: 1.1px solid rgb(185, 185, 185);
-    padding-top: 10px;
-    padding-right: 30px;
+    padding-top: 15px;
+    padding-right: 10px;
 }
 
 .orderButtons button{
@@ -156,13 +172,13 @@
 }
 
 .cancelOrder{
-    color: #a93226;
-    background-color: white;
-    border: 1px solid #a93226;
+    background-color: rgb(228, 0, 0);
+    color: white;
+    border: none;
 }
 
 .cancelOrder:hover{
-    background: #a93226;
+    background: rgb(113, 33, 26);
     color: white;
 }
 
@@ -173,13 +189,47 @@
     cursor: not-allowed;
 }
 
+@media (max-width: 1000px){
+    .orderRowHeader{
+        width: 100%;
+        padding: 0 10px;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgb(185, 185, 185);
+        display: block;
+    }
+    .orderLayout{
+        grid-template-columns: 1fr;
+        padding: 2.5%;
+    }
+}
 
 /* ================= MOBILE RESPONSIVE ================= */
 
-@media (max-width: 768px){
+@media (max-width: 708px){
+    .orderLayout{
+        display: block;
+        padding: 2%;
+    }
+    .orderId{
+        width: 100%;
+    }
+    .detailLink{
+        width: 100%;
+        float: left;
+        padding-bottom: 10px;
+    }
 
+    .orderContainer{
+        padding: 40px 20px;
+    }
     .header{
         display: none;
+    }
+    .detailLink{
+        float: left;
+        width: 100%;
+        padding-bottom: 10px;
     }
     .orderRow{
         padding: 20px;

@@ -104,10 +104,10 @@
     width: 100%;
 }
 .listTitle{
-    margin-top: 20px;
     width: 90%;
     margin: 0 5%;
     color: #131a31;
+    margin-top: 20px;
 }
 .filterTitle{
     font-size: 17px;
@@ -160,28 +160,6 @@
     color: white;
 }
 
-.toggle{
-    height: 41px;
-    width: 82px;
-    border: 1px solid #072161;
-    border-radius: 50px 50px 50px 50px;
-    padding: 0px;
-    margin: 20px auto;
-    margin-right: 70px;
-    background-color: #131a31;
-}
-.toggleMode{
-    height: 39px;
-    width: 40px;
-    border-radius: 50px;
-    opacity: 0.3;
-    padding: 0.5px;
-}
-.show{
-    transition: 1s;
-    opacity: 1;
-    background-color: white;
-}
 .categoriesBox{
     width: 100%;
     font-size: smaller;

@@ -1,10 +1,12 @@
 "use client"
 import { useEffect, useState } from "react"
-import { getPreview, postAddress, postOrder } from "../../api/api"
+import { getPreview, postOrder } from "../../api/api"
 import { useAuth } from "../../authProvider"
 import { ShowPriceFormat } from "../../lib/handleTextShow"
 import { HandleChangeCart } from "../../lib/handleCart"
 import { handleStorage } from "../../lib/handleStorage"
+import AddressForm from "../../components/addressForm"
+import { useNoti } from "../../notification"
 
 export default function ListCheckout(){
     const [previewList, setPreviewList] = useState(null)
@@ -17,42 +19,8 @@ export default function ListCheckout(){
     const [total, setTotal]= useState(0)
     const [address, setAddress] = useState(null)
     const [error, setError] = useState(null)
+    const {setType, setMessage} = useNoti()
     
-    const handleMoreAddress = async (e)=>{
-        e.preventDefault()
-        const form = e.target
-        const request = {
-            receiver_name: form.receiver_name.value ?? null,
-            receiver_phone: form.receiver_phone.value ?? null,
-            number: form.number.value ?? null,
-            street: form.street.value ?? null,
-            ward: form.ward.value ?? null,
-            city: form.city.value ?? null,
-        }
-        const hasNull = Object.values(request).some(
-            value => value === null || value === undefined || value === ""
-        )
-        if(hasNull){
-            setAddError("Vui lòng điền đầy đủ thông tin")
-            return
-        }
-        if(!user){
-            setAddress(request)
-            setMoreAddress(false)
-            setAddError(null)
-        }else{
-            const res = await postAddress(request)
-            if(res.ok){
-                setMoreAddress(false)
-                setAddError(null)
-                form.reset()
-                window.location.reload()
-            }
-            else{
-                setAddError('Vui lòng điền đầy đủ thông tin!')
-            }
-        }
-    }
 
     async function fetchPreview(req){
         if(!req){
@@ -88,17 +56,7 @@ export default function ListCheckout(){
         return JSON.parse(window.localStorage.getItem('checkout'))
     }
 
-    const addressForm = (<form onSubmit={handleMoreAddress}>
-                <input type="text" id='receiver_name' placeholder="Tên nhận hàng"/>
-                <input type="tel" id="receiver_phone" placeholder="Số điện thoại nhận hàng"/>
-                <input type="text" id="number" placeholder="Số nhà"/>
-                <input type="text" id="street" placeholder="Đường"/>
-                <input type="text" id="ward" placeholder="Phường"/>
-                <input type="text" id="city" placeholder="Thành phố"/>
-                <button type="submit">Lưu</button>
-                <button type="reset" onClick={()=>setMoreAddress(false)}>Hủy</button>
-            </form>)
-
+    const addressForm = <AddressForm setAddError={setAddError} setMoreAddress={setMoreAddress} setAddress={setAddress}></AddressForm>
     function addMoreAddress(){
         setMoreAddress((e) => (!e))
     }
@@ -122,6 +80,8 @@ export default function ListCheckout(){
             ...term_address,
         }, details: [], list_ids: JSON.parse(window.localStorage.getItem('checkout')).list_ids}
         form.reset()
+        setMessage('Đang kiểm tra!')
+        setType(null)
         for (let detail of previewList){
             console.log(detail)
             let term = {product: detail?.product?.id ?? detail, quantity: detail.quantity}
@@ -256,7 +216,7 @@ export default function ListCheckout(){
                 </select>
                 <p><b>Địa chỉ đã chọn</b>: {address?`${address?.number} ${address?.street}, ${address?.ward}` : "Chưa chọn địa chỉ"}</p>
                 <p className="error">{error}</p>
-                <button type="submit" disabled={error !== null}>Đặt hàng</button>
+                <button className="orderButton" type="submit" disabled={error !== null}>Đặt hàng</button>
             </form>
         </aside>
     </div>)

@@ -4,7 +4,7 @@ import { cancelOrder } from '../../../api/api'
 import { ShowPriceFormat } from '../../../lib/handleTextShow'
 import ConfirmForm from '../../../components/confirmForm'
 import { useState } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams, useRouter, redirect } from 'next/navigation'
 import { useNoti } from '../../../notification'
 import { handleStorage } from '../../../lib/handleStorage'
 export default function OrderList({orders}){
@@ -18,8 +18,8 @@ export default function OrderList({orders}){
     const order_status = [-2,-1,0,1,2,3,4]
 
     const handleReOrder = (order)=>{
-        handleStorage({'list_ids': order.list_ids, mode: 'reOrder'}, 'checkout')
-        window.location.href='/checkout'
+        handleStorage({'list_ids': order.list_ids, mode: 'reOrder'}, 'checkout');
+        redirect('/checkout')
     }
     
     const handleCancel=(request)=>{
@@ -48,6 +48,7 @@ export default function OrderList({orders}){
 
     return (       
     <div className="orderList">
+        <h1 style={{color: "#072161"}}>Danh sách đơn hàng</h1>
         <div className="orderFilter">
             <button className={currentStatus==null?"active":"" } onClick={()=>{handleChooseStatus(null)}}>Tất cả</button>
             {order_status.map((item)=>(
@@ -67,7 +68,11 @@ export default function OrderList({orders}){
             {orders.length > 0 && orders.map((order) => {
                 return (
                     <div className='orderRow' key={order.id}>
-                        <div className='orderRowHeader'>{order?.id}
+                        <div className='orderRowHeader'>
+                            <p className='orderId'>{order?.id}</p>
+                            <a className='detailLink' href={`/user/order/${order?.id}`}>
+                                xem chi tiết
+                            </a>
                         </div>
                         <div className='orderInfo'>
                             <div className="receiver">
@@ -75,7 +80,7 @@ export default function OrderList({orders}){
                                 <p>{order?.receiver_phone}</p>
                                 <p>{order?.number+' ' + order?.street+', ' + order?.ward}</p>
                             </div>
-                            <p>{ShowPriceFormat(order?.total)} &#8363;</p>
+                            <p style={{color: 'rgb(228, 0, 0)'}}>{ShowPriceFormat(order?.total)} &#8363;</p>
                             <p className='orderStatus'><b>{orderStatus[order?.order_status]}</b></p>
                         </div>
                         <div className='orderButtons'>

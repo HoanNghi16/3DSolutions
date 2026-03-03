@@ -5,13 +5,13 @@ import Link from 'next/link'
 import {navData} from '../data/navData';
 import {useUser} from '../lib/handleUser'
 import { useAuth } from '../authProvider';
-import { BiMenu } from 'react-icons/bi';
+import { BiMenu, BiCart } from 'react-icons/bi';
 export default function ShortedHeader(){
     const [isHidden, setHidden] = useState(true);
     const [styleHidden, setStyleHidden] = useState({transform: `translateX(100%)`});
     const [background, setBackground] = useState({display: 'none'})
     const [link1, link2] = useUser();
-    const {logout} = useAuth()
+    const {logout, user, cartCount} = useAuth()
     const timer = useRef(null);
     
 
@@ -50,6 +50,7 @@ export default function ShortedHeader(){
                         <h2>3D Solutions</h2>
                     </Link>
                 </div>
+                {user?<Link className='shortedCart' href={'/cart'}><BiCart className='shortedCartIcon'></BiCart><sup className='shortedCartSummary'>{cartCount}</sup></Link>: null}
                 <button className="hamburger" onClick={onHidden}><BiMenu></BiMenu></button>
             </header>
             <div className='hiddenNav' onClick={onHidden} style={background}>

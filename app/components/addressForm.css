@@ -1,0 +1,39 @@
+.addressForm{
+    margin-top: 15px;
+    display: grid;
+    gap: 10px;
+}
+
+.addressForm input{
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.addressForm input:focus{
+    outline: none;
+    border-color: #111;
+}
+.addressForm button{
+    padding: 9px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+}
+
+.addressSubmit{
+    padding: 9px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    background-color: #00579a;
+    color: white;
+}
+.addressSubmit:hover{
+    background-color: #004172;
+}
+
+.addressCancel:hover{
+    background-color: #cccccc;
+}
