@@ -7,6 +7,7 @@ import { HandleChangeCart } from "../../lib/handleCart"
 import { handleStorage } from "../../lib/handleStorage"
 import AddressForm from "../../components/addressForm"
 import { useNoti } from "../../notification"
+import { redirect } from "next/navigation"
 
 export default function ListCheckout(){
     const [previewList, setPreviewList] = useState(null)
@@ -93,7 +94,8 @@ export default function ListCheckout(){
             console.log('ok')
             const result_data = await res.json()
             localStorage.setItem('checkout', JSON.stringify({list_ids: null, mode: 'Order'}))
-            window.location.href = `/checkout/result?pay=${request?.header?.method}&id=${result_data?.order_id}`
+            console.log(result_data)
+            redirect(result_data.next_page)
         }else{
             console.log(res)
             setCheckoutMessage('Đơn hàng không hợp lệ!')

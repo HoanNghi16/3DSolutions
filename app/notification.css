@@ -3,6 +3,7 @@
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
+    max-width: 75%;
 
     display: flex;
     align-items: center;
@@ -24,21 +25,23 @@
     z-index: 5000;
 
     animation: slideDown 0.25s ease;
-    background: rgba(1, 58, 102, 0.9);
-    color: white;
+    background: #f2cb0e;
+    color: black;
 }
 
 /* Các loại thông báo */
 .success{
     background: rgba(21, 99, 11, 0.9);
+    color: white;
 }
 
 .warning{
     background: rgb(194, 45, 45,0.9);
+    color: white;
 }
 
 .noti{
-    color: white;
+    color: black;
 }
 
 .notiMessage{
@@ -77,6 +80,8 @@
 @media(max-width: 700px){
     .notiContainer{
         width: 80%;
+        max-width: 80%;
+        min-width: 0;
         font-size: smaller;
     }
     .notiMessage{

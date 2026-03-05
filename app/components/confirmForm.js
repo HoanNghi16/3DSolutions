@@ -53,7 +53,6 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
     return (
     <div className="confirmBackground" onClick={(e)=> {
         if(e.target == e.currentTarget){
-            console.log(e.target)
             callEndFunc(false)
         }
         }}>

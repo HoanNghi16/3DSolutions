@@ -1,8 +1,10 @@
 "use client"
 import { postAddress } from "../api/api"
 import { useAuth } from "../authProvider"
+import { useNoti } from "../notification"
 import './addressForm.css'
 export default function AddressForm({setAddError, setMoreAddress, setAddress}){
+    const {setType, setMessage} = useNoti()
     const {user} = useAuth()
     const handleMoreAddress = async (e)=>{
             e.preventDefault()
@@ -19,9 +21,10 @@ export default function AddressForm({setAddError, setMoreAddress, setAddress}){
                 value => value === null || value === undefined || value === ""
             )
             if(hasNull){
-                setAddError("Vui lòng điền đầy đủ thông tin")
+                setAddError("Vui lòng điền đầy đủ thông tin!")
                 return
             }
+            form.reset()
             if(!user){
                 setAddress(request)
                 setMoreAddress(false)
@@ -35,7 +38,8 @@ export default function AddressForm({setAddError, setMoreAddress, setAddress}){
                     window.location.reload()
                 }
                 else{
-                    setAddError('Vui lòng điền đầy đủ thông tin!')
+                    setMessage('Phiên đăng nhập đã hết hạn!')
+                    setType(null)
                 }
             }
         }
@@ -47,6 +51,9 @@ export default function AddressForm({setAddError, setMoreAddress, setAddress}){
                 <input type="text" id="ward" placeholder="Phường"/>
                 <input type="text" id="city" placeholder="Thành phố"/>
                 <button className="addressSubmit" type="submit">Lưu</button>
-                <button className="addressCancel" type="reset" onClick={()=>setMoreAddress(false)}>Hủy</button>
+                <button className="addressCancel" type="reset" onClick={()=>{
+                    setMoreAddress(false)
+                    setAddError(null)
+                    }}>Hủy</button>
             </form>)
 }

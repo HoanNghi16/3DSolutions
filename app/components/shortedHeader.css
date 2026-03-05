@@ -51,7 +51,8 @@
 }
 .shortedCart{
     text-decoration: none;
-    float: right;
+    top:2px;
+    position: relative;
 }
 .shortedCartIcon {
     gap: 5px;

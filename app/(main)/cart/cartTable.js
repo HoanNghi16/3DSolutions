@@ -179,7 +179,7 @@ return (
     {cartError && <p className="error">{cartError}</p>}
       <div className="cartBody">
         <label className="selectAll">
-          <input type="checkbox" defaultChecked={checkAll} id="checkAll" className="checkAll" onClick={(e)=>handleCheckAll(e)}/>
+          <input type="checkbox" disabled={!cart || cart?.cart_details?.length == 0} defaultChecked={checkAll} id="checkAll" className="checkAll" onClick={(e)=>handleCheckAll(e)}/>
           Chọn tất cả
         </label>
         {cart?.cart_details?.length > 0 ?
@@ -210,7 +210,7 @@ return (
                         {cartItem?.product?.name}
                     </p>
                     <p className="itemPrice">
-                        {ShowPriceFormat(cartItem?.product?.unit_price)} đ
+                        {ShowPriceFormat(cartItem?.product?.unit_price)} &#8363;
                     </p>
                 </div>
 
@@ -218,6 +218,7 @@ return (
               <div className="itemQuantity">
                 <input
                   type="number"
+                  min={1}
                   className={cartItem?.id}
                   disabled={checkQuantity(cartItem)}
                   defaultValue={cartItem.quantity}
@@ -255,14 +256,14 @@ return (
 
       <div className="resultRow">
         <span>Tạm tính</span>
-        <span>{ShowPriceFormat(total)} đ</span>
+        <span>{ShowPriceFormat(total)} &#8363;</span>
       </div>
 
       <hr />
 
       <div className="resultTotal">
         <span>Tổng cộng</span>
-        <span>{ShowPriceFormat(total)} đ</span>
+        <span>{ShowPriceFormat(total)} &#8363;</span>
       </div>
 
       {cart?.cart_details?.length > 0 && (

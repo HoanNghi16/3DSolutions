@@ -175,3 +175,12 @@ export const cancelOrder = async (request) => {
     })
     return res
 }
+
+export const postFile = async (payload) => {
+    const res = await fetch(`${BASE_URL}/api/auth/upload`,{
+        method:'POST',
+        body: payload,
+        credentials: 'include'
+    })
+    return res
+}

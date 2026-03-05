@@ -42,12 +42,15 @@ export default function DescriptionBox({product}){
             <div className="addToCartBox">
                 <div className="quantityBox">
                     <button onClick={() => setQuantity((i)=> {
+                        let e = window.document.getElementById('quantityInput')
                         if(i > 1){
-                         return i - 1;
+                            e.value = i-1
+                            return i - 1;
                         }else{ 
-                            return 1
+                            e.value = product.quantity
+                            return product.quantity;
                         }})}>-</button>
-                    <input id="quantityInput" type="number" defaultValue={quantity} onBlur={
+                    <input id="quantityInput" min={1} type="number" defaultValue={quantity} onBlur={
                         (e) => {
                             if (e.target.value < 1){
                                 e.target.value = 1
@@ -65,7 +68,7 @@ export default function DescriptionBox({product}){
                             window.document.getElementById('quantityInput').value = i+1
                             return i + 1;
                         }else{
-                            window.document.getElementById('quantityInput').value = i+1
+                            window.document.getElementById('quantityInput').value = 1
                             return 1}})}>+</button>
                 </div>
                 <button onClick={()=> {

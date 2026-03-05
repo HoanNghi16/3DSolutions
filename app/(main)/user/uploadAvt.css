@@ -1,0 +1,130 @@
+.uploadBackground{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 5000;
+
+    animation: fadeIn 0.2s ease;
+}
+.uploadContainer{
+    position: relative;
+    max-width: 90%;
+    min-width: 300px;
+
+    background: white;
+    border-radius: 14px;
+
+    padding: 20px 22px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+    animation: slideUp 0.25s ease;
+}
+.closeBtn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    background: transparent;
+    border: none;
+
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+    opacity: 0.3;
+    transition: 0.2s ease;
+}
+.inputFile{
+    display: none;
+}
+.fileButton{
+    color: white;
+    background-color: rgb(255, 170, 0);
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+    margin-top: 10px;
+}
+.fileButton:hover{
+    background-color: rgb(255, 149, 0);
+}
+.fileError{
+    width: 100%;
+    display:block;
+    font-size: 13px;
+    color: rgb(228, 0, 0);
+    margin: 5px 0;
+}
+
+.btns{
+    display: flex;
+    gap: 10px;
+    padding: 0 auto;
+    justify-content: center;
+}
+.cancelBtn{
+    width: 50%;
+    color: white;
+    background-color: rgb(243, 23, 23);
+    display: inline-block;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+    margin-top: 10px;
+}
+.changeBtn{
+    width: 50%;
+    color: white;
+    background-color: rgb(0, 119, 255);
+    display: block;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+    margin-top: 10px;
+}
+.zoomStick{
+    width: 100%;
+}
+
+.cropBox{
+    border-radius: 4px;
+    margin: 20px 0;
+}
+.changeBtn:hover{
+    background-color: rgb(0, 68, 255);
+}
+.cancelBtn:hover{
+    background-color: rgb(192, 0, 0);
+}
+@media (max-width: 700px){
+    .uploadContainer{
+        max-width: 85%;
+        display: block;
+    }
+    .cropBox{
+        margin:10px auto;
+    }
+    .btns{
+        display: block;
+    }
+    .cancelBtn,.changeBtn{
+        width: 100%;
+    }
+}
