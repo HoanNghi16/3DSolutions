@@ -1,0 +1,15 @@
+.adminDashboard{
+    padding-top: 50px;
+    min-width: 100%;
+    display: flex;
+}
+.pieChart{
+    text-align: center;
+    width: 300px;
+    height: 300px;
+}
+.lineChart{
+    width: 350px;
+    height: 250px;
+    text-align: center;
+}

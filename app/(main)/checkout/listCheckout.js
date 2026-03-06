@@ -97,7 +97,6 @@ export default function ListCheckout(){
             console.log(result_data)
             redirect(result_data.next_page)
         }else{
-            console.log(res)
             setCheckoutMessage('Đơn hàng không hợp lệ!')
         }
         return
@@ -105,16 +104,17 @@ export default function ListCheckout(){
 
 
     useEffect( ()=>{
+
         getStorage()
-        console.log(previewRequest)
     },[])
     useEffect(()=>{
+        if (!previewRequest) return
         fetchPreview(previewRequest)
         getTotal()
     },[previewRequest])
     useEffect(()=>{
+        if(!previewList) return
         getTotal()
-        setRender(false)
     },
     [previewList, render])
     return (

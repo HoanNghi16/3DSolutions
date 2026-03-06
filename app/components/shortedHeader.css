@@ -1,9 +1,12 @@
 
 .shortedHeader{
+    display: flex;
+    line-height: 60px;
+    justify-content: space-between;
     width: 100%;
+    padding: 0 20px;
     background-color: #ffffff;
     height: 60px;
-    padding: 30px;
 }
 
 .shortedLogo{
@@ -25,6 +28,7 @@
     text-align: center;
     align-items: center;
     font-size: 40px;
+    line-height: 70px;
     cursor: pointer;
     background-color: #ffffff;
     color: #072161;
@@ -50,8 +54,9 @@
     min-width: 45%;
 }
 .shortedCart{
+    justify-self: flex-end;
     text-decoration: none;
-    top:2px;
+    top:10px;
     position: relative;
 }
 .shortedCartIcon {

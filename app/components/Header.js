@@ -8,7 +8,7 @@ export default function Header() {
     const [link1, link2] = useUser();
     const {logout, user, isAdmin, cartCount} = useAuth()
     return(
-        <header>
+        <header className='mainHeader'>
             <p className='headerTitle'>3D Solutions - kết nối giải pháp tới người dùng</p>
             <ul className='headerMenu'>
                 {user? <li>

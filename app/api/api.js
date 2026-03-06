@@ -1,3 +1,5 @@
+import { request } from "http"
+
 const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
 
 export const postLogout = async () =>{
@@ -180,6 +182,19 @@ export const postFile = async (payload) => {
     const res = await fetch(`${BASE_URL}/api/auth/upload`,{
         method:'POST',
         body: payload,
+        credentials: 'include'
+    })
+    return res
+}
+
+export const fetchAdminDashboard = async (request, CookieStore={}) => {
+    const res = await fetch(`${BASE_URL}/api/admin`,{
+        method: 'POST',
+        headers:{
+            ...CookieStore,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request),
         credentials: 'include'
     })
     return res

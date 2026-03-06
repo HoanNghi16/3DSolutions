@@ -1,0 +1,11 @@
+.adminContainer{
+    min-height: 100dvh;
+    background-color: #f0f0f0;
+}
+.adminBody{
+    display: flex;
+}
+.rightBody{
+    transition: 0.5s;
+    margin-left: 50px;
+}

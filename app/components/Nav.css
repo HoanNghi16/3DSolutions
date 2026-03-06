@@ -1,4 +1,4 @@
-nav{
+.primaryNav{
     top: 45px;
     left: 0;
     width: 100%;
@@ -32,7 +32,12 @@ nav{
     display: block;
 }
 
-
+.activeLink{
+    background-color: #00579a;
+}
+.activeLink .menuLink{
+    color: white
+}
 .menuLink{
     display: flex;         
     align-items: center;
@@ -42,6 +47,7 @@ nav{
     color: #00579a;
     font-size: 17px;
     box-sizing: border-box;
+    font-weight: 500;
 }
 
 

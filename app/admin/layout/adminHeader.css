@@ -1,0 +1,12 @@
+.adminHeader{
+    transition: 0.5s;
+    min-height: 40px;
+    background-color: #0a0e19;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    color: #f0f0f0;
+}
