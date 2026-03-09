@@ -1,7 +1,6 @@
 "use client"
-import Pagination from "./pagination"
+import Pagination from "../../components/products/pagination"
 import ProductCard from "../../components/products/productCard"
-import { useState } from "react"
 export default function ShowBox({products = [], totalPage, kwargs}){
     const message = (<span className="mess">{`Không có sản phẩm nào để hiển thị!`}</span>)
     const productList = (<>

@@ -1,5 +1,7 @@
 .adminContainer{
     min-height: 100dvh;
+    min-width: 100dvw;
+    max-width: calc(100dvw + 180px);
     background-color: #f0f0f0;
 }
 .adminBody{
@@ -7,5 +9,6 @@
 }
 .rightBody{
     transition: 0.5s;
-    margin-left: 50px;
+    padding-left: 50px;
+    right: 0;
 }

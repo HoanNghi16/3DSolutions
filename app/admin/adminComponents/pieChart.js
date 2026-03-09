@@ -7,13 +7,13 @@ export default function PieChart({data}){
     )
     const option = {
         grid: {
-            top: 30,
-            bottom: 10,
+            top: 0,
+            bottom: 50,
             left: 10,
             right: 10,
         },
         tooltip: {trigger: 'item'},
-        legend: {top: 'top'},
+        legend: {top: 'bottom'},
         series: {
             name: 'Tỉ lệ đơn hàng theo trạng thái',
             type: 'pie',

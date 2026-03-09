@@ -1,6 +1,6 @@
 .adminHeader{
     transition: 0.5s;
-    min-height: 40px;
+    min-height: 50px;
     background-color: #0a0e19;
     width: 100%;
     position: fixed;

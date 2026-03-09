@@ -1,15 +1,63 @@
 .adminDashboard{
     padding-top: 50px;
     min-width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: hidden;
+    right: 0;
+}
+.saleSumary{
+    padding-top: 50px;
+    width: 30%;
+    height: 120px;
+    font-size: 23px;
     display: flex;
+    gap: 13px;
+    margin-top: 30px;
+}
+.saleTotal{
+    margin-top: 10px;
+    margin-right: 20px;
+    color: #131a31;
+}
+.orderSumary{
+    font-size: 17px;
+    color: #1d284b;
+}
+.sumTitle{
+    color: gray;
+    scale: 0.6;
 }
 .pieChart{
     text-align: center;
-    width: 300px;
+    width: 30%;
     height: 300px;
 }
 .lineChart{
-    width: 350px;
-    height: 250px;
+    color: black;
+    margin-top: -20px;
+    width: 35%;
+    height: 200px;
     text-align: center;
+    z-index: 1000;
+}
+.barChart1{
+    padding: 0px;
+    width: 35%;
+    height: 300px;
+    margin-top: 30px;
+    text-align: center;
+}
+@media (max-width: 800px){
+    .adminDashboard{
+        display: grid;
+        flex-wrap: nowrap;
+    }
+    .saleSumary{
+        font-size: small;
+    }
+    .lineChart, .barChart1, .pieChart{
+        width: 90%;
+    }
 }

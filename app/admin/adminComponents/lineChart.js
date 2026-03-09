@@ -6,8 +6,8 @@ export default function LineChart({data}){
         grid: {
             left: 40,
             right: 20,
-            top: 40,
-            bottom: 40
+            top: 0,
+            bottom: 50
         },
         tooltip: {trigger: 'axis'},
         xAxis: {
@@ -16,7 +16,7 @@ export default function LineChart({data}){
         },
         legend: {
             data: ["Tiền mặt", "Chuyển khoản"],
-            top: 'top'
+            top: 'bottom'
         },
         yAxis: {
             type: "value"

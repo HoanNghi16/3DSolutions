@@ -1,12 +1,16 @@
 .adminNav{
+    position: fixed;
+    left: 0;
     transition: 0.5s;
     height: 100vh;
-    width: 180px;
     background: #131a31;
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
-    flex:0;
+    z-index: 100000;
 }
-
+.logoLink, .adminMenu{
+    overflow: hidden;
+    transition: 0s;
+}
 .logoLink{
     display: flex;
     align-items: center;
@@ -29,30 +33,31 @@
 
 /* logo */
 .adminLogo{
+    display: flex;
     width: 30px;
     height: 30px;
     object-fit: contain;
 }
 .notePiece{
     display: flex;
-    width: 115%;
     background-color: #131a31;
     height: 10%;
     top: 0;
     border-radius: 12px;
     text-align: right;
+    transition: 0.5s;
 }
 .openNavBtn{
     aspect-ratio: 1/1;
     border:none;
-    width: 13%;
+    width: calc(180px * 0.2);
     background-color: #131a31 ;
     height: 100%;
     color: white;
     border-radius: 0 12px 12px 0;
     position: relative;
     top: 0;
-    right: 0px;
+    left: 0;
     font-size: 18px;
     font-weight: 500;
 }
