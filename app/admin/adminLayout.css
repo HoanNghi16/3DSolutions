@@ -2,6 +2,7 @@
     min-height: 100dvh;
     min-width: 100dvw;
     max-width: calc(100dvw + 180px);
+    overflow-y: hidden;
     background-color: #f0f0f0;
 }
 .adminBody{
@@ -10,5 +11,5 @@
 .rightBody{
     transition: 0.5s;
     padding-left: 50px;
-    right: 0;
+    padding-right: 30px;
 }

@@ -4,11 +4,10 @@
     inset: 0;
 
     background: rgba(0,0,0,0.45);
-
+    filter:blur();
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 1000;
 }
 
@@ -16,7 +15,6 @@
 .addProductForm{
     width: 100%;
     max-width: 520px;
-
     background: white;
     border-radius: 14px;
 
@@ -47,7 +45,7 @@
 
     padding: 18px 22px;
 
-    background: #000b23;
+    background: #001d5d;
     color: white;
 }
 
@@ -128,4 +126,19 @@
 
 .formSubmit:hover{
     background: #000;
+}
+.previewImageBox{
+    display: flex;
+    overflow-x: scroll;
+    gap: 6px;
+}
+.productImagePreview{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+@media (max-width: 1000px){
+    .addProductForm{
+        width: 80%;
+    }
 }

@@ -6,7 +6,7 @@ export default function AdminProductCard({product}){
     <div className="adminProductCard">
         <img className="productThumbnail" src={product?.thumbnail}></img>
         <div className="productInfo">
-            <h5>{product?.name}</h5>
+            <h5>{product?.name}<span className="category"> ({product?.category ?? "không có danh mục"})</span></h5>
             <p>{ShowPriceFormat(product?.unit_price)}</p>
             <p>Tồn: {product?.quantity}</p>
         </div>
