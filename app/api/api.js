@@ -201,7 +201,8 @@ export const fetchAdminDashboard = async (request, CookieStore={}) => {
 }
 
 export const postNewProduct = async (request)=>{
-    const res = await fetch(`${BASE_URL/api/admin/products}`,
+    console.log(request)
+    const res = await fetch(`${BASE_URL}/api/admin/products`,
         {
             method: 'POST',
             body: request,

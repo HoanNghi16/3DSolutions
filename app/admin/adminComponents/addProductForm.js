@@ -1,11 +1,24 @@
 import { useEffect, useState } from 'react'
 import './addProductForm.css'
 import { ShowPriceFormat } from '../../lib/handleTextShow'
+import { postNewProduct } from '../../api/api'
+import { useNoti } from '../../notification'
 export default function AddProductForm({open}){
     const [images, setImages] = useState([])
+    const {setMessage, setType} = useNoti()
+
     const handleAddProduct = (form)=>{
         form.preventDefault()
+        setMessage("Đang xử lý...")
+        form.preventDefault()
         form = form.target
+        const formData = new FormData()
+        form.append('name', form.name.value)
+        form.append('price', form.price.value)
+        form.append('quantity', form.quantity.value)
+        form.append('description', form.description.value)
+        form.append('images', images)
+        postNewProduct(formData)
     }
     useEffect(()=>{
         console.log(images)
@@ -23,12 +36,15 @@ export default function AddProductForm({open}){
                 </div>
                 <div className="formBody">
                     <form onSubmit={(e)=>handleAddProduct(e)}>
-                        <input type='text' placeholder='Tên sản phẩm'/>
-                        <input type='text' placeholder='Giá sản phẩm' onBlur={(e)=>{
+                        <input type='text' id='name' placeholder='Tên sản phẩm'/>
+                        <input type='text' id='price' placeholder='Giá sản phẩm' onFocus={(e)=>{
+                            const thisprice = e.target.value.replaceAll('.','')
+                            e.target.value = thisprice
+                        }} onBlur={(e)=>{
                             e.target.value = ShowPriceFormat(e.target.value)
                         }}/>
-                        <input type='number' placeholder='Số lượng nhập kho'></input>
-                        <textarea onSelectCapture={(e)=>{
+                        <input type='number' id='quantity' placeholder='Số lượng nhập kho'></input>
+                        <textarea id='description' onSelectCapture={(e)=>{
                             console.log(window.getSelection().toString())
                         }} onChange={(e)=>{
                             console.log(e.target.selectionDirection)
