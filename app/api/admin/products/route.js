@@ -3,9 +3,7 @@ export async function POST(payload){
     try{
         const cookieStore = await cookies()
         const api_url = process.env.API_URL + process.env.PRODUCTS_APPLICATION + process.env.ADMIN_PRODUCT
-        const body = (await payload).formData()
-        console.log(body)
-        console.log(cookieStore.toString())
+        const body = await payload.formData()
         const res = await fetch(api_url, {
             method: 'POST',
             headers: {

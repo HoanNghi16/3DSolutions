@@ -13,11 +13,14 @@ export default function AddProductForm({open}){
         form.preventDefault()
         form = form.target
         const formData = new FormData()
-        form.append('name', form.name.value)
-        form.append('price', form.price.value)
-        form.append('quantity', form.quantity.value)
-        form.append('description', form.description.value)
-        form.append('images', images)
+        formData.append('name', form.name.value)
+        formData.append('price', form.price.value.replaceAll('.',''))
+        formData.append('quantity', form.quantity.value)
+        formData.append('description', form.description.value)
+        for (let image of form.images.files){
+            formData.append('images[]', image)
+        }
+        console.log(form)
         postNewProduct(formData)
     }
     useEffect(()=>{
@@ -35,7 +38,7 @@ export default function AddProductForm({open}){
                     <button className="btnClose" onClick={()=>{open(false)}}>x</button>
                 </div>
                 <div className="formBody">
-                    <form onSubmit={(e)=>handleAddProduct(e)}>
+                    <form onSubmit={(e)=>handleAddProduct(e)} encType='multipart/form-data'>
                         <input type='text' id='name' placeholder='Tên sản phẩm'/>
                         <input type='text' id='price' placeholder='Giá sản phẩm' onFocus={(e)=>{
                             const thisprice = e.target.value.replaceAll('.','')
@@ -56,7 +59,7 @@ export default function AddProductForm({open}){
                                 ))
                                 }
                             </div>
-                        <input type='file' multiple onChange={(e)=>{
+                        <input type='file' id='images' multiple onChange={(e)=>{
                             setImages(Array.from(e.target.files))
                         }} accept='image/*'></input>
                         <button type='submit' className='submitProduct'>Thêm sản phẩm</button>
