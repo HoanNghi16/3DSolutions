@@ -32,6 +32,17 @@ export default function ConfirmForm({callFirstFunc, kwargs, callEndFunc, detail,
                         <p><b>Tổng tiền:</b> {ShowPriceFormat(detail?.sub_total)} &#8363;</p>
                         <p><b>Bạn có chắc muốn xóa sản phẩm này ra khỏi giỏ hàng?</b></p>
                     </>)
+                    break;
+                case ('productDelete'):{
+                    setTitle('xóa sản phẩm')
+                    let product = detail?.product
+                    setDetailShow(<>
+                        <p><b>Sản phẩm:</b> {product?.name}</p>
+                        <p><b>Đơn giá:</b> {ShowPriceFormat(product?.unit_price)} &#8363;</p>
+                        <p><b>Bạn có chắc muốn xóa sản phẩm này không?</b></p>
+                    </>)
+                    break;
+                }
             }
         }
         changeDetailShow()

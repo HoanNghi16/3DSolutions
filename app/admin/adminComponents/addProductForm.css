@@ -137,6 +137,28 @@
     height: 100px;
     object-fit: cover;
 }
+.submitProduct{
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #001d5d;
+    color: white;
+}
+.submitProduct:hover{
+    background-color: #111827;
+}
+.submitProduct:disabled{
+    background-color: gray;
+    color: white;
+}
+.closeForm{
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+}
+.closeForm:hover{
+    background-color: gray;
+}
 @media (max-width: 1000px){
     .addProductForm{
         width: 80%;

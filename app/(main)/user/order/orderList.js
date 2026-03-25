@@ -24,10 +24,7 @@ export default function OrderList({orders}){
     
     const handleCancel=(request)=>{
         cancelOrder(request).then((res)=>res.json()).then((res)=> {
-            console.log('hoặc tới đây')
-            console.log(res)
             if(res.message){
-                console.log('tới đây')
                 setMessage(res.message)
                 setType(null)
             }

@@ -2,7 +2,6 @@
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
-    overflow-x: hidden;
 }
 .category{
     font-size: 12px;
@@ -161,7 +160,8 @@
 }
 
 /* button */
-.adminProductCard button{
+.adminProductCard .productButton{
+    color: #000;
     border: none;
     background: #f3f4f6;
     width: 36px;
@@ -177,8 +177,27 @@
 
     transition: all 0.2s ease;
 }
+.trash{
+    background: rgb(220, 18, 18);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
 
-.adminProductCard button:hover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    font-size: 18px;
+
+    transition: all 0.2s ease;
+}
+.trash:hover{
+    background-color: rgb(183, 0, 0);
+}
+.adminProductCard .productButton:hover{
     background: #e5e7eb;
 }
 
