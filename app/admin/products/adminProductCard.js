@@ -7,27 +7,23 @@ import { useNoti } from "../../notification"
 export default function AdminProductCard({product}){
     const [deleteForm, setDeleteForm] = useState(false)
     const {setType, setMessage} = useNoti()
-    const [result, setResult] = useState()
     const handleDelete = (request)=> {
         setMessage("Đang xử lý")
         const data = JSON.stringify(request)
+        
         putProduct(data).then(res=>{
-            let data = res.json()
-            if (res.ok){
-                setResult({"message": data.message, 'type': 'success'})
-            }
-            else{
-                setResult({"message": data.message, 'type': 'warning'})
+            if(res.ok){
+                setMessage("Xóa sản phẩm thành công")
+                setType("success")
+                window.location.reload()
+            }else{
+                const response = res.json().finally(res=>res)
+                console.log(response)
+                setMessage(response)
+                setType("warning")
             }
         })
     }
-
-    useEffect(()=>{
-        if (result){
-            setMessage(result.message)
-            setType(result.type)
-        }
-    },[result])
 
     return (
     <>

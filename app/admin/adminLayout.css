@@ -1,15 +1,22 @@
+
+body {
+  overflow-x: hidden;
+}
 .adminContainer{
     min-height: 100dvh;
     min-width: 100dvw;
     max-width: calc(100dvw + 180px);
-    overflow-y: hidden;
+    overflow-x: hidden;
     background-color: #f0f0f0;
 }
 .adminBody{
-    display: flex;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
 }
 .rightBody{
     transition: 0.5s;
+    margin: 0;
+    overflow: hidden;
     padding-left: 50px;
-    padding-right: 30px;
 }
