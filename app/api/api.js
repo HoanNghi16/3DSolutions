@@ -237,3 +237,14 @@ export const fetchAdminUsers = async (cookieStore={}) =>{
     })
     return res
 }
+
+export const fetchAdminOrders = async (cookieStore, status) =>{
+    const searchByStatus = `?status=${status}` ??''
+    const res = await fetch(`${BASE_URL}/api/admin${searchByStatus}`, {
+        method: "GET",
+        headers: {
+            ...cookieStore,
+        }
+    })
+    return res
+}

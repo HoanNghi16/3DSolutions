@@ -12,9 +12,7 @@ export default function AdminNav({setOpenNav, openNav}){
                 <li className="adminNavItem"><Link className="adminNavLink" href={'/admin'}>Dashboard</Link></li>
                 <li className="adminNavItem"><Link className="adminNavLink" href={'/admin/products'}>Sản phẩm</Link></li>
                 <li className="adminNavItem"><Link className="adminNavLink" href={'/admin/users'}>Người dùng</Link></li>
-                <li className="adminNavItem"><Link className="adminNavLink" href={'/admin/payments'}>Giao dịch</Link></li>
                 <li className="adminNavItem"><Link className="adminNavLink" href={'/admin/orders'}>Đơn hàng</Link></li>
-                <li className="adminNavItem"><Link className="adminNavLink" href={'/admin'}>Sản phẩm</Link></li>
                 <li className="adminNavItem"><Link className="adminNavLink" href={'/admin'}>Sản phẩm</Link></li>
             </ul>
         </nav>
