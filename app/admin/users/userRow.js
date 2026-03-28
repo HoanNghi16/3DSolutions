@@ -1,20 +1,19 @@
 import { BiEdit, BiTrash, BiUser } from "react-icons/bi";
-
-export default function UserRow({ user }) {
+import './userRow.css';
+export default function UserRow({ user , edit = false}) {
   const role = user.is_superuser
     ? "Admin"
     : user.is_staff
     ? "Staff"
-    : "User";
+    : "Customer";
 
   const status = user.is_active ? "Hoạt động" : "Bị khóa";
 
   const isDefaultAvatar = !user.avt || user.avt === "default";
 
   return (
-    <tr className="row">
+    <div className="row">
       {/* AVATAR */}
-      <td>
         {isDefaultAvatar ? (
           <div className="avatar">
             <BiUser />
@@ -24,15 +23,10 @@ export default function UserRow({ user }) {
             src={user.avt}
             alt="avatar"
             className="avatar"
-            onError={(e) => {
-              e.target.src = "/img/avatar/default.png";
-            }}
           />
         )}
-      </td>
 
       {/* USER INFO */}
-      <td>
         <div className="userText">
           <div className="name">
             {user.profile?.name || "Chưa có tên"}
@@ -42,28 +36,27 @@ export default function UserRow({ user }) {
             {user.profile?.phone || "-"}
           </div>
         </div>
-      </td>
 
-      <td>{user.profile?.date_of_birth || "-"}</td>
 
-      <td>
+      <p>{user.profile?.date_of_birth || "-"}</p>
+
+      <p>
         <span className={user.is_active ? "active" : "inactive"}>
           {status}
         </span>
-      </td>
+      </p>
 
-      <td className="role">{role}</td>
+      <p className="role">{role}</p>
 
-      <td>{user.last_login || "Chưa đăng nhập"}</td>
-
-      <td>
-        <button className="editBtn">
+      <p>{user.last_login || "Chưa đăng nhập"}</p>
+        {edit?null : <div className="userBtns">
+        <a href={"/admin/users/editUser?id=" + user.id} className="editBtn">
           <BiEdit />
-        </button>
+        </a>
         <button className="deleteBtn">
           <BiTrash />
         </button>
-      </td>
-    </tr>
+      </div>}
+    </div>
   );
 }

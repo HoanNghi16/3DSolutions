@@ -4,10 +4,96 @@
     background-color: #0a0e19;
     width: 100%;
     position: fixed;
+    padding: 0 24px;
     z-index: 1000;
     top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between; 
     color: #f0f0f0;
+}
+
+/* LEFT */
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* SEARCH */
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: #1f2937;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.searchBox input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+}
+
+/* RIGHT */
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ICON BUTTON */
+.iconBtn {
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+
+    padding: 2px 6px;
+    border-radius: 999px;
+}
+
+/* USER */
+.AdminBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.AdminAvatar {
+    font-size: 32px;
+}
+
+.AdminInfo {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.AdminInfo .Adminname {
+    font-weight: 600;
+}
+
+.AdminInfo .Adminrole {
+    color: #9ca3af;
+    font-size: 12px;
 }

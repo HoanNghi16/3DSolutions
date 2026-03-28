@@ -4,33 +4,31 @@ import UserRow from "./userRow";
 export default function UsersTable({ users }) {
   return (
     <div className="tableWrapper">
-        <table className="table">
-        <thead>
-            <tr>
-            <th></th>
-            <th>Thông tin</th>
-            <th>Ngày sinh</th>
-            <th>Trạng thái</th>
-            <th>Vai trò</th>
-            <th>Last Login</th>
-            <th>Hành động</th>
-            </tr>
-        </thead>
+        <div className="table">
+        <div className="userHeader">
+            <h4></h4>
+            <h4>Thông tin</h4>
+            <h4>Ngày sinh</h4>
+            <h4>Trạng thái</h4>
+            <h4>Vai trò</h4>
+            <h4>Truy cập gần nhất</h4>
+            <h4>Cập nhật</h4>
+        </div>
 
-        <tbody>
+        <div className="userBody">
             {users && users.length > 0 ? (
             users.map((user) => (
                 <UserRow key={user.email} user={user} />
             ))
             ) : (
-            <tr>
-                <td colSpan="7" className="empty">
-                Không có người dùng
-                </td>
-            </tr>
+            <div>
+                <p className="empty">
+                    Không có người dùng
+                </p>
+            </div>
             )}
-        </tbody>
-        </table>
+        </div>
+        </div>
     </div>
   );
 }

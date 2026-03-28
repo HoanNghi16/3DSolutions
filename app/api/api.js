@@ -1,5 +1,3 @@
-import { request } from "http"
-
 const BASE_URL = process.env?.BASE_URL ?? "http://localhost:3000"
 
 export const postLogout = async () =>{
@@ -228,8 +226,9 @@ export const fetchAdminCate = async ()=>{
     return res
 }
 
-export const fetchAdminUsers = async (cookieStore={}) =>{
-    const res = await fetch(`${BASE_URL}/api/admin/users`, {
+export const fetchAdminUsers = async (cookieStore={}, id = null) =>{
+    const searchById= id ?`?id=${id}`: ''
+    const res = await fetch(`${BASE_URL}/api/admin/users${searchById}`, {
         method: "GET",
         headers: {
             ...cookieStore
@@ -245,6 +244,19 @@ export const fetchAdminOrders = async (cookieStore, status) =>{
         headers: {
             ...cookieStore,
         }
+    })
+    return res
+}
+
+export const putUser = async (request) => {
+    const body = JSON.stringify(request)
+    const res = await fetch(`${BASE_URL}/api/admin/users`,{
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body,
+        credentials: 'include'
     })
     return res
 }

@@ -1,8 +1,8 @@
 /* ===== CONTAINER ===== */
 .usersContainer {
     width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 130px;
+    padding-bottom: 100px;
 }
 
 /* ===== TITLE ===== */
@@ -12,283 +12,46 @@
     margin-bottom: 20px;
     color: #111827;
 }
-
-/* ===== TABLE WRAPPER (chống tràn) ===== */
 .tableWrapper {
-    margin: 7.5%;
-    margin-right: 7.5% + 40px;
-    align-items: center;
     width: 100%;
-    border-radius: 16px;
+    padding-left: 5%;
+    padding-right: calc(5% + 35px);
+    display: flex;
+    justify-content: center;
 }
-
-/* ===== TABLE ===== */
 .table {
-    width: calc(85% - 50px);
-    border-collapse: collapse;
-    background: #ffffff;
+    width: 90%;
+    background: #fff;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 /* ===== HEADER ===== */
-.table th {
+.userHeader {
+    height: 60px;
+    display: grid;
+    grid-template-columns: 80px 2fr 1fr 1fr 1fr 1.5fr 1fr;
     background: #111827;
     color: #f9fafb;
-    padding: 14px;
-    text-align: left;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    height: 60px;
+    padding: 14px 20px;
     font-weight: 600;
 }
 
-/* căn giữa cột avatar */
-.table th:first-child,
-.table td:first-child {
-    padding-left: 30px;
-    text-align: right;
-    width: 70px;
+.userHeader h4 {
+    margin: 0;
+    line-height: 33px;
 }
 
 /* ===== BODY ===== */
-.table td {
-    padding: 14px;
-    border-bottom: 1px solid #f1f5f9;
-    font-size: 14px;
-    color: #374151;
-    vertical-align: middle;
-}
-
-/* ===== ROW ===== */
-.row {
-    transition: all 0.2s ease;
-    margin: 5px 0;
-}
-
-.row:hover {
-    background: #f9fafb;
-    transform: translateY(-5px);
-    box-shadow: 3px 5px 10px rgb(224, 224, 224);
-}
-
-/* ===== AVATAR ===== */
-.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e5e7eb;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 30px;
-    background-color: #111827;
-    color: white;
-}
-
-/* ===== USER INFO ===== */
-.userText {
+.userBody {
     display: flex;
     flex-direction: column;
-    gap: 2px;
 }
 
-.name {
-    font-weight: 600;
-    color: #111827;
-}
-
-.email {
-    font-size: 13px;
-    color: #6b7280;
-}
-
-.phone {
-    font-size: 13px;
-    color: #9ca3af;
-}
-
-/* ===== STATUS ===== */
-.active {
-    color: #16a34a;
-    background: #dcfce7;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.inactive {
-    color: #dc2626;
-    background: #fee2e2;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-/* ===== ROLE ===== */
-.role {
-    font-weight: 600;
-    color: #1f2937;
-}
-
-/* ===== BUTTONS ===== */
-.editBtn,
-.deleteBtn {
-    height: 32px;
-    width: 32px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
-    transition: all 0.2s ease;
-}
-
-/* edit */
-.editBtn {
-    background: #3b82f6;
-    color: white;
-    margin-right: 6px;
-}
-
-.editBtn:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-}
-
-/* delete */
-.deleteBtn {
-    background: #ef4444;
-    color: white;
-}
-
-.deleteBtn:hover {
-    background: #dc2626;
-    transform: translateY(-1px);
-}
-
-/* ===== EMPTY STATE ===== */
+/* ===== EMPTY ===== */
 .empty {
     text-align: center;
     padding: 20px;
     color: #9ca3af;
-    font-style: italic;
-}/* ===== USER CARD ===== */
-.adminUserCard{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    padding: 14px 16px;
-    border-radius: 12px;
-
-    background: #fff;
-    border: 1px solid #f0f0f0;
-
-    transition: all 0.2s ease;
-}
-
-.adminUserCard:hover{
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
-}
-
-/* avatar */
-.userAvatar{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* info */
-.userInfo{
-    flex: 1;
-}
-
-.userInfo h5{
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0 0 4px;
-}
-
-.userInfo p{
-    font-size: 13px;
-    margin: 2px 0;
-    color: #6b7280;
-}
-
-/* meta (role + status) */
-.userMeta{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.userMeta span{
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-weight: 500;
-}
-
-/* role */
-.role{
-    background: #e0f2fe;
-    color: #0369a1;
-}
-
-/* status */
-.active{
-    background: #dcfce7;
-    color: #16a34a;
-}
-
-.inactive{
-    background: #fee2e2;
-    color: #dc2626;
-}
-
-/* actions */
-.userActions{
-    display: flex;
-    gap: 8px;
-}
-
-.userActions button{
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: none;
-    background: #f3f4f6;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.userActions button:hover{
-    background: #e5e7eb;
-}
-
-.trash{
-    background: #ef4444;
-    color: white;
-}
-
-.trash:hover{
-    background: #dc2626;
 }
