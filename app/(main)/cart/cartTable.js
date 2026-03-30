@@ -137,14 +137,6 @@ export default function CartTable(){
             })])
         }else{
             setSelected((arr) => [...arr, id])
-            let checkboxes = window.document.getElementsByClassName('itemCheckBox')
-            for (let check of checkboxes){
-                if (check.target.checked == false){
-                    return
-                }
-            }
-            setCheckAll(true)
-            window.document.getElementById('checkAll').checked = true
         }
     }
     useEffect(()=>{
@@ -163,6 +155,12 @@ export default function CartTable(){
             getTotal(selected)
             let checkout = {list_ids: selected, mode: 'order'}
             window.localStorage.setItem('checkout', JSON.stringify(checkout))
+            if (selected.length == cart?.cart_details?.length){
+                console.log("đây là checked",selected)
+                console.log("đây là cart details",cart?.cart_details)
+                setCheckAll(true)
+                window.document.getElementById('checkAll').checked = true
+            }
         }
         changeStorage()
     },[selected])

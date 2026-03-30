@@ -6,6 +6,7 @@
 .cartContainer{
   width: 80%;
   margin: 60px auto;
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: 7fr 3fr;
   gap: 50px;
@@ -15,6 +16,7 @@
 
 .cartLeft{
   background: #ffffff;
+  padding-top: 2px;
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
@@ -29,6 +31,7 @@
   align-items: center;
   margin-bottom: 30px;
   padding: 30px;
+  padding-top: 40px;
   width: 100%;
   height: 60px;
   border-radius: 20px 20px 0 0;

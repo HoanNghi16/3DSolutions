@@ -36,11 +36,11 @@
 .profileCard{
     display: grid;
     grid-template-columns: 1fr 2fr;
+    margin-top: 5px;
     gap: 40px;
-
     background: white;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 18px;
     border: 1px solid var(--border);
     box-shadow: 0 12px 35px rgba(0,0,0,0.04);
 }
