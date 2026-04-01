@@ -15,10 +15,9 @@
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 30px;
-
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 0 150px;
 }
 
 /* ================= SIDEBAR ================= */
@@ -89,8 +88,7 @@
 .uploadContent{
     font-size: 13px;
 }
-.uploadIcon{
-}
+
 .changeAvt:hover{
     opacity: 0.7;
     background-color: #124b7a5c;
@@ -149,12 +147,27 @@
     color: var(--text-sub);
 }
 
-.infoGroup p{
+.infoGroup .addressRow{
+    display: flex;
+    justify-content: space-between;
     font-size: 15px;
     margin-top: 4px;
     font-weight: 500;
     color: var(--text-main);
     word-break: break-word;
+}
+.deleteBtn{
+    background-color: white;
+    font-weight: bold;
+    color: lightgray;
+    font-size: 15px;
+    outline: none;
+    border: none;
+}
+.deleteBtn:hover{
+    color: gray;
+    scale: 1.05;
+    transition: 0.4s;
 }
 .moreAddressBtn{
     margin-top: 10px;

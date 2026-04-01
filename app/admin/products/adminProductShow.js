@@ -3,7 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import AdminProductCard from "./adminProductCard"
 import { BiSearch } from "react-icons/bi"
 import { useState } from "react"
-import AddProductForm from "../adminComponents/addProductForm"
+import AddProductForm from "./addProduct/addProductForm"
 export default function AdminProductShow ({products}){
     const [openForm, setOpenForm] = useState(false)
     const searchParams = useSearchParams()
@@ -23,7 +23,7 @@ export default function AdminProductShow ({products}){
             <div className="productTable">
                 <div className="productHeader">
                     <h3>Danh sách sản phẩm</h3>
-                    <button className="addProduct" onClick={()=> setOpenForm(e => !e)}>Thêm sản phẩm</button>
+                    <a href="/admin/products/addProduct" className="addProduct">Thêm sản phẩm</a>
                     <form onSubmit={(e)=>handleSearch(e)}>
                         <input id="searchBox" type="text" placeholder="Tìm kiểm sản phẩm"/>
                         <button className="searchBtn" type="submit"><BiSearch></BiSearch></button>

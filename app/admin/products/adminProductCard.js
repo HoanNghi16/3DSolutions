@@ -1,7 +1,7 @@
 import { ShowPriceFormat } from "../../lib/handleTextShow"
 import { BiDetail, BiTrash } from "react-icons/bi"
 import ConfirmForm from '../../components/confirmForm'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { putProduct } from "../../api/api"
 import { useNoti } from "../../notification"
 export default function AdminProductCard({product}){
@@ -18,7 +18,6 @@ export default function AdminProductCard({product}){
                 window.location.reload()
             }else{
                 const response = res.json().finally(res=>res)
-                console.log(response)
                 setMessage(response)
                 setType("warning")
             }

@@ -20,3 +20,12 @@ body {
     overflow: hidden;
     padding-left: 50px;
 }
+.backIcon{
+    color: #131a31;
+    text-decoration: none;
+    position: relative;
+    left: 0px;
+    top: 80px;
+    font-size: 17px;
+    font-weight: 500;
+}

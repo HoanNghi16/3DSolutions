@@ -132,6 +132,18 @@ export const postAddress = async (request) => {
     return res
 }
 
+export const deleteAddress = async (request)=>{
+    const res = await fetch(`${BASE_URL}/api/auth/me/address`,{
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+        credentials: 'include'
+    })
+    return res
+}
+
 export const postOrder = async (request) => {
     const res = await fetch(`${BASE_URL}/api/order`,{
         method: 'POST',
@@ -251,6 +263,19 @@ export const fetchAdminOrders = async (cookieStore, status) =>{
 export const putUser = async (request) => {
     const body = JSON.stringify(request)
     const res = await fetch(`${BASE_URL}/api/admin/users`,{
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body,
+        credentials: 'include'
+    })
+    return res
+}
+
+export const putOrder = async (request) => {
+    const body = JSON.stringify(request)
+    const res = await fetch (`${BASE_URL}/api/admin`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'

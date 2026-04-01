@@ -100,4 +100,25 @@
     color: rgb(114, 114, 114);
     cursor: not-allowed;
 }
+@media (max-width: 700px){
+    .orderRow{
+        padding: 20px;
+        padding-bottom: 24px;
+    }
+    .orderInfo{
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    .orderStatus{
+        margin: 0px;
+    }
+    .orderButtons{
+        padding-right: 0px;
+        justify-content: stretch;
+        flex-direction: column;
+    }
 
+    .orderButtons button{
+        width: 100%;
+    }
+}

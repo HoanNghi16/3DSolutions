@@ -11,7 +11,6 @@ export default function AdminOrderRow({order, onEdit}){
     const [toDelete, setToDelete] = useState(null)
     const [confirmDetail, setConfirmDetail] = useState(null)
     const {setMessage, setType} = useNoti()
-    console.log(onEdit)
     const handleToConfirm = (order)=>{
         setShowConfirm(true)
         setToDelete({order_id: order?.id})

@@ -31,3 +31,20 @@ export async function GET(req){
         return Response.json({message: "Lỗi!"}, {status: 500})
     }
 }
+
+export async function PUT(req){
+    try{
+        const payload = await req.json()
+        const res = await fetch(api_url,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Cookie: (await cookies()).toString()
+            },
+            body: JSON.stringify(payload)
+        })
+        return res
+    }catch{
+        return Response.json({message: "Lỗi server"}, {status: 500})
+    }
+}

@@ -55,3 +55,45 @@
     padding: 20px;
     color: #9ca3af;
 }
+
+/* ===== TABLET (<= 1024px) ===== */
+@media (max-width: 1024px) {
+    .table {
+        width: 100%;
+    }
+
+    .tableWrapper {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .userHeader {
+        grid-template-columns: 60px 2fr 1fr 1fr 1fr;
+        font-size: 14px;
+    }
+
+    .userHeader h4:nth-child(6),
+    .userHeader h4:nth-child(7) {
+        display: none; /* ẩn bớt cột */
+    }
+}
+
+/* ===== MOBILE (<= 640px) ===== */
+@media (max-width: 640px) {
+    .tableWrapper{
+        padding-right: 40px;
+    }
+    .userHeader {
+        display: none; /* ẩn header */
+    }
+
+    .table {
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .userBody {
+        gap: 12px;
+    }
+
+}

@@ -4,11 +4,30 @@ import { useState } from "react"
 import AddressForm from "../../components/addressForm"
 import { BiUpload, BiUser } from "react-icons/bi"
 import UploadAvt from "./uploadAvt"
+import { useNoti } from "../../notification"
+import { deleteAddress } from "../../api/api"
 
 export default function ProfileContent({user}){
     const [showAddressForm, setShowAddressForm] = useState(false)
     const [addressError, setAddressError] = useState(null)
     const [changeAvt, setChangeAvt] = useState(false)
+    const {setMessage, setType} = useNoti()
+    const handleDeleteAdress = async (id) =>{
+        setMessage("Đang xử lý...")
+        const request = {id: id}
+        const res = await deleteAddress(request)
+        setTimeout(async ()=>{
+            setMessage((await res.json()).message)
+            if (res.ok){
+                setType("success")
+                setTimeout(()=>{
+                    window.location.reload()
+                },1000)
+            }else{
+                setType("warning")
+            }
+        },1000)
+    }
     return (
     <div className="profileContent">
         {changeAvt?<UploadAvt openForm={setChangeAvt}></UploadAvt>:null}
@@ -45,7 +64,7 @@ export default function ProfileContent({user}){
                 <div className="infoGroup">
                     <span>Địa chỉ</span>
                     {showAddressForm? <AddressForm setAddError={setAddressError} setMoreAddress={setShowAddressForm}></AddressForm> :(user?.profile?.address?.map((item)=>(
-                        <p className="addressRow" key={item.id}>{item?.number} {item?.street}, {item?.ward}, {item?.city}</p>
+                        <div className="addressRow" key={item.id}><p>{item?.number} {item?.street}, {item?.ward}, {item?.city}</p> <button className="deleteBtn" onClick={()=>handleDeleteAdress(item?.id)}>x</button></div>
                     )))}
                     <div className="error">{addressError}</div>
                     <button className="moreAddressBtn" onClick={()=>setShowAddressForm(e=>!e)}>Thêm địa chỉ</button>

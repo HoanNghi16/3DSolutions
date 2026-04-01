@@ -1,23 +1,19 @@
-.editOrderContainer{
+/* nền mờ */
+.addProductContainer{
     width: 100%;
 }
-.editOrderWrapper{
-    padding: 7.5%;
-    padding-right: 7.5% + 40px;
-    padding-top: 70px;
+.formBackground{
+    width: 100%;
+    justify-items: center;
+    padding: 100px 7.5%;
+    padding-right: 7.5% + 50px;
 }
-.orderInfor .orderRow{
-    flex-grow: 1;
-    height: 200px;
-    padding-top: 30px;
+.addProductForm{
+    width: 100%;
 }
-.orderInfor{
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
+/* form card */
 .formCard {
-    margin-top: 30px;
+    min-width: 100%;
     background: #fff;
     border-radius: 16px;
     padding: 24px;
@@ -58,7 +54,10 @@
     outline: none;
     transition: 0.2s;
 }
-
+.formGroup textarea{
+    padding: 8px;
+    border-radius: 8px;
+}
 .formGroup input:focus,
 .formGroup select:focus {
     border-color: #3b82f6;
@@ -74,7 +73,7 @@
 }
 
 .saveBtn {
-    background: #543bf6;
+    background: #3b82f6;
     color: white;
     padding: 10px 16px;
     border: none;
@@ -84,7 +83,7 @@
 }
 
 .saveBtn:hover {
-    background: #4d25eb;
+    background: #2563eb;
 }
 
 .cancelBtn {
@@ -95,82 +94,21 @@
     border-radius: 8px;
     cursor: pointer;
 }
-
+.previewImageBox{
+    max-width: 600px;
+    display: flex;
+    overflow-x: scroll ;
+}
+.productImagePreview{
+    width: 100px;
+}
 .cancelBtn:hover {
     background: #e5e7eb;
 }
-
-.orderDetails{
-    width: 40%;
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    max-height: 200px;
-}
-.detailsWrapper{
-    margin-top: 20px;
-    height: 100px;
-    overflow-y: scroll;
-}
-.adminProductCard{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    padding: 14px 16px;
-    border-radius: 12px;
-
-    background: #fff;
-    border: 1px solid #f0f0f0;
-
-    transition: all 0.2s ease;
-}
-
-.adminProductCard:hover{
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
-}
-
-/* ảnh */
-.productThumbnail{
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* info */
-.productInfo{
-    flex: 1;
-}
-
-.productInfo h5{
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0 0 4px;
-}
-
-.productInfo p{
-    font-size: 13px;
-    margin: 2px 0;
-    color: #6b7280;
-}
-@media (max-width: 700px){
-    .editOrderWrapper{
+@media(max-width: 700px){
+    .formBackground{
         padding: 100px 0;
         padding-right: 40px;
-    }
-    .orderInfor{
-        display: block;
-    }
-    .orderDetails{
-        margin-top: 30px;
-        width: 100%;
-        max-height: 350px;
-    }
-    .detailsWrapper{
-        height: 150px;
     }
     .formCard{
         display: block;
