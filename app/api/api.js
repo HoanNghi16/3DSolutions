@@ -19,7 +19,7 @@ export const getMe = async (customCookies = {}) => {
 }
 
 export const postLogin = async (request) => {
-    const res = await fetch(`${BASE_URL}/api/auth/login/`, {
+    const res = await fetch(`/api/auth/login/`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         credentials:"include",
