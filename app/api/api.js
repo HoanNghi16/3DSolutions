@@ -1,4 +1,4 @@
-const BASE_URL = process.env?.BASE_URL 
+const BASE_URL = process.env?.NEXT_PUBLIC_BASE_URL ??"http://localhost:3000"
 
 export const postLogout = async () =>{
     const res = await fetch(`${BASE_URL}/api/auth/logout/`, {
@@ -19,7 +19,7 @@ export const getMe = async (customCookies = {}) => {
 }
 
 export const postLogin = async (request) => {
-    const res = await fetch(`/api/auth/login/`, {
+    const res = await fetch(`${BASE_URL}/api/auth/login/`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         credentials:"include",
