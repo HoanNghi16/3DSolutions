@@ -7,6 +7,7 @@ export async function POST(request) {
         const res = await fetch(api_url, {
             method: "POST",
             headers:{
+                'Accept-Encoding': 'identity',
                 Cookie: (await cookies()).toString(),
                 'Content-Type': 'application/json'
             },
@@ -23,7 +24,10 @@ export async function GET(req){
         const {searchParams} = new URL(req.url)
         const res = await fetch(api_url+`?${searchParams.toString()}`, {
             method:"GET",
-            headers: { Cookie: (await cookies()).toString()},            
+            headers: { 
+                'Accept-Encoding': 'identity',
+                Cookie: (await cookies()).toString()
+            },            
         })
         return res
     }
@@ -38,6 +42,7 @@ export async function PUT(req){
         const res = await fetch(api_url,{
             method: "PUT",
             headers: {
+                'Accept-Encoding': 'identity',
                 "Content-Type": "application/json",
                 Cookie: (await cookies()).toString()
             },

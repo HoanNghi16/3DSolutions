@@ -8,7 +8,10 @@ export async function GET(){
             return Response.json({message: "No access token provided"}, {status: 401})
         }
         const res = await fetch(`${process.env.API_URL + process.env.USERS_APPLICATION + process.env.INFO}`,{
-            headers: {"Authorization": `${access}`},
+            headers: {
+                'Accept-Encoding': 'identity',
+                "Authorization": `${access}`
+            },
         }
         )
         if (!res.ok){

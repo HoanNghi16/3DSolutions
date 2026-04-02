@@ -6,6 +6,7 @@ export async function POST(request){
         const res = await fetch(api_url,{
             method: "POST",
             headers: {
+                'Accept-Encoding': 'identity',
                 "Content-Type": "application/json",
                 Cookie: (await cookies()).toString(),
             },

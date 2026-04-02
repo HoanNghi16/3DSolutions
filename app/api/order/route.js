@@ -31,6 +31,7 @@ export async function GET(req){
         const res = await fetch(api_url, {
             method: 'GET',
             headers: {
+                'Accept-Encoding': 'identity',
                 "Authorization": access
             },
             credentials: 'include',

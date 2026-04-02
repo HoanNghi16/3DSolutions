@@ -6,6 +6,7 @@ export async function GET(req){
         const api_url = process.env.API_URL + process.env.USERS_APPLICATION + process.env.ADMIN_USERS + `?${searchParams.toString()}`
         const res = await fetch(api_url, {
             headers:{
+                'Accept-Encoding': 'identity',
                 Cookie: (await cookies()).toString(),
             },
         })
@@ -22,6 +23,7 @@ export async function PUT(request){
         const res = await fetch(api_url, {
             method: "PUT",
             headers:{
+                'Accept-Encoding': 'identity',
                 'Content-Type': 'application/json',
                 Cookie: (await cookies()).toString(),
             },

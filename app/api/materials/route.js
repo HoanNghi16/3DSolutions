@@ -1,7 +1,11 @@
 export async function GET(){
     try{
         const api_url = process.env.API_URL + process.env.PRODUCTS_APPLICATION + process.env.MATERIALS
-        const res = await fetch(api_url)
+        const res = await fetch(api_url,{
+            headers:{
+                'Accept-Encoding': 'identity',
+            }
+        })
         if(res.ok){
             return res}
     }

@@ -15,6 +15,7 @@ export async function GET(){
             const res = await fetch(api_url, {
                 method: "GET",
                 headers: {
+                    'Accept-Encoding': 'identity',
                     "Authorization": `${access}`
                 }
             })
@@ -38,6 +39,7 @@ export async function POST(request){
         const res = await fetch(cart_change_url,{
             method: "POST",
             headers:{
+                'Accept-Encoding': 'identity',
                 "Content-Type": 'application/json',
                 "Authorization": `${access}`,
             },
@@ -61,6 +63,7 @@ export async function PATCH(request){
         const res = await fetch(cart_change_url, {
             method: 'PATCH',
             headers: {
+                'Accept-Encoding': 'identity',
                 'Content-Type': 'application/json',
                 "Authorization": `${access}`
             },
@@ -83,6 +86,7 @@ export async function DELETE(request){
         const res = await fetch(cart_change_url, {
             method: 'DELETE',
             headers:{
+                'Accept-Encoding': 'identity',
                 'Content-Type': 'application/json',
                 "Authorization": `${access}`
             },

@@ -4,7 +4,10 @@ export async function POST(req){
     try{    
         const res = await fetch(api_url,{
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept-Encoding': 'identity',
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(body)
         })
         if (res.ok){

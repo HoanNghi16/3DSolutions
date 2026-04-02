@@ -7,6 +7,7 @@ export async function POST(){
     const res = await fetch(api_url,{
         method: 'POST',
         headers: {
+            'Accept-Encoding': 'identity',
             'refresh': `${refresh}`,
         }
     })

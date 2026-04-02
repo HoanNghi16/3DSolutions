@@ -7,6 +7,7 @@ export async function POST(req){
             {
                 method:'POST',
                 headers:{
+                    'Accept-Encoding': 'identity',
                     "Content-Type": "application/json",
                     Cookie: cookieStore.toString()
                 },
