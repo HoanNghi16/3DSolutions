@@ -7,6 +7,7 @@ export async function POST(payload){
         const res = await fetch(api_url, {
             method: 'POST',
             headers: {
+                'Accept-Encoding': 'identity',
                 Cookie: cookieStore.toString()
             },
             body: body,
@@ -24,6 +25,7 @@ export async function PUT(payload){
         const body = await payload.json()
         const res = await fetch(api_url, {
             headers: {
+                'Accept-Encoding': 'identity',
                 "Content-Type": 'application/json',
                 Cookie : (await cookies()).toString()
             },

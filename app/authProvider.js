@@ -21,6 +21,9 @@ export function AuthProvider({children, thisUser}) {
         const res = await getMe()
         if (res.ok){
             setUser(res.json())
+            setTimeout(()=>{
+                checkLogin()
+            }, 840000)
             return true
         }else{
             setUser(null)

@@ -5,6 +5,7 @@ export async function GET(){
         const res = await fetch(api_url,{
             method: "GET",
             headers: {
+                'Accept-Encoding': 'identity',
                 Cookie: (await cookies()).toString()
             }
         })

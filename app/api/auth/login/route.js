@@ -2,12 +2,15 @@ import {cookies} from 'next/headers'
 export async function POST(req){
     try{
         const body = await req.json()
-
+        const cookieStore = await cookies()
         const res = await fetch(`${process.env.API_URL}${process.env.USERS_APPLICATION}${process.env.LOGIN}`, 
-            {method:'POST',
+            {
+                method:'POST',
                 headers:{
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Cookie: cookieStore.toString()
                 },
+                credentials: 'include',
                 body: JSON.stringify(body)
             }
         )
@@ -16,7 +19,6 @@ export async function POST(req){
         }
         const {access, refresh} = await res.json()
         console.log(access, refresh)
-        const cookieStore = await cookies()
         cookieStore.set('access', access, {
             httpOnly: true,
             secure: true,

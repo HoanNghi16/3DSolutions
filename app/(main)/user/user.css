@@ -159,13 +159,13 @@
 .deleteBtn{
     background-color: white;
     font-weight: bold;
-    color: lightgray;
-    font-size: 15px;
+    color: rgb(163, 163, 163);
+    font-size: 17px;
     outline: none;
     border: none;
 }
 .deleteBtn:hover{
-    color: gray;
+    color: rgb(107, 107, 107);
     scale: 1.05;
     transition: 0.4s;
 }

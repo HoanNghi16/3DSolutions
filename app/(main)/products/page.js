@@ -18,7 +18,6 @@ export default async function ProductsPage({searchParams}) {
   const products = (proData?.results)? proData.results : null
   const totalPage =  products? proData?.total_pages ?? 0 : 0;
   const categories = await resCate.json()
-
   return (
     <div className='productContainer'>
       <div className='leftBoxes'>
