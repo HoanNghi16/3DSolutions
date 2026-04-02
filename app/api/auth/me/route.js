@@ -3,14 +3,10 @@ import { cookies} from "next/headers";
 export async function GET(){
     try{
         const cookieStore = await cookies()
-        const access = cookieStore.get("access")?.value
-        if (!access){
-            return Response.json({message: "No access token provided"}, {status: 401})
-        }
         const res = await fetch(`${process.env.API_URL + process.env.USERS_APPLICATION + process.env.INFO}`,{
             headers: {
                 'Accept-Encoding': 'identity',
-                "Authorization": `${access}`
+                Cookie: cookieStore.toString()
             },
         }
         )
