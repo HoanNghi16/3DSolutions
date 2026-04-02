@@ -101,7 +101,7 @@
 }
 
 .orderDetails{
-    width: 40%;
+    flex-grow: 1;
     background-color: #fff;
     padding: 24px;
     border-radius: 16px;
