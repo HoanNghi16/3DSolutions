@@ -12,7 +12,7 @@ export default function Form(){
     //Giao diện đăng nhập
     const login = <LoginForm></LoginForm>
     //Giao diện đăng ký
-    const signup = <SignupForm></SignupForm>
+    const signup = <SignupForm setIsLogin={setIsLogin}></SignupForm>
     function onLogin(){
         setIsLogin(!isLogin)
     }

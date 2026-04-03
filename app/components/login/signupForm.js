@@ -2,7 +2,8 @@ import {useState} from 'react'
 import validator from 'validator'
 import {useAuth} from '../../authProvider'
 import { useNoti } from '../../notification'
-export default function SignUpForm(){
+import { redirect } from 'next/navigation'
+export default function SignUpForm({setIsLogin}){
     const [emailError, setEmailError] = useState('')
     const [phoneError, setPhoneError] = useState('')
     const [nameError, setNameError] = useState('')
@@ -163,8 +164,13 @@ export default function SignUpForm(){
             const request = {email: email, name: name, date_of_birth: date, password: password, phone: phone}
             const res = await register(request)
             const data = await res.json()
+            console.log(data)
             setMessage(data?.message)
             setType(res.ok?'success': 'warning')
+            if (res.ok){
+                form.reset()
+                setIsLogin(true)
+            }
             return true
         }
     }

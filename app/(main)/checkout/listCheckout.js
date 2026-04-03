@@ -94,7 +94,7 @@ export default function ListCheckout(){
             console.log('ok')
             const result_data = await res.json()
             localStorage.setItem('checkout', JSON.stringify({list_ids: null, mode: 'Order'}))
-            console.log(result_data)
+            console.log("đây là data",result_data)
             redirect(result_data.next_page)
         }else{
             setCheckoutMessage('Đơn hàng không hợp lệ!')
